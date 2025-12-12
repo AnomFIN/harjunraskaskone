@@ -17,3 +17,16 @@ Thumbs.db
 # Build artifacts (if any in future)
 dist/
 build/
+
+# Overmind Suite
+Overmind/server/node_modules/
+Overmind/server/.env
+Overmind/server/data/*.db
+Overmind/server/uploads/*
+!Overmind/server/uploads/.gitkeep
+Overmind/server/logs/*
+!Overmind/server/logs/.gitkeep
+Overmind/web/node_modules/
+Overmind/web/dist/
+node_modules/
+package-lock.json

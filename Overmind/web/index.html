@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Overmind - HRK Internal Tools</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/main.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Banner -->
+    <div class="internal-banner">
+      ⚠️ This tool suite is for internal use only - Harjun Raskaskone Oy
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <a href="/" class="logo">
+            <span class="logo-mark">O</span>
+            <span class="logo-text">Overmind</span>
+          </a>
+          <nav class="nav">
+            <a href="#shortener" class="nav-link" data-tool="shortener">URL Shortener</a>
+            <a href="#upload" class="nav-link" data-tool="upload">File Upload</a>
+            <a href="#chat" class="nav-link" data-tool="chat">JugiAI Chat</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+      <div class="container">
+        <!-- Tool: URL Shortener -->
+        <section id="shortener" class="tool-section">
+          <div class="tool-header">
+            <h1>🔗 URL Shortener</h1>
+            <p>Create short links with optional custom codes</p>
+          </div>
+
+          <div class="tool-content">
+            <form id="shortenForm" class="form-card">
+              <div class="form-group">
+                <label for="longUrl">Long URL *</label>
+                <input 
+                  type="url" 
+                  id="longUrl" 
+                  name="longUrl" 
+                  placeholder="https://example.com/very/long/url"
+                  required
+                >
+              </div>
+              <div class="form-group">
+                <label for="customCode">Custom Code (optional, 4 chars)</label>
+                <input 
+                  type="text" 
+                  id="customCode" 
+                  name="customCode" 
+                  placeholder="ABCD"
+                  maxlength="4"
+                  pattern="[A-Za-z0-9]{4}"
+                >
+                <small>Leave empty for random code. Only letters and numbers allowed.</small>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                <span class="btn-text">Shorten URL</span>
+              </button>
+            </form>
+
+            <div id="shortenResult" class="result-card hidden">
+              <div class="result-header">
+                <span class="result-icon">✅</span>
+                <h3>Short Link Created!</h3>
+              </div>
+              <div class="result-content">
+                <div class="result-url">
+                  <input type="text" id="shortUrlDisplay" readonly>
+                  <button id="copyShortUrl" class="btn btn-secondary">Copy</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="links-table-container">
+              <h3>Recent Links</h3>
+              <div id="linksTable" class="links-table">
+                <div class="loading">Loading links...</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tool: File Upload -->
+        <section id="upload" class="tool-section hidden">
+          <div class="tool-header">
+            <h1>📤 File Upload</h1>
+            <p>Upload single file with drag & drop support</p>
+          </div>
+
+          <div class="tool-content">
+            <div class="upload-container">
+              <div id="dropZone" class="drop-zone">
+                <div class="drop-zone-content">
+                  <div class="drop-icon">📁</div>
+                  <p class="drop-text">Drag & drop file here</p>
+                  <p class="drop-or">or</p>
+                  <button type="button" id="browseBtn" class="btn btn-secondary">Browse Files</button>
+                  <input type="file" id="fileInput" hidden>
+                  <p class="drop-hint">Max file size: 100MB</p>
+                </div>
+              </div>
+
+              <div id="uploadProgress" class="upload-progress hidden">
+                <div class="progress-info">
+                  <span id="fileName"></span>
+                  <span id="fileSize"></span>
+                </div>
+                <div class="progress-bar">
+                  <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <p id="progressText" class="progress-text">Uploading...</p>
+              </div>
+
+              <div id="uploadResult" class="result-card hidden">
+                <div class="result-header">
+                  <span class="result-icon">✅</span>
+                  <h3>Upload Successful!</h3>
+                </div>
+                <div class="result-content">
+                  <div class="result-url">
+                    <input type="text" id="fileUrlDisplay" readonly>
+                    <button id="copyFileUrl" class="btn btn-secondary">Copy</button>
+                  </div>
+                  <button id="uploadAnother" class="btn btn-primary">Upload Another</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="links-table-container">
+              <h3>Recent Uploads</h3>
+              <div id="filesTable" class="links-table">
+                <div class="loading">Loading files...</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tool: AI Chat -->
+        <section id="chat" class="tool-section hidden">
+          <div class="tool-header">
+            <h1>🤖 JugiAI Chat</h1>
+            <p>Internal assistant for HRK business & Overmind tools</p>
+          </div>
+
+          <div class="tool-content">
+            <div class="chat-container">
+              <div id="chatMessages" class="chat-messages">
+                <div class="chat-welcome">
+                  <div class="chat-welcome-icon">👋</div>
+                  <h3>Welcome to JugiAI</h3>
+                  <p>I'm here to help with HRK operations and Overmind tools. Ask me anything!</p>
+                </div>
+              </div>
+
+              <form id="chatForm" class="chat-input-form">
+                <input 
+                  type="text" 
+                  id="chatInput" 
+                  placeholder="Ask me anything..."
+                  autocomplete="off"
+                >
+                <button type="submit" class="btn btn-primary">
+                  <span>Send</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; <span id="year"></span> Harjun Raskaskone Oy - Overmind Tools Suite</p>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
