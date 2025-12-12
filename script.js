@@ -121,8 +121,9 @@
             return;
         }
         
-        // In production, this would send data to a backend service
-        // For now, we simulate successful submission
+        // TODO: Replace with actual backend integration for production
+        // This currently simulates form submission for demonstration
+        // In production, replace simulateFormSubmission() with actual API call
         simulateFormSubmission(formData);
     });
     
@@ -251,6 +252,9 @@
     images.forEach(img => imageObserver.observe(img));
 })();
 
-// ===== Console Log (Remove in production) =====
-console.log('Harjun Raskaskone Oy - Website loaded successfully');
-console.log('All systems operational. No downtime culture in effect.');
+// ===== Development Logging =====
+// TODO: Remove or disable these console logs in production build
+if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    console.log('Harjun Raskaskone Oy - Website loaded successfully');
+    console.log('All systems operational. No downtime culture in effect.');
+}
