@@ -1,173 +1,63 @@
-# Harjun Raskaskone Oy - Website v1.1
+# Harjun Raskaskone Oy
 
-Professional corporate website for Harjun Raskaskone Oy, a Finnish heavy vehicle maintenance and repair company.
+Corporate website for Harjun Raskaskone Oy, a Finnish heavy vehicle maintenance and repair company based in Helsinki.
 
-## 🎯 Overview
+## About the Website
 
-This is a single-page website built with a light, premium industrial theme designed to build trust with financiers, enterprise customers, and partners. The site is production-ready and optimized for performance, accessibility, and conversion.
+This is a production-ready, single-page corporate website built with:
+- **Static HTML** for fast loading and reliability
+- **Modern CSS** with CSS variables for maintainable styling
+- **Vanilla JavaScript** for minimal, performance-focused interactivity
+- **No frameworks or dependencies** - just clean, efficient code
 
-## ✨ Features
+## Design Principles
 
-### Design
-- **Light Premium Theme**: Off-white background with steel-blue and graphite accents
-- **Subtle Visual Effects**: CSS-only gradient mesh, soft glow on interactive elements
-- **Responsive Design**: Mobile-first approach, fully responsive from 320px to 2560px+
-- **Typography**: Inter font family with large, well-spaced text for readability
+- **Industrial Premium**: Clean, confident design with dark/neutral base
+- **Performance First**: Fast load times, minimal file sizes
+- **Fully Responsive**: Desktop-first approach with mobile optimization
+- **Accessibility**: Semantic HTML and keyboard navigation support
 
-### Content Sections
-1. **Hero** - Main value proposition with trust indicators and proof card
-2. **About** - Company background and values
-3. **Operating Model** - Three-pillar approach (uptime, process, partnership)
-4. **Industries** - Target customer sectors
-5. **Services** - Four service categories with featured contracts option
-6. **Process** - Four-step service workflow timeline
-7. **Key Numbers** - Financial and operational metrics
-8. **Trust Proof** - Compliance, company details, and financier perspective
-9. **FAQ + SLA** - Interactive accordion with service level agreement
-10. **Contact** - Contact form with multiple submission options
+## Site Structure
 
-### Interactive Features
-- Sticky header with scroll shadow
-- Active navigation section highlighting (IntersectionObserver)
-- FAQ accordion
-- Smooth anchor scrolling (respects `prefers-reduced-motion`)
-- Mobile menu toggle
-- Floating "back to top" button
-- Contact form with POST/mailto fallback
+The single-page website includes these sections:
 
-### Technical
-- **Pure HTML/CSS/JS** - No frameworks or build tools required
-- **Semantic HTML5** - Proper structure and accessibility
-- **Modular Architecture** - Separated CSS and JS files
-- **SEO Ready** - JSON-LD schema, meta tags, semantic structure
-- **Performance Optimized** - Minimal dependencies, efficient code
-- **Security Audited** - CodeQL scanned, no vulnerabilities
+1. **Hero** - Main headline and call-to-action
+2. **About** - Company introduction and key facts
+3. **Services** - Four core service offerings
+4. **Key Numbers** - Financial metrics for trust building
+5. **Why Harjun Raskaskone** - Value propositions
+6. **Contact** - Company information and contact form
 
-## 📁 Project Structure
+## Running the Website
 
-```
-harjunraskaskone/
-├── index.html              # Main HTML file
-├── assets/
-│   ├── css/
-│   │   ├── styles.css      # Base styles and layout
-│   │   └── components.css  # Component styles (buttons, cards, etc.)
-│   └── js/
-│       ├── main.js         # Core functionality
-│       ├── observer.js     # Navigation active state
-│       └── forms.js        # Contact form handling
-├── .gitignore
-└── README.md
-```
+Simply open `index.html` in a web browser. No build process or server required.
 
-## 🚀 Deployment
-
-### Simple Deployment (Static Hosting)
-
-The website is static and can be deployed to any web hosting service:
-
-1. **Upload files** to your web server
-2. **Update phone numbers** in `index.html`:
-   - Search for `+358XXXXXXXXX` and replace with actual phone number
-   - Update in 3 locations: Hero CTAs, Contact details, and JSON-LD schema
-3. **Update email** if different from `info@harjunraskaskone.fi`
-4. **Test the site** in multiple browsers and devices
-
-### Recommended Hosting Platforms
-- **GitHub Pages** - Free, automatic HTTPS
-- **Netlify** - Free tier, automatic deployments
-- **Vercel** - Free tier, excellent performance
-- **Traditional hosting** - Any shared hosting with HTML support
-
-### Optional: Form Backend
-
-By default, the contact form uses `mailto:` fallback. To use a backend API:
-
-1. Add `data-endpoint="https://your-api.com/contact"` to the form element
-2. Ensure your endpoint accepts POST requests with JSON:
-   ```json
-   {
-     "name": "string",
-     "company": "string",
-     "phone": "string",
-     "email": "string",
-     "message": "string",
-     "callback": boolean,
-     "consent": boolean
-   }
-   ```
-
-## 🛠 Development
-
-### Local Testing
-
+For local development with live reload:
 ```bash
-# Using Python 3
+# Using Python (built-in)
 python3 -m http.server 8000
 
-# Using Node.js
+# Using Node.js (if installed)
 npx serve
-
-# Then open http://localhost:8000
 ```
 
-### Browser Support
-- Chrome/Edge (last 2 versions)
-- Firefox (last 2 versions)
-- Safari (last 2 versions)
+Then visit `http://localhost:8000`
+
+## Browser Support
+
+- Chrome/Edge (latest)
+- Firefox (latest)
+- Safari (latest)
 - Mobile browsers (iOS Safari, Chrome Mobile)
 
-### Accessibility
-- Semantic HTML structure
-- ARIA attributes where needed
-- Keyboard navigation support
-- Screen reader compatible
-- Reduced motion support
+## Company Information
 
-## 📝 Customization
-
-### Colors
-Edit CSS variables in `assets/css/styles.css`:
-```css
-:root {
-    --color-accent-primary: #3b5998;  /* Main brand color */
-    --color-accent-secondary: #5a7bb5; /* Secondary accent */
-    /* ... other variables */
-}
-```
-
-### Content
-All content is in `index.html`. Sections are clearly marked with comments.
-
-### Fonts
-Currently using Google Fonts (Inter). To use custom fonts:
-1. Remove Google Fonts link from `<head>`
-2. Add font files to `assets/fonts/`
-3. Update `@font-face` in CSS
-
-## 📊 Performance
-
-Expected Lighthouse scores:
-- **Performance**: 90+
-- **Accessibility**: 90+
-- **Best Practices**: 90+
-- **SEO**: 90+
-
-## 🔒 Security
-
-- No external dependencies (except Google Fonts CDN)
-- Input validation on contact form
-- Safe handling of user data
-- No eval() or innerHTML misuse
-- CodeQL scanned: 0 vulnerabilities
-
-## 📞 Support
-
-For issues or questions about this website:
-- Company: Harjun Raskaskone Oy
+**Harjun Raskaskone Oy**
 - Y-tunnus: 2578643-3
-- Email: info@harjunraskaskone.fi
+- Location: Helsinki, Finland
+- Founded: 2019
+- Specialization: Heavy vehicle maintenance and repair
 
-## 📄 License
+## License
 
-Copyright © 2025 Harjun Raskaskone Oy. All rights reserved.
+© 2024 Harjun Raskaskone Oy. All rights reserved.
