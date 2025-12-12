@@ -145,7 +145,7 @@ ul {
 .nav-toggle {
     display: none;
     flex-direction: column;
-    gap: var(--s-1);
+    gap: var(--s-2);
     background: none;
     border: none;
     cursor: pointer;
@@ -153,8 +153,8 @@ ul {
 }
 
 .nav-toggle span {
-    width: 25px;
-    height: 2px;
+    width: var(--s-5);
+    height: var(--border-thick);
     background-color: var(--ink);
     transition: all var(--t-med) var(--ease);
 }

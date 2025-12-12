@@ -205,8 +205,9 @@
     color: var(--accent);
 }
 
-.faq-question:focus {
-    outline: 2px solid var(--accent);
+.faq-question:focus,
+.faq-question:focus-visible {
+    outline: var(--border-thick) solid var(--accent);
     outline-offset: -2px;
 }
 
@@ -731,12 +732,12 @@
 .form-group textarea {
     width: 100%;
     padding: var(--s-4);
-    border: 1px solid var(--line);
+    border: var(--border-thin) solid var(--line);
     border-radius: var(--r-md);
     font-family: var(--font);
     font-size: var(--fs-md);
     color: var(--ink);
-    background: var(--bg);
+    background: var(--surface);
     transition: all var(--t-fast) var(--ease);
 }
 
