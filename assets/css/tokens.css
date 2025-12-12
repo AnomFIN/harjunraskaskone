@@ -54,6 +54,7 @@
     --sh-lg: 0 10px 15px -3px rgba(var(--shadow-rgb), 0.1), 0 4px 6px -2px rgba(var(--shadow-rgb), 0.05);
     
     /* ============ Spacing (8px grid) ============ */
+    /* 4px base unit with 8px multiples for larger spacing */
     --s-1: 4px;
     --s-2: 8px;
     --s-3: 12px;
@@ -90,6 +91,10 @@
     --t-fast: 120ms;
     --t-med: 220ms;
     --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+    
+    /* ============ Animation Helpers ============ */
+    --max-height-collapsed: 0;
+    --max-height-expanded: 500px;
 }
 
 /* Respect user's motion preference */
@@ -97,5 +102,21 @@
     :root {
         --t-fast: 0ms;
         --t-med: 0ms;
+    }
+}
+
+/* Responsive token overrides */
+@media (max-width: 980px) {
+    :root {
+        --fs-4xl: 40px;
+        --fs-3xl: 32px;
+    }
+}
+
+@media (max-width: 720px) {
+    :root {
+        --fs-4xl: 32px;
+        --fs-3xl: 28px;
+        --s-8: 48px;
     }
 }

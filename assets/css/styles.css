@@ -431,11 +431,6 @@ ul {
 
 /* Responsive Design */
 @media (max-width: 980px) {
-    :root {
-        --fs-4xl: 40px;
-        --fs-3xl: 32px;
-    }
-    
     .hero-content {
         grid-template-columns: 1fr;
         gap: var(--s-6);
@@ -447,12 +442,6 @@ ul {
 }
 
 @media (max-width: 720px) {
-    :root {
-        --fs-4xl: 32px;
-        --fs-3xl: 28px;
-        --s-8: 48px;
-    }
-    
     .nav-toggle {
         display: flex;
     }
@@ -467,13 +456,13 @@ ul {
         padding: var(--s-6);
         gap: var(--s-4);
         box-shadow: var(--sh-lg);
-        max-height: 0;
+        max-height: var(--max-height-collapsed);
         overflow: hidden;
         transition: max-height var(--t-med) var(--ease);
     }
     
     .nav-list.active {
-        max-height: 500px;
+        max-height: var(--max-height-expanded);
     }
     
     .nav-link {
