@@ -22,6 +22,7 @@
     /* Accent colors - Steel & Industrial */
     --accent: #3b5998;
     --accent-2: #334155;
+    --accent-rgb: 59, 89, 152;
     
     /* CTA (Call to Action) */
     --cta: linear-gradient(135deg, #3b5998, #5a7bb5);
@@ -32,6 +33,7 @@
     
     /* Error and success states */
     --error: #dc2626;
+    --error-rgb: 220, 38, 38;
     --error-bg: #f8d7da;
     --error-border: #f5c6cb;
     --success: #155724;

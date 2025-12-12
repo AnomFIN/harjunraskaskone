@@ -80,8 +80,8 @@
 }
 
 .tile--feature {
-    border: 2px solid var(--accent);
-    background: linear-gradient(135deg, rgba(59, 89, 152, 0.03), transparent);
+    border: var(--border-thick) solid var(--accent);
+    background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.03), transparent);
 }
 
 .tile--accent {
@@ -322,7 +322,7 @@
 .field__textarea:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(59, 89, 152, 0.1);
+    box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.1);
 }
 
 .field__input::placeholder,
@@ -344,7 +344,7 @@
 
 .field--error .field__input:focus,
 .field--error .field__textarea:focus {
-    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+    box-shadow: 0 0 0 3px rgba(var(--error-rgb), 0.1);
 }
 
 /* ============ Legacy Component Support ============ */
@@ -525,8 +525,8 @@
 
 /* Featured Service Card */
 .service-card-featured {
-    background: linear-gradient(135deg, rgba(59, 89, 152, 0.05), rgba(90, 123, 181, 0.03));
-    border: 2px solid var(--accent);
+    background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.05), rgba(var(--accent-rgb), 0.03));
+    border: var(--border-thick) solid var(--accent);
     box-shadow: 0 0 20px var(--glow);
 }
 
@@ -649,10 +649,10 @@
 
 /* SLA Promise */
 .sla-promise {
-    background: linear-gradient(135deg, rgba(59, 89, 152, 0.05), rgba(90, 123, 181, 0.03));
+    background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.05), rgba(var(--accent-rgb), 0.03));
     padding: var(--s-6);
     border-radius: var(--r-lg);
-    border: 1px solid var(--accent);
+    border: var(--border-thin) solid var(--accent);
     text-align: center;
     box-shadow: 0 0 20px var(--glow);
 }
@@ -744,7 +744,7 @@
 .form-group textarea:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(59, 89, 152, 0.1);
+    box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.1);
 }
 
 .form-checkbox {
