@@ -91,9 +91,9 @@ ul {
     top: 0;
     left: 0;
     right: 0;
-    height: 80px;
+    height: var(--size-nav-height);
     background-color: var(--surface);
-    border-bottom: 1px solid var(--line);
+    border-bottom: var(--border-thin) solid var(--line);
     z-index: 1000;
     transition: box-shadow var(--t-med) var(--ease);
 }
@@ -106,7 +106,7 @@ ul {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 80px;
+    height: var(--size-nav-height);
 }
 
 /* Logo */
@@ -122,8 +122,8 @@ ul {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
-    height: 48px;
+    width: var(--size-icon);
+    height: var(--size-icon);
     background: var(--cta);
     color: var(--cta-ink);
     font-size: var(--fs-lg);
@@ -145,7 +145,7 @@ ul {
 .nav-toggle {
     display: none;
     flex-direction: column;
-    gap: 5px;
+    gap: var(--s-1);
     background: none;
     border: none;
     cursor: pointer;
@@ -170,7 +170,7 @@ ul {
     font-weight: 500;
     font-size: var(--fs-sm);
     padding: var(--s-2) 0;
-    border-bottom: 2px solid transparent;
+    border-bottom: var(--border-thick) solid transparent;
     transition: all var(--t-med) var(--ease);
 }
 
@@ -202,7 +202,7 @@ ul {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding-top: 80px;
+    padding-top: var(--size-nav-height);
     overflow: hidden;
 }
 
@@ -334,7 +334,7 @@ ul {
 /* About Section */
 .about-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(var(--min-card-width), 1fr));
     gap: var(--s-6);
 }
 
@@ -401,8 +401,8 @@ ul {
     position: fixed;
     bottom: var(--s-6);
     right: var(--s-6);
-    width: 48px;
-    height: 48px;
+    width: var(--size-icon);
+    height: var(--size-icon);
     background: var(--accent);
     color: var(--cta-ink);
     border: none;
@@ -448,7 +448,7 @@ ul {
     
     .nav-list {
         position: fixed;
-        top: 80px;
+        top: var(--size-nav-height);
         left: 0;
         right: 0;
         background: var(--surface);

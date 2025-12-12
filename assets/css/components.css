@@ -267,8 +267,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
-    height: 48px;
+    width: var(--size-icon);
+    height: var(--size-icon);
     background: var(--cta);
     color: var(--cta-ink);
     font-size: var(--fs-xl);
@@ -402,7 +402,7 @@
 /* Model Cards */
 .model-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(var(--min-card-width-lg), 1fr));
     gap: var(--s-6);
     margin-bottom: var(--s-7);
 }
@@ -474,7 +474,7 @@
 /* Service Cards */
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(var(--min-card-width-lg), 1fr));
     gap: var(--s-6);
 }
 
@@ -551,7 +551,7 @@
 /* Process Timeline */
 .timeline {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(var(--min-card-width), 1fr));
     gap: var(--s-6);
     position: relative;
 }
@@ -563,7 +563,7 @@
     background: var(--surface);
     padding: var(--s-6);
     border-radius: var(--r-lg);
-    border: 1px solid var(--line);
+    border: var(--border-thin) solid var(--line);
     transition: all var(--t-med) var(--ease);
 }
 
@@ -577,8 +577,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
-    height: 48px;
+    width: var(--size-icon);
+    height: var(--size-icon);
     background: var(--cta);
     color: var(--cta-ink);
     font-size: var(--fs-xl);
@@ -600,7 +600,7 @@
 /* Trust Cards */
 .trust-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(var(--min-card-width-xl), 1fr));
     gap: var(--s-6);
 }
 

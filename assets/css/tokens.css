@@ -87,6 +87,19 @@
     --max: 1120px;
     --gutter: 20px;
     
+    /* Grid responsive breakpoints */
+    --min-card-width: 250px;
+    --min-card-width-lg: 280px;
+    --min-card-width-xl: 300px;
+    
+    /* Common dimensions */
+    --size-icon: 48px;
+    --size-nav-height: 80px;
+    
+    /* Border widths */
+    --border-thin: 1px;
+    --border-thick: 2px;
+    
     /* ============ Motion ============ */
     --t-fast: 120ms;
     --t-med: 220ms;
