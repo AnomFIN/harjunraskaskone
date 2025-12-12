@@ -3,99 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Harjun Raskaskone Oy – raskaan kaluston huolto ja korjaus Helsingissä. Nopeaa, luotettavaa palvelua ammattikäytössä oleville ajoneuvoille.">
-    <meta name="keywords" content="raskaan kaluston huolto, moottorikorjaus, Helsinki, yritysasiakkaat, huoltopalvelut">
-    <title>Harjun Raskaskone Oy – Raskaan kaluston huoltoa Helsingissä</title>
+    <meta name="description" content="Harjun Raskaskone Oy - Raskaan kaluston huoltoa, joka pitää liiketoiminnan liikkeessä. Ammattikäytössä olevien ajoneuvojen huolto ja korjaus Helsingissä.">
+    <meta name="keywords" content="raskaan kaluston huolto, ajoneuvojen korjaus, moottorityöt, voimansiirtotyöt, Helsinki">
+    <title>Harjun Raskaskone Oy - Raskaan kaluston huolto Helsingissä</title>
     
     <!-- Preconnect to Google Fonts for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="nav">
+    <nav class="nav" id="main-nav">
         <div class="container">
-            <div class="nav-content">
-                <a href="#hero" class="logo">Harjun Raskaskone</a>
-                <div class="nav-links">
-                    <a href="#about">Yritys</a>
-                    <a href="#services">Palvelut</a>
-                    <a href="#numbers">Luvut</a>
-                    <a href="#contact" class="nav-cta">Ota yhteyttä</a>
-                </div>
-                <button class="mobile-menu-toggle" aria-label="Valikko">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+            <div class="nav__brand">
+                <span class="nav__logo">Harjun Raskaskone</span>
             </div>
+            <ul class="nav__menu">
+                <li><a href="#about" class="nav__link">Yritys</a></li>
+                <li><a href="#services" class="nav__link">Palvelut</a></li>
+                <li><a href="#numbers" class="nav__link">Luvut</a></li>
+                <li><a href="#contact" class="nav__link contact-cta">Ota yhteyttä</a></li>
+            </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="hero" class="hero">
+    <section class="hero" id="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1>Raskaan kaluston huoltoa, joka pitää liiketoiminnan liikkeessä.</h1>
-                <p class="hero-subtitle">Huolto ja korjaus ammattikäytössä oleville ajoneuvoille – nopeasti, luotettavasti, Helsingissä.</p>
-                <a href="#contact" class="btn btn-primary">Ota yhteyttä</a>
-            </div>
+            <h1 class="hero__title">Raskaan kaluston huoltoa, joka pitää liiketoiminnan liikkeessä.</h1>
+            <p class="hero__subtitle">Huolto ja korjaus ammattikäytössä oleville ajoneuvoille – nopeasti, luotettavasti, Helsingissä.</p>
+            <a href="#contact" class="btn btn--primary">Ota yhteyttä</a>
         </div>
+        <div class="hero__background"></div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about">
+    <section class="about" id="about">
         <div class="container">
-            <div class="section-header">
-                <h2>Yritys</h2>
-            </div>
-            <div class="about-content">
-                <div class="about-grid">
-                    <div class="about-item">
-                        <div class="about-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                                <line x1="9" y1="9" x2="15" y2="15"></line>
-                                <line x1="15" y1="9" x2="9" y2="15"></line>
-                            </svg>
-                        </div>
-                        <h3>Perustettu 2019</h3>
-                        <p>Suomalainen perheyritys, joka ymmärtää asiakkaidensa tarpeet.</p>
+            <div class="about__content">
+                <h2 class="section__title">Luotettava kumppani yritysasiakkaille</h2>
+                <div class="about__grid">
+                    <div class="about__item">
+                        <span class="about__label">Perustettu</span>
+                        <span class="about__value">2019</span>
                     </div>
-                    <div class="about-item">
-                        <div class="about-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="9" cy="7" r="4"></circle>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                            </svg>
-                        </div>
-                        <h3>Yrittäjävetoinen</h3>
-                        <p>Nopeat päätökset, suora yhteydenpito ilman byrokratiaa.</p>
+                    <div class="about__item">
+                        <span class="about__label">Yhtiömuoto</span>
+                        <span class="about__value">Suomalainen osakeyhtiö</span>
                     </div>
-                    <div class="about-item">
-                        <div class="about-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-                            </svg>
-                        </div>
-                        <h3>Luotettavuus</h3>
-                        <p>Keskitymme käyttövarmuuteen ja minimaaliseen seisokkiaikaan.</p>
+                    <div class="about__item">
+                        <span class="about__label">Johtaminen</span>
+                        <span class="about__value">Yrittäjävetoinen</span>
                     </div>
-                    <div class="about-item">
-                        <div class="about-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                            </svg>
-                        </div>
-                        <h3>Suomalainen</h3>
-                        <p>Kotimainen toimija, joka tuntee markkinan ja sen vaatimukset.</p>
+                    <div class="about__item">
+                        <span class="about__label">Fokus</span>
+                        <span class="about__value">Luotettavuus ja käyttöaika</span>
                     </div>
                 </div>
             </div>
@@ -103,157 +68,177 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services">
+    <section class="services" id="services">
         <div class="container">
-            <div class="section-header">
-                <h2>Palvelut</h2>
-                <p>Kattavat huolto- ja korjauspalvelut raskaaseen kalustoon.</p>
-            </div>
-            <div class="services-grid">
+            <h2 class="section__title">Palvelut</h2>
+            <div class="services__grid">
                 <div class="service-card">
-                    <div class="service-number">01</div>
-                    <h3>Raskaan kaluston huolto</h3>
-                    <p>Säännöllinen huolto ja ennakoiva kunnossapito, joka varmistaa kaluston käyttövarmuuden.</p>
+                    <div class="service-card__icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                    </div>
+                    <h3 class="service-card__title">Raskaan kaluston huolto</h3>
+                    <p class="service-card__description">Säännölliset huollot, jotka pitävät kalustosi käyttökunnossa ja ehkäisevät kalliit seisokit.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-number">02</div>
-                    <h3>Moottori- ja voimansiirtotyöt</h3>
-                    <p>Ammattitaitoista moottori- ja voimansiirron korjaus- ja huoltotyötä kokeneilta mekaanikolta.</p>
+                    <div class="service-card__icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                    </div>
+                    <h3 class="service-card__title">Moottori- ja voimansiirtotyöt</h3>
+                    <p class="service-card__description">Erikoisosaaminen raskaiden ajoneuvojen kriittisimpien komponenttien korjauksessa.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-number">03</div>
-                    <h3>Vikatilanteet ja korjaukset</h3>
-                    <p>Nopea reagointi vikatilanteisiin minimoi seisokit ja pitää liiketoiminnan liikkeessä.</p>
+                    <div class="service-card__icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="service-card__title">Vikatilanteet ja korjaukset</h3>
+                    <p class="service-card__description">Nopea reagointi rikkoontumistilanteissa – minimoimme liiketoiminnan keskeytykset.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-number">04</div>
-                    <h3>Yritysasiakkaiden sopimushuollot</h3>
-                    <p>Räätälöidyt huoltosopimukset, jotka varmistavat kaluston jatkuvan toimintakunnon.</p>
+                    <div class="service-card__icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
+                            <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
+                            <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                    </div>
+                    <h3 class="service-card__title">Yritysasiakkaiden sopimushuollot</h3>
+                    <p class="service-card__description">Ennustettavat kustannukset ja huoltovälien optimointi pitkäaikaisille yhteistyökumppaneille.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Key Numbers Section -->
-    <section id="numbers" class="numbers">
+    <!-- Key Numbers Section - Critical for financiers -->
+    <section class="numbers" id="numbers">
         <div class="container">
-            <div class="section-header">
-                <h2>Luvut puhuvat puolestaan</h2>
-                <p>Vakaa kasvu ja vahva talous luovat perustan luotettavalle kumppanuudelle.</p>
-            </div>
-            <div class="numbers-grid">
+            <h2 class="section__title">Luvut</h2>
+            <div class="numbers__grid">
                 <div class="number-card">
-                    <div class="number-value">911 000 €</div>
-                    <div class="number-label">Liikevaihto 2024</div>
+                    <span class="number-card__value">911 000 €</span>
+                    <span class="number-card__label">Liikevaihto 2024</span>
                 </div>
                 <div class="number-card">
-                    <div class="number-value">+59%</div>
-                    <div class="number-label">Kasvu</div>
+                    <span class="number-card__value">+59 %</span>
+                    <span class="number-card__label">Kasvu</span>
                 </div>
                 <div class="number-card">
-                    <div class="number-value">40%</div>
-                    <div class="number-label">Omavaraisuusaste</div>
+                    <span class="number-card__value">40 %</span>
+                    <span class="number-card__label">Omavaraisuusaste</span>
                 </div>
                 <div class="number-card">
-                    <div class="number-value">2019</div>
-                    <div class="number-label">Toiminnassa vuodesta</div>
+                    <span class="number-card__value">2019</span>
+                    <span class="number-card__label">Toiminnassa vuodesta</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Why Section -->
-    <section id="why" class="why">
+    <section class="why" id="why">
         <div class="container">
-            <div class="section-header">
-                <h2>Miksi Harjun Raskaskone</h2>
-            </div>
-            <div class="why-grid">
-                <div class="why-item">
-                    <div class="why-icon">✓</div>
-                    <h3>No downtime -kulttuuri</h3>
-                    <p>Ymmärrämme, että jokainen seisokkitunti maksaa. Toimimme nopeasti ja tehokkaasti.</p>
+            <h2 class="section__title">Miksi Harjun Raskaskone</h2>
+            <div class="why__grid">
+                <div class="why__item">
+                    <div class="why__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="why__title">No downtime -kulttuuri</h3>
+                    <p class="why__description">Ymmärrämme, että jokaisella seisonta-tunnilla on hinta. Toimimme sen mukaisesti.</p>
                 </div>
-                <div class="why-item">
-                    <div class="why-icon">✓</div>
-                    <h3>Nopea päätöksenteko</h3>
-                    <p>Yrittäjävetoinen toimintamalli mahdollistaa ketterän reagoinnin ja joustavat ratkaisut.</p>
+                <div class="why__item">
+                    <div class="why__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                    <h3 class="why__title">Nopea päätöksenteko</h3>
+                    <p class="why__description">Yrittäjävetoinen yritys – ei byrokratiaa, päätökset syntyvät nopeasti.</p>
                 </div>
-                <div class="why-item">
-                    <div class="why-icon">✓</div>
-                    <h3>Suora yhteys</h3>
-                    <p>Ei byrokratiaa tai pitkiä päätöksentekopolkuja. Pääset suoraan asiasta vastaavaan henkilöön.</p>
+                <div class="why__item">
+                    <div class="why__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3 class="why__title">Suora yhteydenpito</h3>
+                    <p class="why__description">Keskustelet suoraan päättäjien kanssa – ei turhaa välikättä.</p>
                 </div>
-                <div class="why-item">
-                    <div class="why-icon">✓</div>
-                    <h3>Liiketoimintakriittinen ajattelu</h3>
-                    <p>Ymmärrämme kalustosi merkityksen liiketoiminnallesi ja toimimme sen mukaisesti.</p>
+                <div class="why__item">
+                    <div class="why__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                    </div>
+                    <h3 class="why__title">Business-critical -ajattelu</h3>
+                    <p class="why__description">Näemme asiakkaidemme liiketoiminnan kokonaisuuden – emme pelkkiä ajoneuvoja.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <section class="contact" id="contact">
         <div class="container">
-            <div class="contact-wrapper">
-                <div class="contact-info">
-                    <h2>Ota yhteyttä</h2>
-                    <p>Kerro tarpeestasi, niin palaamme asiaan nopeasti.</p>
-                    
-                    <div class="company-info">
-                        <h3>Harjun Raskaskone Oy</h3>
-                        <p><strong>Y-tunnus:</strong> 2578643-3</p>
-                        
-                        <div class="info-block">
-                            <h4>Osoite</h4>
-                            <p>
+            <div class="contact__wrapper">
+                <div class="contact__info">
+                    <h2 class="section__title">Ota yhteyttä</h2>
+                    <div class="contact__details">
+                        <div class="contact__detail">
+                            <span class="contact__detail-label">Yritys</span>
+                            <span class="contact__detail-value">Harjun Raskaskone Oy</span>
+                        </div>
+                        <div class="contact__detail">
+                            <span class="contact__detail-label">Y-tunnus</span>
+                            <span class="contact__detail-value">2578643-3</span>
+                        </div>
+                        <div class="contact__detail">
+                            <span class="contact__detail-label">Osoite</span>
+                            <span class="contact__detail-value">
                                 c/o Teboil Ruskeasuo<br>
                                 Koroistentie 10<br>
                                 00280 Helsinki
-                            </p>
-                        </div>
-                        
-                        <div class="info-block">
-                            <h4>Yhteystiedot</h4>
-                            <p>
-                                <strong>Puhelin:</strong> <a href="tel:+358401234567">+358 40 123 4567</a><br>
-                                <strong>Sähköposti:</strong> <a href="mailto:info@harjunraskaskone.fi">info@harjunraskaskone.fi</a>
-                            </p>
+                            </span>
                         </div>
                     </div>
                 </div>
-                
-                <div class="contact-form-wrapper">
-                    <form id="contact-form" class="contact-form">
-                        <div class="form-group">
-                            <label for="name">Nimi *</label>
-                            <input type="text" id="name" name="name" required>
+                <div class="contact__form-wrapper">
+                    <form class="contact__form" id="contact-form">
+                        <div class="form__group">
+                            <label for="name" class="form__label">Nimi *</label>
+                            <input type="text" id="name" name="name" class="form__input" required>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="company">Yritys</label>
-                            <input type="text" id="company" name="company">
+                        <div class="form__group">
+                            <label for="company" class="form__label">Yritys *</label>
+                            <input type="text" id="company" name="company" class="form__input" required>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">Puhelin *</label>
-                            <input type="tel" id="phone" name="phone" required>
+                        <div class="form__group">
+                            <label for="phone" class="form__label">Puhelin *</label>
+                            <input type="tel" id="phone" name="phone" class="form__input" required>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Sähköposti *</label>
-                            <input type="email" id="email" name="email" required>
+                        <div class="form__group">
+                            <label for="message" class="form__label">Viesti *</label>
+                            <textarea id="message" name="message" class="form__textarea" rows="5" required></textarea>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Viesti *</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary">Lähetä viesti</button>
-                        
-                        <div id="form-message" class="form-message"></div>
+                        <button type="submit" class="btn btn--primary">Lähetä viesti</button>
+                        <div class="form__message" id="form-message"></div>
                     </form>
                 </div>
             </div>
@@ -263,12 +248,10 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2024 Harjun Raskaskone Oy. Kaikki oikeudet pidätetään.</p>
-            </div>
+            <p class="footer__text">&copy; 2024 Harjun Raskaskone Oy. Y-tunnus: 2578643-3</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
