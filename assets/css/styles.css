@@ -424,7 +424,7 @@ ul {
 }
 
 .back-to-top:hover {
-    background: var(--accent);
+    background: var(--accent-2);
     transform: translateY(-4px);
     box-shadow: var(--sh-lg), 0 0 30px var(--glow);
 }

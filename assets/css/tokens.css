@@ -30,6 +30,14 @@
     /* Glow effect */
     --glow: rgba(59, 89, 152, 0.25);
     
+    /* Error and success states */
+    --error: #dc2626;
+    --error-bg: #f8d7da;
+    --error-border: #f5c6cb;
+    --success: #155724;
+    --success-bg: #d4edda;
+    --success-border: #c3e6cb;
+    
     /* Shadow RGB base (for consistent shadows) */
     --shadow-rgb: 0, 0, 0;
     
