@@ -53,7 +53,6 @@
      */
     function initNavScrollEffect() {
         const nav = document.querySelector('.nav');
-        let lastScrollTop = 0;
         
         window.addEventListener('scroll', function() {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -64,8 +63,6 @@
             } else {
                 nav.style.boxShadow = 'none';
             }
-            
-            lastScrollTop = scrollTop;
         });
     }
 
@@ -130,9 +127,8 @@
         
         // Simulate API call delay
         setTimeout(() => {
-            // In production: send to backend
-            // For now: show success and log to console
-            console.log('Form submission:', { name, company, phone, message });
+            // In production: send to backend API
+            // Example: fetch('/api/contact', { method: 'POST', body: JSON.stringify({ name, company, phone, message }) })
             
             // Show success message
             showFormMessage('Kiitos yhteydenotosta! Otamme sinuun yhteyttä pian.', 'success');
@@ -268,9 +264,6 @@
         initContactForm();
         initFieldValidation();
         initScrollReveal();
-        
-        // Log initialization (remove in production)
-        console.log('Harjun Raskaskone website initialized');
     }
     
     // Wait for DOM to be ready
