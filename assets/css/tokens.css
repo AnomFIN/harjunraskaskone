@@ -1,0 +1,93 @@
+/* ========================================
+   Harjun Raskaskone Design System - Tokens
+   All design tokens must be defined here
+   ======================================== */
+
+:root {
+    /* ============ Colors ============ */
+    
+    /* Base backgrounds */
+    --bg: #f8f9fa;
+    --surface: #ffffff;
+    --surface-2: #fafbfc;
+    
+    /* Text colors */
+    --ink: #1a1d23;
+    --muted: #718096;
+    
+    /* Lines and borders */
+    --line: #e2e8f0;
+    --line-strong: #cbd5e0;
+    
+    /* Accent colors - Steel & Industrial */
+    --accent: #3b5998;
+    --accent-2: #334155;
+    
+    /* CTA (Call to Action) */
+    --cta: linear-gradient(135deg, #3b5998, #5a7bb5);
+    --cta-ink: #ffffff;
+    
+    /* Glow effect */
+    --glow: rgba(59, 89, 152, 0.25);
+    
+    /* Shadow RGB base (for consistent shadows) */
+    --shadow-rgb: 0, 0, 0;
+    
+    /* ============ Radii ============ */
+    --r-sm: 10px;
+    --r-md: 14px;
+    --r-lg: 18px;
+    --r-xl: 24px;
+    --r-pill: 999px;
+    
+    /* ============ Shadows ============ */
+    --sh-sm: 0 1px 2px 0 rgba(var(--shadow-rgb), 0.05);
+    --sh-md: 0 4px 6px -1px rgba(var(--shadow-rgb), 0.1), 0 2px 4px -1px rgba(var(--shadow-rgb), 0.06);
+    --sh-lg: 0 10px 15px -3px rgba(var(--shadow-rgb), 0.1), 0 4px 6px -2px rgba(var(--shadow-rgb), 0.05);
+    
+    /* ============ Spacing (8px grid) ============ */
+    --s-1: 4px;
+    --s-2: 8px;
+    --s-3: 12px;
+    --s-4: 16px;
+    --s-5: 24px;
+    --s-6: 32px;
+    --s-7: 48px;
+    --s-8: 72px;
+    
+    /* ============ Typography ============ */
+    
+    /* Font sizes */
+    --fs-xs: 12px;
+    --fs-sm: 14px;
+    --fs-md: 16px;
+    --fs-lg: 18px;
+    --fs-xl: 22px;
+    --fs-2xl: 28px;
+    --fs-3xl: 40px;
+    --fs-4xl: 56px;
+    
+    /* Line heights */
+    --lh-tight: 1.08;
+    --lh-normal: 1.55;
+    
+    /* Font family */
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    
+    /* ============ Layout ============ */
+    --max: 1120px;
+    --gutter: 20px;
+    
+    /* ============ Motion ============ */
+    --t-fast: 120ms;
+    --t-med: 220ms;
+    --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Respect user's motion preference */
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --t-fast: 0ms;
+        --t-med: 0ms;
+    }
+}
