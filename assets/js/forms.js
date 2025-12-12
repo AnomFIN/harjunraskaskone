@@ -1,5 +1,5 @@
 /* ========================================
-   Harjun Raskaskone v1.1 - Form Handler
+   Harjun Raskaskone v4.0 - Form Handler
    Contact form with POST/mailto fallback
    ======================================== */
 
