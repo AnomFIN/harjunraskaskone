@@ -53,15 +53,19 @@ export function initUpload() {
   });
 
   // Copy button
-  copyBtn.addEventListener('click', () => {
-    fileUrlDisplay.select();
-    document.execCommand('copy');
+  copyBtn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(fileUrlDisplay.value);
 
-    const originalText = copyBtn.textContent;
-    copyBtn.textContent = 'Copied!';
-    setTimeout(() => {
-      copyBtn.textContent = originalText;
-    }, 2000);
+      const originalText = copyBtn.textContent;
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => {
+        copyBtn.textContent = originalText;
+      }, 2000);
+    } catch (error) {
+      console.error('Failed to copy:', error);
+      alert('Failed to copy to clipboard');
+    }
   });
 
   // Upload another button

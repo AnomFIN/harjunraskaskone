@@ -57,15 +57,19 @@ export function initShortener() {
   });
 
   // Handle copy button
-  copyBtn.addEventListener('click', () => {
-    shortUrlDisplay.select();
-    document.execCommand('copy');
-    
-    const originalText = copyBtn.textContent;
-    copyBtn.textContent = 'Copied!';
-    setTimeout(() => {
-      copyBtn.textContent = originalText;
-    }, 2000);
+  copyBtn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(shortUrlDisplay.value);
+      
+      const originalText = copyBtn.textContent;
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => {
+        copyBtn.textContent = originalText;
+      }, 2000);
+    } catch (error) {
+      console.error('Failed to copy:', error);
+      alert('Failed to copy to clipboard');
+    }
   });
 }
 
