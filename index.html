@@ -12,235 +12,434 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/components.css">
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="nav" id="main-nav">
+    <header class="header" id="header">
         <div class="container">
-            <div class="nav__brand">
-                <span class="nav__logo">Harjun Raskaskone</span>
+            <div class="header-content">
+                <a href="#hero" class="logo">
+                    <span class="logo-mark">HRK</span>
+                    <span class="logo-text">Harjun Raskaskone</span>
+                </a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav>
+                    <ul class="nav-list" id="navList">
+                        <li><a href="#about" class="nav-link">Yritys</a></li>
+                        <li><a href="#model" class="nav-link">Toimintamalli</a></li>
+                        <li><a href="#clients" class="nav-link">Asiakkaat</a></li>
+                        <li><a href="#services" class="nav-link">Palvelut</a></li>
+                        <li><a href="#numbers" class="nav-link">Luvut</a></li>
+                        <li><a href="#faq" class="nav-link">FAQ</a></li>
+                        <li><a href="#contact" class="nav-link nav-link-cta">Ota yhteyttä</a></li>
+                    </ul>
+                </nav>
             </div>
-            <ul class="nav__menu">
-                <li><a href="#about" class="nav__link">Yritys</a></li>
-                <li><a href="#services" class="nav__link">Palvelut</a></li>
-                <li><a href="#numbers" class="nav__link">Luvut</a></li>
-                <li><a href="#contact" class="nav__link contact-cta">Ota yhteyttä</a></li>
-            </ul>
         </div>
-    </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="hero">
+    <section class="hero section" id="hero">
+        <div class="hero-gradient"></div>
         <div class="container">
-            <h1 class="hero__title">Raskaan kaluston huoltoa, joka pitää liiketoiminnan liikkeessä.</h1>
-            <p class="hero__subtitle">Huolto ja korjaus ammattikäytössä oleville ajoneuvoille – nopeasti, luotettavasti, Helsingissä.</p>
-            <a href="#contact" class="btn btn--primary">Ota yhteyttä</a>
+            <div class="hero-content">
+                <div class="hero-main">
+                    <h1 class="hero-title">Raskaan kaluston huoltoa, joka pitää liiketoiminnan liikkeessä.</h1>
+                    <p class="hero-subtitle">Huolto ja korjaus ammattikäytössä oleville ajoneuvoille – nopeasti, luotettavasti, Helsingissä.</p>
+                    
+                    <div class="hero-cta">
+                        <a href="#contact" class="btn btn-primary">Ota yhteyttä</a>
+                        <a href="tel:+358401234567" class="btn btn-secondary">Soita</a>
+                        <a href="mailto:info@harjunraskaskone.fi" class="btn btn-secondary">Lähetä sähköposti</a>
+                    </div>
+                    
+                    <div class="trust-bar">
+                        <div class="trust-item">
+                            <span class="trust-label">Toiminnassa</span>
+                            <span class="trust-value">2019 →</span>
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-label">Liikevaihto 2024</span>
+                            <span class="trust-value">911k€</span>
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-label">Omavaraisuus</span>
+                            <span class="trust-value">40%</span>
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-label">Sijainti</span>
+                            <span class="trust-value">Helsinki</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-proof-card">
+                    <div class="proof-header">Uptime-first -ajattelu</div>
+                    <div class="proof-stats">
+                        <div class="proof-stat">
+                            <span class="proof-number">+59%</span>
+                            <span class="proof-text">Kasvuvauhti 2024</span>
+                        </div>
+                        <div class="proof-stat">
+                            <span class="proof-number">40%</span>
+                            <span class="proof-text">Omavaraisuusaste</span>
+                        </div>
+                        <div class="proof-stat">
+                            <span class="proof-number">911k€</span>
+                            <span class="proof-text">Liikevaihto</span>
+                        </div>
+                    </div>
+                    <p class="proof-message">Kalusto liikkeessä, liiketoiminta pyörii – nopea päätöksenteko ja suora toiminta.</p>
+                </div>
+            </div>
         </div>
-        <div class="hero__background"></div>
     </section>
 
     <!-- About Section -->
-    <section class="about" id="about">
+    <section class="section" id="about">
         <div class="container">
-            <div class="about__content">
-                <h2 class="section__title">Luotettava kumppani yritysasiakkaille</h2>
-                <div class="about__grid">
-                    <div class="about__item">
-                        <span class="about__label">Perustettu</span>
-                        <span class="about__value">2019</span>
-                    </div>
-                    <div class="about__item">
-                        <span class="about__label">Yhtiömuoto</span>
-                        <span class="about__value">Suomalainen osakeyhtiö</span>
-                    </div>
-                    <div class="about__item">
-                        <span class="about__label">Johtaminen</span>
-                        <span class="about__value">Yrittäjävetoinen</span>
-                    </div>
-                    <div class="about__item">
-                        <span class="about__label">Fokus</span>
-                        <span class="about__value">Luotettavuus ja käyttöaika</span>
-                    </div>
+            <h2 class="section-title">Luotettava kumppani yritysasiakkaille</h2>
+            <div class="about-grid">
+                <div class="about-item">
+                    <h3>Perustettu 2019</h3>
+                    <p>Harjun Raskaskone Oy on Helsingissä toimiva raskaan kaluston huolto- ja korjausyritys, joka on rakentanut vahvan aseman ammattikäytössä olevan kaluston huollossa.</p>
                 </div>
+                <div class="about-item">
+                    <h3>Yrittäjävetoinen</h3>
+                    <p>Päätöksenteko on nopeaa ja suoraviivaista. Yhdistämme teknisen osaamisen, vikatilanteiden systemaattisen diagnostiikan ja kentän realiteettien ymmärryksen.</p>
+                </div>
+                <div class="about-item">
+                    <h3>Skaalautuva rakenne</h3>
+                    <p>Toiminta on rakennettu kustannustehokkaaksi ja skaalautuvaksi. Voimakas kasvu (+59% v. 2024) ja terve tase (40% omavaraisuus) tukevat pitkäjänteistä kehitystä.</p>
+                </div>
+                <div class="about-item">
+                    <h3>Operatiivinen vahvuus</h3>
+                    <p>Emme myy pelkkää huoltoa – myymme toimintavarmuutta. Kalusto on asiakkaidemme liiketoimintakriittinen tuotantoväline, ja toimimme sen mukaisesti.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Operating Model Section -->
+    <section class="section" id="model">
+        <div class="container">
+            <h2 class="section-title">Toimintamalli</h2>
+            <div class="model-grid">
+                <div class="model-card">
+                    <div class="model-icon">⚡</div>
+                    <h3>Minimoi seisokki</h3>
+                    <p>Käyttöasteen maksimointi ja seisokkien minimointi. Huolto suunnitellaan niin, että kalusto palaa operatiiviseen käyttöön nopeasti ilman kompromisseja laadussa.</p>
+                </div>
+                <div class="model-card">
+                    <div class="model-icon">🔧</div>
+                    <h3>Selkeä prosessi</h3>
+                    <p>Diagnostiikka → Korjaus → Luovutus. Systemaattinen lähestymistapa varmistaa laadun ja tehokkuuden jokaisessa vaiheessa.</p>
+                </div>
+                <div class="model-card">
+                    <div class="model-icon">🤝</div>
+                    <h3>Ennustettava yhteistyö</h3>
+                    <p>Sopimuspohjaiset huollot ja pitkäaikaiset asiakassuhteet. Ennustettavuus tukee asiakkaan toimituskykyä ja kustannusten hallintaa.</p>
+                </div>
+            </div>
+            <div class="model-callout">
+                <p>"Huolto ei ole suorite – se on osa asiakkaan toimituskykyä."</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Industries / Clients Section -->
+    <section class="section" id="clients">
+        <div class="container">
+            <h2 class="section-title">Kenelle palvelut on suunnattu</h2>
+            <div class="clients-intro">
+                <p>Palvelemme toimijoita, joille kalusto on liiketoimintakriittinen tuotantoväline, ei tukitoiminto. Huollon ja korjauksen rooli ei ole pelkkä tekninen suorite, vaan osa asiakkaan kokonaisprosessia ja riskienhallintaa.</p>
+                <p>Asiakkaisiimme kuuluvat erityisesti ne yritykset, joissa kalustovälineen käyttövarmuus vaikuttaa suoraan toimituskykyyn ja liiketoiminnan jatkuvuuteen.</p>
+            </div>
+            <div class="industry-chips">
+                <span class="chip">Logistiikka</span>
+                <span class="chip">Kuljetus</span>
+                <span class="chip">Infrastruktuuri</span>
+                <span class="chip">Urakointi</span>
+                <span class="chip">Kiinteistöhuolto</span>
+                <span class="chip">Yrityskalusto</span>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section class="services" id="services">
+    <section class="section" id="services">
         <div class="container">
-            <h2 class="section__title">Palvelut</h2>
-            <div class="services__grid">
+            <h2 class="section-title">Palvelut</h2>
+            <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-card__icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                        </svg>
-                    </div>
-                    <h3 class="service-card__title">Raskaan kaluston huolto</h3>
-                    <p class="service-card__description">Säännölliset huollot, jotka pitävät kalustosi käyttökunnossa ja ehkäisevät kalliit seisokit.</p>
+                    <h3>Raskaan kaluston huolto</h3>
+                    <p>Säännölliset huollot, jotka pitävät kalustosi käyttökunnossa ja ehkäisevät kalliit seisokit.</p>
+                    <ul class="service-deliverables">
+                        <li>Diagnoosi ja toimenpide</li>
+                        <li>Testaus ja luovutus</li>
+                    </ul>
                 </div>
                 <div class="service-card">
-                    <div class="service-card__icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="12" y1="8" x2="12" y2="12"></line>
-                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                        </svg>
-                    </div>
-                    <h3 class="service-card__title">Moottori- ja voimansiirtotyöt</h3>
-                    <p class="service-card__description">Erikoisosaaminen raskaiden ajoneuvojen kriittisimpien komponenttien korjauksessa.</p>
+                    <h3>Moottori- ja voimansiirtotyöt</h3>
+                    <p>Erikoisosaaminen raskaiden ajoneuvojen kriittisimpien komponenttien korjauksessa.</p>
+                    <ul class="service-deliverables">
+                        <li>Diagnoosi ja toimenpide</li>
+                        <li>Testaus ja luovutus</li>
+                    </ul>
                 </div>
                 <div class="service-card">
-                    <div class="service-card__icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-                        </svg>
-                    </div>
-                    <h3 class="service-card__title">Vikatilanteet ja korjaukset</h3>
-                    <p class="service-card__description">Nopea reagointi rikkoontumistilanteissa – minimoimme liiketoiminnan keskeytykset.</p>
+                    <h3>Vikatilanteet ja korjaukset</h3>
+                    <p>Nopea reagointi rikkoontumistilanteissa – minimoimme liiketoiminnan keskeytykset.</p>
+                    <ul class="service-deliverables">
+                        <li>Diagnoosi ja toimenpide</li>
+                        <li>Testaus ja luovutus</li>
+                    </ul>
                 </div>
-                <div class="service-card">
-                    <div class="service-card__icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                            <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
-                            <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
-                            <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
-                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                        </svg>
+                <div class="service-card service-card-featured">
+                    <span class="featured-badge">Suosittu</span>
+                    <h3>Sopimushuollot yrityksille</h3>
+                    <p>Ennustettavat kustannukset ja huoltovälien optimointi pitkäaikaisille yhteistyökumppaneille. Sopimuspohjaiset huollot takaavat vakaan palvelutason ja nopean reagoinnin tarpeen tullen.</p>
+                    <ul class="service-deliverables">
+                        <li>Diagnoosi ja toimenpide</li>
+                        <li>Testaus ja luovutus</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Process Timeline Section -->
+    <section class="section" id="process">
+        <div class="container">
+            <h2 class="section-title">Miten homma etenee</h2>
+            <div class="timeline">
+                <div class="timeline-step">
+                    <span class="timeline-number">1</span>
+                    <div class="timeline-content">
+                        <h3>Yhteydenotto</h3>
+                        <p>Ota yhteyttä puhelimitse, sähköpostilla tai lomakkeella. Kartoitamme tilanteen ja sovimme jatkosta.</p>
                     </div>
-                    <h3 class="service-card__title">Yritysasiakkaiden sopimushuollot</h3>
-                    <p class="service-card__description">Ennustettavat kustannukset ja huoltovälien optimointi pitkäaikaisille yhteistyökumppaneille.</p>
+                </div>
+                <div class="timeline-step">
+                    <span class="timeline-number">2</span>
+                    <div class="timeline-content">
+                        <h3>Diagnoosi</h3>
+                        <p>Systemaattinen tilanteen arviointi ja toimenpiteiden suunnittelu. Sovitaan aikataulu ja kustannusarvio.</p>
+                    </div>
+                </div>
+                <div class="timeline-step">
+                    <span class="timeline-number">3</span>
+                    <div class="timeline-content">
+                        <h3>Korjaus & testaus</h3>
+                        <p>Huolto- tai korjaustoimenpiteet toteutetaan sovitusti. Testaus varmistaa, että kalusto toimii luotettavasti.</p>
+                    </div>
+                </div>
+                <div class="timeline-step">
+                    <span class="timeline-number">4</span>
+                    <div class="timeline-content">
+                        <h3>Luovutus & dokumentointi</h3>
+                        <p>Kalusto luovutetaan käyttöön ja toimenpiteet dokumentoidaan. Asiakkaalle selkeä raportti tehdyistä töistä.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Key Numbers Section - Critical for financiers -->
-    <section class="numbers" id="numbers">
+    <!-- Key Numbers Section -->
+    <section class="section" id="numbers">
         <div class="container">
-            <h2 class="section__title">Luvut</h2>
-            <div class="numbers__grid">
+            <h2 class="section-title">Luvut</h2>
+            <div class="numbers-grid">
                 <div class="number-card">
-                    <span class="number-card__value">911 000 €</span>
-                    <span class="number-card__label">Liikevaihto 2024</span>
+                    <span class="number-value">911 000 €</span>
+                    <span class="number-label">Liikevaihto 2024</span>
                 </div>
                 <div class="number-card">
-                    <span class="number-card__value">+59 %</span>
-                    <span class="number-card__label">Kasvu</span>
+                    <span class="number-value">+59 %</span>
+                    <span class="number-label">Kasvu</span>
                 </div>
                 <div class="number-card">
-                    <span class="number-card__value">40 %</span>
-                    <span class="number-card__label">Omavaraisuusaste</span>
+                    <span class="number-value">40 %</span>
+                    <span class="number-label">Omavaraisuusaste</span>
                 </div>
                 <div class="number-card">
-                    <span class="number-card__value">2019</span>
-                    <span class="number-card__label">Toiminnassa vuodesta</span>
+                    <span class="number-value">2019</span>
+                    <span class="number-label">Toiminnassa vuodesta</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Trust Proof Section -->
+    <section class="section" id="trust">
+        <div class="container">
+            <h2 class="section-title">Luotettavuus ja läpinäkyvyys</h2>
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <h3>Rekisterit & compliance</h3>
+                    <ul class="trust-list">
+                        <li><strong>ALV-rekisteri:</strong> Rekisteröity arvonlisäverovelvollinen</li>
+                        <li><strong>Ennakkoperintärekisteri:</strong> Hyväksytty ennakkoperintään</li>
+                        <li><strong>Työnantajarekisteri:</strong> Rekisteröity työnantaja</li>
+                        <li><strong>Kaupparekisteri:</strong> Merkitty viralliseen kaupparekisteriin</li>
+                    </ul>
+                </div>
+                <div class="trust-card">
+                    <h3>Yrityksen perustiedot</h3>
+                    <ul class="trust-list">
+                        <li><strong>Y-tunnus:</strong> 2578643-3</li>
+                        <li><strong>Toimiala:</strong> Moottoriajoneuvojen huolto ja korjaus (pl. renkaat)</li>
+                        <li><strong>Yhtiömuoto:</strong> Osakeyhtiö</li>
+                        <li><strong>Sijainti:</strong> Helsinki, Koroistentie 10</li>
+                        <li><strong>Perustettu:</strong> 2019</li>
+                    </ul>
+                </div>
+                <div class="trust-card">
+                    <h3>Rahoittajan tulkinta</h3>
+                    <ul class="trust-list">
+                        <li><strong>+59% kasvu:</strong> Selkeä ja kasvava kysyntä palveluille</li>
+                        <li><strong>40% omavaraisuus:</strong> Terve tase ja taloudellinen liikkumavara</li>
+                        <li><strong>Toimiala:</strong> Vakaa B2B-markkina, kriittinen palvelu</li>
+                        <li><strong>Marginaalit:</strong> Palveluliiketoiminnan tyypillinen vaihtelu – fokus tehokkuudessa ja skaalautuvuudessa</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Why Section -->
-    <section class="why" id="why">
+    <!-- FAQ Section -->
+    <section class="section" id="faq">
         <div class="container">
-            <h2 class="section__title">Miksi Harjun Raskaskone</h2>
-            <div class="why__grid">
-                <div class="why__item">
-                    <div class="why__icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-                        </svg>
+            <h2 class="section-title">Usein kysytyt kysymykset</h2>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Mitä kalustoa huollatte?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Huollamme ja korjaamme raskasta ammattikalustoa: kuorma-autoja, linja-autoja, työkoneitatyökoneita ja vastaavia. Erikoisosaamisemme on moottori- ja voimansiirtotyöissä sekä diagnostiikassa.</p>
                     </div>
-                    <h3 class="why__title">No downtime -kulttuuri</h3>
-                    <p class="why__description">Ymmärrämme, että jokaisella seisonta-tunnilla on hinta. Toimimme sen mukaisesti.</p>
                 </div>
-                <div class="why__item">
-                    <div class="why__icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                        </svg>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Kuinka nopeasti pääsette kiinni?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yhteydenottoihin vastataan samana tai seuraavana arkipäivänä. Akuuteissa vikatilanteissa pyrimme arvioimaan tilanteen ja aloittamaan toimenpiteet mahdollisimman nopeasti – usein saman tai seuraavan päivän aikana.</p>
                     </div>
-                    <h3 class="why__title">Nopea päätöksenteko</h3>
-                    <p class="why__description">Yrittäjävetoinen yritys – ei byrokratiaa, päätökset syntyvät nopeasti.</p>
                 </div>
-                <div class="why__item">
-                    <div class="why__icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Miten hinnoittelu muodostuu?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Hinnoittelu perustuu työtunteihin ja varaosiin. Annetaan kustannusarvio diagnostiikan jälkeen ennen varsinaisia toimenpiteitä. Sopimusasiakkaille voidaan tarjota kiinteähintaisia paketteja.</p>
                     </div>
-                    <h3 class="why__title">Suora yhteydenpito</h3>
-                    <p class="why__description">Keskustelet suoraan päättäjien kanssa – ei turhaa välikättä.</p>
                 </div>
-                <div class="why__item">
-                    <div class="why__icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                        </svg>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Saako sopimushuollon?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Kyllä. Tarjoamme sopimushuoltoja yrityksille, jotka haluavat ennustettavat kustannukset ja priorisoidun palvelun. Sopimushuoltoon kuuluu säännölliset huollot, nopea reagointi vikoihin ja kiinteä yhteyshenkilö.</p>
                     </div>
-                    <h3 class="why__title">Business-critical -ajattelu</h3>
-                    <p class="why__description">Näemme asiakkaidemme liiketoiminnan kokonaisuuden – emme pelkkiä ajoneuvoja.</p>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Miten dokumentointi toimii?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Jokainen työ dokumentoidaan selkeästi: tehdyt toimenpiteet, vaihdetut osat ja suositukset jatkotoimenpiteistä. Asiakkaalle toimitetaan kirjallinen raportti jokaisen huollon tai korjauksen jälkeen.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Missä toimitte?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Toimimme Helsingissä osoitteessa Koroistentie 10 (Teboil Ruskeasuo). Sijainti on hyvien liikenneyhteyksien varrella, mikä helpottaa kaluston toimittamista huoltoon.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sla-promise">
+                <h3>Palvelulupaus</h3>
+                <div class="sla-items">
+                    <span class="sla-item">Vastataan nopeasti</span>
+                    <span class="sla-item">Sovitaan aikataulu</span>
+                    <span class="sla-item">Pidetään kiinni</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <section class="section" id="contact">
         <div class="container">
-            <div class="contact__wrapper">
-                <div class="contact__info">
-                    <h2 class="section__title">Ota yhteyttä</h2>
-                    <div class="contact__details">
-                        <div class="contact__detail">
-                            <span class="contact__detail-label">Yritys</span>
-                            <span class="contact__detail-value">Harjun Raskaskone Oy</span>
-                        </div>
-                        <div class="contact__detail">
-                            <span class="contact__detail-label">Y-tunnus</span>
-                            <span class="contact__detail-value">2578643-3</span>
-                        </div>
-                        <div class="contact__detail">
-                            <span class="contact__detail-label">Osoite</span>
-                            <span class="contact__detail-value">
-                                c/o Teboil Ruskeasuo<br>
-                                Koroistentie 10<br>
-                                00280 Helsinki
-                            </span>
-                        </div>
+            <h2 class="section-title">Ota yhteyttä</h2>
+            <div class="contact-content">
+                <div class="contact-details">
+                    <h3>Yhteystiedot</h3>
+                    <p><strong>Harjun Raskaskone Oy</strong></p>
+                    <p>Y-tunnus: 2578643-3</p>
+                    <p>
+                        c/o Teboil Ruskeasuo<br>
+                        Koroistentie 10<br>
+                        00280 Helsinki
+                    </p>
+                    <p>
+                        <strong>Puhelin:</strong> <a href="tel:+358401234567">+358 40 123 4567</a><br>
+                        <strong>Sähköposti:</strong> <a href="mailto:info@harjunraskaskone.fi">info@harjunraskaskone.fi</a>
+                    </p>
+                </div>
+                <form class="contact-form" id="contactForm" data-endpoint="">
+                    <div class="form-group">
+                        <label for="name">Nimi *</label>
+                        <input type="text" id="name" name="name" required>
                     </div>
-                </div>
-                <div class="contact__form-wrapper">
-                    <form class="contact__form" id="contact-form">
-                        <div class="form__group">
-                            <label for="name" class="form__label">Nimi *</label>
-                            <input type="text" id="name" name="name" class="form__input" required>
-                        </div>
-                        <div class="form__group">
-                            <label for="company" class="form__label">Yritys *</label>
-                            <input type="text" id="company" name="company" class="form__input" required>
-                        </div>
-                        <div class="form__group">
-                            <label for="phone" class="form__label">Puhelin *</label>
-                            <input type="tel" id="phone" name="phone" class="form__input" required>
-                        </div>
-                        <div class="form__group">
-                            <label for="message" class="form__label">Viesti *</label>
-                            <textarea id="message" name="message" class="form__textarea" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn--primary">Lähetä viesti</button>
-                        <div class="form__message" id="form-message"></div>
-                    </form>
-                </div>
+                    <div class="form-group">
+                        <label for="company">Yritys</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Puhelin *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Sähköposti</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Viesti *</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <div class="form-group form-checkbox">
+                        <label>
+                            <input type="checkbox" name="callback">
+                            <span>Pyydän takaisinsoittoa</span>
+                        </label>
+                    </div>
+                    <div class="form-group form-checkbox">
+                        <label>
+                            <input type="checkbox" name="consent" required>
+                            <span>Hyväksyn, että yhteystietoihini otetaan yhteyttä tämän yhteydenottopyynnön johdosta. Tietoja ei käytetä muuhun tarkoitukseen. *</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Lähetä viesti</button>
+                    <div class="form-status" id="formStatus"></div>
+                </form>
             </div>
         </div>
     </section>
@@ -248,10 +447,47 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p class="footer__text">&copy; 2024 Harjun Raskaskone Oy. Y-tunnus: 2578643-3</p>
+            <div class="footer-content">
+                <p>&copy; <span id="currentYear">2024</span> Harjun Raskaskone Oy. Y-tunnus: 2578643-3</p>
+            </div>
         </div>
     </footer>
+    
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Takaisin ylös">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Harjun Raskaskone Oy",
+        "description": "Raskaan kaluston huolto ja korjaus ammattikäytössä oleville ajoneuvoille Helsingissä",
+        "url": "https://www.harjunraskaskone.fi",
+        "telephone": "+358401234567",
+        "email": "info@harjunraskaskone.fi",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "c/o Teboil Ruskeasuo, Koroistentie 10",
+            "addressLocality": "Helsinki",
+            "postalCode": "00280",
+            "addressCountry": "FI"
+        },
+        "priceRange": "$$",
+        "foundingDate": "2019",
+        "areaServed": {
+            "@type": "Place",
+            "name": "Helsinki"
+        }
+    }
+    </script>
 
-    <script src="js/main.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/observer.js"></script>
+    <script src="assets/js/forms.js"></script>
 </body>
 </html>
