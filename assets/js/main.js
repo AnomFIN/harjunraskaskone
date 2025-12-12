@@ -143,6 +143,31 @@
         });
     }
 
+    // Theme toggle (Dark/Light mode)
+    function initThemeToggle() {
+        const themeToggle = document.getElementById('themeToggle');
+        if (!themeToggle) return;
+
+        // Check for saved theme preference or default to 'dark'
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        
+        // Apply the saved theme
+        if (currentTheme === 'light') {
+            document.body.classList.add('light-theme');
+        } else {
+            document.body.classList.remove('light-theme');
+        }
+
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('light-theme');
+            
+            // Save preference
+            const theme = document.body.classList.contains('light-theme') ? 'light' : 'dark';
+            localStorage.setItem('theme', theme);
+        });
+    }
+
     // Initialize all
     function init() {
         updateYear();
@@ -151,6 +176,7 @@
         initBackToTop();
         initSmoothScroll();
         initFAQAccordion();
+        initThemeToggle();
     }
 
     // Run on DOM ready

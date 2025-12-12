@@ -213,6 +213,108 @@
     letter-spacing: 0.05em;
 }
 
+/* Visual Service Cards with Images */
+.services-grid-visual {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-2xl);
+}
+
+.service-card-visual {
+    position: relative;
+    background: var(--color-bg-card);
+    border: 2px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    transition: all var(--transition-base);
+    cursor: pointer;
+}
+
+.service-card-visual:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-accent-primary);
+    box-shadow: var(--shadow-lg);
+}
+
+.service-image {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    overflow: hidden;
+}
+
+/* Industrial placeholder backgrounds for different services */
+.service-image[data-service="trucks"] {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 20, 20, 0.95) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23111" width="400" height="300"/><path fill="%23222" d="M0,150 L100,100 L200,120 L300,80 L400,110 L400,300 L0,300 Z"/></svg>') center/cover;
+}
+
+.service-image[data-service="trailers"] {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 20, 20, 0.95) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23111" width="400" height="300"/><rect fill="%23333" x="50" y="100" width="300" height="150" rx="5"/></svg>') center/cover;
+}
+
+.service-image[data-service="parts"] {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 20, 20, 0.95) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23111" width="400" height="300"/><circle fill="%23444" cx="200" cy="150" r="80"/><circle fill="%23222" cx="200" cy="150" r="40"/></svg>') center/cover;
+}
+
+.service-image[data-service="insurance"] {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(20, 20, 20, 0.95) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23111" width="400" height="300"/><path fill="%23333" d="M150,80 L250,80 L280,150 L250,220 L150,220 L120,150 Z"/></svg>') center/cover;
+}
+
+.service-image[data-service="engine"] {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 20, 20, 0.95) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23111" width="400" height="300"/><rect fill="%23333" x="100" y="80" width="200" height="140" rx="10"/><rect fill="%23444" x="120" y="100" width="160" height="100" rx="5"/></svg>') center/cover;
+}
+
+.service-image[data-service="motor"] {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(20, 20, 20, 0.95) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23111" width="400" height="300"/><circle fill="%23333" cx="150" cy="150" r="60"/><circle fill="%23333" cx="250" cy="150" r="60"/><rect fill="%23444" x="90" y="120" width="220" height="60"/></svg>') center/cover;
+}
+
+.service-image[data-service="contract"] {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 20, 20, 0.95) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23111" width="400" height="300"/><circle fill="%23333" cx="120" cy="220" r="50"/><circle fill="%23333" cx="280" cy="220" r="50"/><circle fill="%23222" cx="120" cy="220" r="25"/><circle fill="%23222" cx="280" cy="220" r="25"/></svg>') center/cover;
+}
+
+.service-image[data-service="business"] {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(20, 20, 20, 0.95) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23111" width="400" height="300"/><path fill="%23333" d="M50,250 L80,100 L320,100 L350,250 Z"/><rect fill="%23444" x="100" y="120" width="200" height="100"/></svg>') center/cover;
+}
+
+.service-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 10, 0.7) 100%);
+    transition: all var(--transition-base);
+}
+
+.service-card-visual:hover .service-image-overlay {
+    background: linear-gradient(180deg, transparent 0%, rgba(245, 158, 11, 0.15) 100%);
+}
+
+.service-content {
+    padding: var(--spacing-xl);
+}
+
+.service-content h3 {
+    color: var(--color-text-primary);
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    line-height: var(--line-height-tight);
+}
+
+.service-content p {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+}
+
 /* Process Timeline */
 .timeline {
     display: grid;
