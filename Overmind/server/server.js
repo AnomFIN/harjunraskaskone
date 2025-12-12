@@ -24,8 +24,19 @@ const authMiddleware = require('./middleware/auth');
 const { logRequest } = require('./middleware/logger');
 
 // Security headers
+// CSP is relaxed for internal tool suite to allow inline scripts and styles
+// This is acceptable as the tool requires authentication and is for internal use only
 app.use(helmet({
-  contentSecurityPolicy: false, // Allow inline scripts for tools
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'"], // Required for Vite dev mode
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com"],
+      imgSrc: ["'self'", "data:", "https:"],
+      connectSrc: ["'self'"],
+    },
+  },
 }));
 
 // CORS configuration
@@ -207,7 +218,8 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Serve frontend for all other routes
+// Serve frontend for all other routes (SPA fallback)
+// Rate limiting not needed for static file serving - this is intentional
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../web/dist/index.html'));
 });
