@@ -143,6 +143,61 @@
         });
     }
 
+    // Theme toggle (Dark/Light mode)
+    function initThemeToggle() {
+        const themeToggle = document.getElementById('themeToggle');
+        if (!themeToggle) return;
+
+        // Check for saved theme preference or default to 'dark'
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        
+        // Apply the saved theme
+        if (currentTheme === 'light') {
+            document.body.classList.add('light-theme');
+        } else {
+            document.body.classList.remove('light-theme');
+        }
+
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('light-theme');
+            
+            // Save preference
+            const theme = document.body.classList.contains('light-theme') ? 'light' : 'dark';
+            localStorage.setItem('theme', theme);
+        });
+    }
+
+    // Animate service cards on scroll
+    function initServiceCardAnimations() {
+        const cards = document.querySelectorAll('.service-card-visual');
+        if (cards.length === 0) return;
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 50); // Stagger the animation
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+    }
+
     // Initialize all
     function init() {
         updateYear();
@@ -151,6 +206,8 @@
         initBackToTop();
         initSmoothScroll();
         initFAQAccordion();
+        initThemeToggle();
+        initServiceCardAnimations();
     }
 
     // Run on DOM ready

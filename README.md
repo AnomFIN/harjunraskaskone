@@ -21,10 +21,13 @@ This is a production-ready, single-page corporate website built with:
 
 ### Design Principles
 
-- **Light Industrial Premium**: Off-white background with steel-gray accents
+- **Dark Industrial Premium**: Deep black background (#0a0a0a) with amber accent colors (#f59e0b) for a modern, high-end industrial aesthetic
+- **Theme Toggle**: Built-in dark/light mode switch with localStorage persistence
+- **Visual Service Cards**: Image-based card layout for services section inspired by premium industrial design
 - **Performance First**: Fast load times, minimal file sizes
-- **Fully Responsive**: Desktop-first approach with mobile optimization
-- **Accessibility**: Semantic HTML and keyboard navigation support
+- **Fully Responsive**: Desktop-first approach with mobile optimization (4-column grid on desktop, responsive down to 1-column on mobile)
+- **Accessibility**: Semantic HTML, keyboard navigation support, and respects prefers-reduced-motion
+- **Smooth Animations**: Subtle micro-interactions and scroll-triggered animations for enhanced UX
 
 ### Site Structure
 
