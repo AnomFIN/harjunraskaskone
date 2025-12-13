@@ -1,6 +1,6 @@
 /* ========================================
-   Harjun Raskaskone v2.0 - Main JavaScript
-   Core functionality: nav toggle, header scroll, theme toggle, animations
+   Harjun Raskaskone v4.0 - Main JavaScript
+   Core functionality: nav toggle, header scroll, back to top
    ======================================== */
 
 (function() {

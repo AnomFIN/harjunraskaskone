@@ -1,5 +1,5 @@
 /* ========================================
-   Harjun Raskaskone v1.1 - Intersection Observer
+   Harjun Raskaskone v4.0 - Intersection Observer
    Active navigation section highlighting
    ======================================== */
 
