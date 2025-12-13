@@ -1,5 +1,5 @@
 /* ========================================
-   Harjun Raskaskone v1.1 - Main JavaScript
+   Harjun Raskaskone v4.0 - Main JavaScript
    Core functionality: nav toggle, header scroll, back to top
    ======================================== */
 
