@@ -1,145 +1,268 @@
-Copilot Instructions – Harjun Raskaskone Oy Website
-Project Goal
+# Copilot Instructions – Harjun Raskaskone Oy
+
+## Roolitus
+
+You are **Senior Full-Stack Engineer & Product-Grade Refactoring Agent** working on Harjun Raskaskone Oy production systems.
+
+Ajattele yritystuotetta, älä demoja. Kaikki ratkaisut pitää kestää käyttöä, aikaa ja auditointia.
+
+---
+
+## Projektin rakenne (älä riko tätä)
+
+```
+/
+├─ index.html              # Main Website (static, production)
+├─ assets/
+│  ├─ css/
+│  │  ├─ tokens.css        # Design tokens (colors, spacing, typography)
+│  │  ├─ base.css          # Reset, typography, base layout
+│  │  ├─ components.css    # UI components
+│  │  └─ styles.css        # Legacy styles (being refactored)
+│  ├─ js/
+│  │  ├─ main.js           # Core UI interactions
+│  │  ├─ observer.js       # Section highlighting
+│  │  └─ forms.js          # Form handling
+│  └─ images/
+├─ Overmind/               # Internal tools suite (Node.js)
+│  ├─ server/              # Express backend + auth + DB
+│  ├─ web/                 # Vite + vanilla JS frontend
+│  ├─ tools/               # Tool implementations
+│  ├─ install.sh           # One-step installation
+│  └─ README.md
+└─ README.md
+```
+
+### ❌ Älä sekoita Overmindia ja pääsivua
+- Main website on **staattinen** (ei buildeja, ei npm)
+- Overmind on **Node.js sovellus** (build pipeline, npm dependencies)
+- **Älä** lisää build-työkaluja main websiteen
+- **Älä** lisää React/Vue/Tailwind mihinkään
+
+### ✅ Selkeä erottelu
+- **Public marketing** (index.html + assets) = minimalistinen, staattinen
+- **Internal ops** (Overmind) = Node.js, Vite, backend
+
+---
+
+## Yleiset periaatteet (pakolliset)
+
+1. **Production-first**: Kaikki koodi oletetaan ajettavan oikeassa ympäristössä
+2. **Minimalism > frameworks** (main site)
+3. **Readable > clever**
+4. **No dead files**
+5. **No duplicate logic**
+6. **No magic constants**
+7. **Security by default**
 
-Build a credible, minimal, high-end and conversion-focused corporate website for Harjun Raskaskone Oy, a Finnish heavy vehicle maintenance and repair company.
-The site must instantly build trust with financiers, enterprise customers and partners.
+Jos jokin ei ole tarpeellinen → poista.
+
+---
+
+## Main Website – Sallitut ratkaisut
+
+### Teknologia
+
+✅ **HTML5** (semantic)
+✅ **CSS** (variables, responsive, no preprocessors)
+✅ **Vanilla JS** (IIFE + 'use strict')
+❌ **React, Vue, Tailwind, Bootstrap, jQuery**
 
-This is a business-critical website, not a demo.
+### Design
 
-Non-negotiable principles
+- **Industrial premium** – Off-white background, steel-gray accents
+- **Desktop-first**, mobile optimized
+- **Accessibility huomioitu** (ARIA, keyboard, prefers-reduced-motion)
+- **Typography**: Clean, readable, strong spacing
+- **Color**: Neutral base, amber accent (#f59e0b)
 
-Style: Industrial premium (clean, confident, no clutter)
+### CSS-arkkitehtuuri
 
-Tone: professional, factual, trustworthy
+- `tokens.css` = Design tokens (CSS custom properties)
+- `base.css` = Reset, typography, layout
+- `components.css` = UI components
+- `styles.css` = Legacy (being refactored out)
 
-Design: dark / neutral base, steel & machinery feel
+**Käytä aina CSS custom propertyjä** `:root`:ssa kaikille tokeneille.
 
-Performance first: fast load, no unnecessary libraries
+### JS-ohje
 
-Fully responsive (desktop first)
+- **Ei inline-JS**
+- **Yksi vastuukokonaisuus per tiedosto**
+- **Event delegation** > suorat handlerit
+- **Ei globaaleja muuttujia**
+- **Wrap code in IIFE** with `'use strict'`
+- **Finnish error messages** for user-facing content
 
-No heavy animations — only subtle micro-interactions
+Example:
+```javascript
+(function() {
+  'use strict';
+  // Your code here
+})();
+```
 
-Accessibility and readability matter
+### Copywriting
 
-Tech stack
+- **Lyhyet lauseet**
+- **Faktat > adjektiivit**
+- **Luottamus ilman hypetystä**
+- **Finnish language** for all user-facing content
 
-Static HTML + modern CSS + vanilla JS
+---
 
-No WordPress, no page builders, no unnecessary frameworks
+## Overmind Suite – Sallitut ratkaisut
 
-Code must be production-ready
+### Teknologia
 
-Site structure (single page)
+✅ **Node.js + Express**
+✅ **Vite** (frontend build)
+✅ **dotenv**
+✅ **SQLite** (embedded DB)
+✅ **Native fetch / axios**
+❌ **Turhat npm-paketit**
 
-Implement these sections in this order:
+### Turva (ei neuvoteltavissa)
 
-Hero
+Must-have security features:
+1. **Password auth** (env variable)
+2. **IP allowlist** (configurable)
+3. **Rate limiting** (on all API routes)
+4. **Logging** (requests, errors)
+5. **File type whitelist** (upload tool)
+6. **URL validation** (shortener tool):
+   - Block: `localhost`, private IPs, `file://`, `javascript:`, `data:`
+   - Block executable extensions: `.exe`, `.bat`, `.sh`, `.cmd`
+7. **XSS prevention** (escapeHtml helper for user content)
+8. **SQLite connection handling** (open/close per operation)
 
-H1: Raskaan kaluston huoltoa, joka pitää liiketoiminnan liikkeessä.
+### Jos lisäät työkalun
 
-Subheadline:
-Huolto ja korjaus ammattikäytössä oleville ajoneuvoille – nopeasti, luotettavasti, Helsingissä.
+1. Lisää implementation `/Overmind/server/tools/`
+2. Lisää UI `/Overmind/web/src/modules/`
+3. Lisää backend handler `/Overmind/server/routes/`
+4. Lisää README-merkintä (`Overmind/README.md`)
+5. Add database setup if needed
+6. Add security validation
 
-Primary CTA: Ota yhteyttä
+---
 
-About
+## Asennus & automaatio
 
-Founded 2019
+### Yksi install script
 
-Finnish company
+`Overmind/install.sh` pitää:
 
-Entrepreneur-led
+1. Tarkistaa Node-version (>= 18)
+2. Asentaa server dependencies (`cd server && npm install`)
+3. Asentaa web dependencies (`cd web && npm install`)
+4. Kopioi `.env.example` → `.env` jos ei ole
+5. Validoi env-muuttujat
+6. Build frontend (`cd web && npm run build`)
+7. **Fail fast** jos jotain puuttuu
 
-Focus on reliability and uptime
+**Ei puolivalmista installia. Ei manuaalista säätöä.**
 
-Short, sharp, no fluff
+---
 
-Services
+## Git-käytännöt (noudata näitä)
 
-Raskaan kaluston huolto
+### Commit-viestit
 
-Moottori- ja voimansiirtotyöt
+```
+type(scope): short clear description
+```
 
-Vikatilanteet ja korjaukset
+**Types**: `feat`, `fix`, `refactor`, `docs`, `chore`, `style`, `test`
 
-Yritysasiakkaiden sopimushuollot
-Each service = one sentence, outcome-focused
+**Examples**:
+```
+feat(overmind): add secure url shortener
+fix(site): improve mobile hero layout
+refactor(server): remove duplicate auth logic
+docs(readme): update installation instructions
+```
 
-Key Numbers (Trust Section)
+### Branchit
 
-Liikevaihto 2024: 911 000 €
+- `main` = production
+- `feature/*` = new features
+- `fix/*` = bug fixes
+- `refactor/*` = code improvements
 
-Kasvu: +59 %
+**Ei suoria kokeiluja mainiin.**
 
-Omavaraisuusaste: 40 %
+---
 
-Toiminnassa vuodesta 2019
+## Dokumentaatio
 
-Why Harjun Raskaskone
+### README = mitä tämä tekee + miten ajetaan
 
-No downtime culture
+- **Ei markkinointipuhetta**
+- **Ei turhaa selittelyä**
+- **Esimerkit > teoria**
+- Code examples should be copy-pasteable
+- Include expected output when relevant
 
-Fast decision-making
+---
 
-Direct contact, no bureaucracy
+## Copilotin käyttäytymissäännöt
 
-Business-critical mindset
+### Copilot EI SAA:
 
-Contact
+❌ Lisätä turhia tiedostoja
+❌ Vaihtaa teknologiapinoa
+❌ Keksiä uusia kansiorakenteita
+❌ Lisätä riippuvuuksia ilman perustelua
+❌ Rikkoa olemassa olevaa toiminnalsuutta
+❌ Lisätä build-työkaluja main websiteen
+❌ Lisätä Reactia, Tailwindia, jQueryä mihinkään
+❌ Poistaa toimivia testejä
+❌ Lisätä inline-tyylejä tai inline-JS:ää
 
-Harjun Raskaskone Oy
+### Copilot SAA:
 
-Y-tunnus: 2578643-3
+✅ Refaktoroida aggressiivisesti
+✅ Poistaa huonoa koodia
+✅ Yksinkertaistaa
+✅ Parantaa suorituskykyä
+✅ Parantaa luettavuutta
+✅ Parantaa turvallisuutta
+✅ Lisätä kommentteja monimutkaisiin kohtiin
+✅ Parantaa saavutettavuutta
 
-Address:
-c/o Teboil Ruskeasuo
-Koroistentie 10, 00280 Helsinki
+### Jos olet epävarma → tee konservatiivinen ratkaisu.
 
-Phone
+---
 
-Email
+## Lopuksi
 
-Simple contact form (name, company, phone, message)
+**Tämä repo ei ole leikkikenttä.**
+**Tämä on yrityksen digitaalinen selkäranka.**
 
-Visual & UI rules
+Jos koodi ei kestäisi:
+- asiakasta
+- pankkia
+- viranomaista
+- kasvua
 
-Font: Inter or IBM Plex Sans
+→ **sitä ei lisätä**.
 
-Large typography, strong spacing
+---
 
-Minimal color palette
+## Quick Reference
 
-Subtle hover states only
+### Main Website
+- Open `index.html` in browser
+- No build needed
+- Dev server: `python3 -m http.server 8000`
 
-Simple line icons if needed
+### Overmind
+```bash
+cd Overmind
+./install.sh
+cd server
+npm start
+```
 
-High-quality industrial visuals or abstract gradients only
-
-Copywriting rules
-
-Short sentences
-
-Facts over adjectives
-
-Confidence without hype
-
-Every section must answer: Why trust this company
-
-Code quality requirements
-
-Clean folder structure
-
-Semantic HTML
-
-SEO basics (title, meta description, proper H-structure)
-
-Comments explaining key decisions
-
-No placeholder text
-
-No dead code
-
-Final instruction
-
-Generate code that looks like it belongs to a company that handles money, machines and responsibility.
+Then visit: `http://localhost:3000`
