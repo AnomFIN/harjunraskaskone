@@ -214,7 +214,7 @@ docs(readme): update installation instructions
 ❌ Vaihtaa teknologiapinoa
 ❌ Keksiä uusia kansiorakenteita
 ❌ Lisätä riippuvuuksia ilman perustelua
-❌ Rikkoa olemassa olevaa toiminnalsuutta
+❌ Rikkoa olemassa olevaa toiminnallisuutta
 ❌ Lisätä build-työkaluja main websiteen
 ❌ Lisätä Reactia, Tailwindia, jQueryä mihinkään
 ❌ Poistaa toimivia testejä
