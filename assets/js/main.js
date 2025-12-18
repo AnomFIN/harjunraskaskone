@@ -263,10 +263,6 @@
             const target = parseInt(element.getAttribute('data-counter'));
             const duration = 2000;
             const start = performance.now();
-            let hasRun = false;
-
-            if (hasRun) return;
-            hasRun = true;
 
             function update(currentTime) {
                 const elapsed = currentTime - start;
