@@ -171,6 +171,10 @@ input, textarea, select {
     position: relative;
 }
 
+.section-gray {
+    background-color: var(--color-bg-tertiary);
+}
+
 .section-header {
     text-align: center;
     margin-bottom: var(--spacing-16);
