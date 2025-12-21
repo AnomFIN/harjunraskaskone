@@ -157,6 +157,13 @@
     --ease-out: cubic-bezier(0, 0, 0.2, 1);
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     
+    /* Motion durations (for JS animations) */
+    --dur-1: 160ms;
+    --dur-2: 220ms;
+    --dur-3: 260ms;
+    --dur-4: 420ms;
+    --dur-5: 600ms;
+    
     /* Z-index layers */
     --z-dropdown: 1000;
     --z-sticky: 1020;
