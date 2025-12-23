@@ -472,12 +472,40 @@
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-md);
+    background: linear-gradient(135deg, var(--color-steel-100), var(--color-steel-200));
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.process-step-image::after {
+    content: attr(data-fallback-text);
+    position: absolute;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    text-align: center;
+    padding: var(--spacing-4);
+    opacity: 0;
 }
 
 .process-step-image img {
     width: 100%;
     height: auto;
     display: block;
+    position: relative;
+    z-index: 1;
+}
+
+.process-step-image img[src=""],
+.process-step-image img:not([src]) {
+    display: none;
+}
+
+.process-step-image:has(img[src=""]):after,
+.process-step-image:has(img:not([src])):after {
+    opacity: 1;
 }
 
 /* Equipment Grid */
@@ -641,6 +669,7 @@
     height: 200px;
     overflow: hidden;
     position: relative;
+    background: linear-gradient(135deg, var(--color-steel-100), var(--color-steel-200));
 }
 
 .service-showcase-image img {
