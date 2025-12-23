@@ -555,24 +555,6 @@
         });
     }
 
-    // ============= Module 11: Theme Toggle =============
-
-    function initThemeToggle() {
-        const themeToggle = document.getElementById('themeToggle');
-        if (!themeToggle) return;
-
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        if (currentTheme === 'light') {
-            document.body.classList.add('light-theme');
-        }
-
-        themeToggle.addEventListener('click', function() {
-            document.body.classList.toggle('light-theme');
-            const theme = document.body.classList.contains('light-theme') ? 'light' : 'dark';
-            localStorage.setItem('theme', theme);
-        });
-    }
-
     // ============= Utility: Update Year =============
 
     function updateYear() {
@@ -599,7 +581,6 @@
         initToasts();
         initClipboard();
         initFx();
-        initThemeToggle();
     }
 
     // Run on DOM ready
