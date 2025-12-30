@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Harjun Raskaskone verkkokauppa - Varaosat, huoltopaketit ja tarvikkeet raskaan kaluston ammattilaisille.">
+    <title>Verkkokauppa - Harjun Raskaskone Oy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ========================================
+           Design Tokens (from main site)
+           ======================================== */
+        :root {
+            /* Light Industrial Finance Palette */
+            --color-bg-primary: #fafbfc;
+            --color-bg-secondary: #ffffff;
+            --color-bg-tertiary: #f5f7fa;
+            --color-bg-card: #ffffff;
+            
+            /* Text Colors */
+            --color-text-primary: #0f1419;
+            --color-text-secondary: #4a5568;
+            --color-text-muted: #6b7280;
+            --color-text-inverse: #ffffff;
+            
+            /* Steel & Graphite */
+            --color-steel-100: #f1f5f9;
+            --color-steel-200: #e2e8f0;
+            --color-steel-300: #cbd5e1;
+            --color-steel-400: #94a3b8;
+            --color-steel-500: #64748b;
+            --color-steel-600: #475569;
+            --color-steel-700: #334155;
+            --color-steel-800: #1e293b;
+            --color-steel-900: #0f172a;
+            
+            /* Accent - Refined Blue */
+            --color-accent-primary: #2563eb;
+            --color-accent-secondary: #3b82f6;
+            --color-accent-light: #dbeafe;
+            --color-accent-dark: #1e40af;
+            
+            /* Success & Status */
+            --color-success: #10b981;
+            --color-success-bg: #d1fae5;
+            --color-warning: #f59e0b;
+            --color-error: #ef4444;
+            --color-error-bg: #fee2e2;
+            
+            /* Spacing */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+            
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 1.875rem;
+            --font-size-4xl: 2.25rem;
+            
+            /* Border */
+            --border-radius-sm: 0.375rem;
+            --border-radius-md: 0.5rem;
+            --border-radius-lg: 0.75rem;
+            --border-radius-xl: 1rem;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+        
+        /* ========================================
+           Reset & Base Styles
+           ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            font-size: var(--font-size-base);
+            line-height: 1.6;
+            color: var(--color-text-primary);
+            background: var(--color-bg-primary);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+        
+        input, select, textarea {
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+        }
+        
+        /* ========================================
+           Layout
+           ======================================== */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+        }
+        
+        /* ========================================
+           Header & Navigation
+           ======================================== */
+        .header {
+            background: var(--color-bg-secondary);
+            border-bottom: 1px solid var(--color-steel-200);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-lg) 0;
+            gap: var(--space-xl);
+        }
+        
+        .logo {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            color: var(--color-text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        
+        .logo-mark {
+            background: var(--color-accent-primary);
+            color: white;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--border-radius-sm);
+            font-weight: 700;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+        }
+        
+        .back-link {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: var(--font-size-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            transition: color 0.2s;
+        }
+        
+        .back-link:hover {
+            color: var(--color-accent-primary);
+        }
+        
+        .cart-button {
+            position: relative;
+            background: var(--color-accent-primary);
+            color: white;
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--border-radius-md);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            transition: background 0.2s;
+        }
+        
+        .cart-button:hover {
+            background: var(--color-accent-dark);
+        }
+        
+        .cart-count {
+            background: white;
+            color: var(--color-accent-primary);
+            padding: 0.125rem var(--space-sm);
+            border-radius: 999px;
+            font-size: var(--font-size-xs);
+            font-weight: 700;
+            min-width: 1.5rem;
+            text-align: center;
+        }
+        
+        /* ========================================
+           Hero Section
+           ======================================== */
+        .hero {
+            background: linear-gradient(135deg, var(--color-steel-900) 0%, var(--color-steel-800) 100%);
+            color: white;
+            padding: var(--space-3xl) 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: var(--font-size-lg);
+            color: var(--color-steel-300);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* ========================================
+           Main Content
+           ======================================== */
+        .main {
+            padding: var(--space-3xl) 0;
+        }
+        
+        .shop-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: var(--space-2xl);
+            align-items: start;
+        }
+        
+        /* ========================================
+           Sidebar Filters
+           ======================================== */
+        .sidebar {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-steel-200);
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-lg);
+            position: sticky;
+            top: 100px;
+        }
+        
+        .sidebar h2 {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            margin-bottom: var(--space-lg);
+            color: var(--color-text-primary);
+        }
+        
+        .filter-group {
+            margin-bottom: var(--space-xl);
+        }
+        
+        .filter-group h3 {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-md);
+        }
+        
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm) 0;
+            cursor: pointer;
+            color: var(--color-text-secondary);
+            transition: color 0.2s;
+        }
+        
+        .filter-option:hover {
+            color: var(--color-text-primary);
+        }
+        
+        .filter-option input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--color-accent-primary);
+        }
+        
+        .filter-option label {
+            cursor: pointer;
+            font-size: var(--font-size-sm);
+        }
+        
+        /* ========================================
+           Product Grid
+           ======================================== */
+        .products-section h2 {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            margin-bottom: var(--space-xl);
+            color: var(--color-text-primary);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--space-xl);
+        }
+        
+        .product-card {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-steel-200);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-steel-300);
+            transform: translateY(-2px);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: var(--color-steel-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: var(--space-sm);
+            right: var(--space-sm);
+            background: var(--color-warning);
+            color: white;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--border-radius-sm);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+        }
+        
+        .product-content {
+            padding: var(--space-lg);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-category {
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-accent-primary);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .product-name {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-sm);
+            line-height: 1.3;
+        }
+        
+        .product-description {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-lg);
+            line-height: 1.5;
+            flex: 1;
+        }
+        
+        .product-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-md);
+            padding-top: var(--space-md);
+            border-top: 1px solid var(--color-steel-200);
+        }
+        
+        .product-price {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+        
+        .product-price-unit {
+            font-size: var(--font-size-xs);
+            font-weight: 400;
+            color: var(--color-text-muted);
+            margin-left: var(--space-xs);
+        }
+        
+        .add-to-cart-btn {
+            background: var(--color-accent-primary);
+            color: white;
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--border-radius-md);
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            transition: all 0.2s;
+        }
+        
+        .add-to-cart-btn:hover {
+            background: var(--color-accent-dark);
+        }
+        
+        .add-to-cart-btn:active {
+            transform: scale(0.98);
+        }
+        
+        .add-to-cart-btn.added {
+            background: var(--color-success);
+        }
+        
+        /* ========================================
+           Cart Sidebar
+           ======================================== */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 450px;
+            height: 100vh;
+            background: var(--color-bg-secondary);
+            box-shadow: var(--shadow-xl);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .cart-sidebar.open {
+            right: 0;
+        }
+        
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .cart-header {
+            padding: var(--space-xl);
+            border-bottom: 1px solid var(--color-steel-200);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .cart-header h2 {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+        }
+        
+        .close-cart-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--border-radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        
+        .close-cart-btn:hover {
+            background: var(--color-steel-100);
+        }
+        
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: var(--space-xl);
+        }
+        
+        .cart-empty {
+            text-align: center;
+            padding: var(--space-3xl) var(--space-xl);
+            color: var(--color-text-muted);
+        }
+        
+        .cart-empty svg {
+            margin: 0 auto var(--space-lg);
+            opacity: 0.3;
+        }
+        
+        .cart-item {
+            display: flex;
+            gap: var(--space-md);
+            padding: var(--space-lg) 0;
+            border-bottom: 1px solid var(--color-steel-200);
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            background: var(--color-steel-100);
+            border-radius: var(--border-radius-md);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--border-radius-md);
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-name {
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .cart-item-price {
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--space-md);
+        }
+        
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            background: var(--color-steel-100);
+            border-radius: var(--border-radius-md);
+            padding: var(--space-xs);
+        }
+        
+        .quantity-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: var(--border-radius-sm);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .quantity-btn:hover {
+            background: var(--color-steel-200);
+        }
+        
+        .quantity-display {
+            min-width: 32px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .remove-item-btn {
+            color: var(--color-error);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--border-radius-sm);
+            transition: all 0.2s;
+        }
+        
+        .remove-item-btn:hover {
+            background: var(--color-error-bg);
+        }
+        
+        .cart-summary {
+            border-top: 1px solid var(--color-steel-200);
+            padding: var(--space-xl);
+            background: var(--color-bg-tertiary);
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-lg);
+            font-size: var(--font-size-lg);
+        }
+        
+        .cart-total-label {
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+        
+        .cart-total-value {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--color-accent-primary);
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            background: var(--color-accent-primary);
+            color: white;
+            padding: var(--space-lg);
+            border-radius: var(--border-radius-md);
+            font-weight: 600;
+            font-size: var(--font-size-base);
+            transition: all 0.2s;
+        }
+        
+        .checkout-btn:hover {
+            background: var(--color-accent-dark);
+        }
+        
+        .checkout-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* ========================================
+           Checkout Modal
+           ======================================== */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: var(--color-bg-secondary);
+            border-radius: var(--border-radius-xl);
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+            transform: scale(0.9);
+            transition: transform 0.3s;
+        }
+        
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+        
+        .modal-header {
+            padding: var(--space-xl);
+            border-bottom: 1px solid var(--color-steel-200);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .modal-header h2 {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+        }
+        
+        .modal-body {
+            padding: var(--space-xl);
+        }
+        
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            color: var(--color-text-primary);
+        }
+        
+        .form-label.required::after {
+            content: " *";
+            color: var(--color-error);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: var(--space-md);
+            border: 1px solid var(--color-steel-300);
+            border-radius: var(--border-radius-md);
+            font-size: var(--font-size-base);
+            transition: all 0.2s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-accent-primary);
+            box-shadow: 0 0 0 3px var(--color-accent-light);
+        }
+        
+        .form-input.error {
+            border-color: var(--color-error);
+        }
+        
+        .form-error {
+            color: var(--color-error);
+            font-size: var(--font-size-sm);
+            margin-top: var(--space-xs);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+        }
+        
+        .order-summary {
+            background: var(--color-bg-tertiary);
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .order-summary h3 {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--space-sm) 0;
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+        
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: var(--space-md);
+            margin-top: var(--space-md);
+            border-top: 2px solid var(--color-steel-300);
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+        
+        .submit-order-btn {
+            width: 100%;
+            background: var(--color-success);
+            color: white;
+            padding: var(--space-lg);
+            border-radius: var(--border-radius-md);
+            font-weight: 600;
+            font-size: var(--font-size-base);
+            transition: all 0.2s;
+        }
+        
+        .submit-order-btn:hover {
+            background: #059669;
+        }
+        
+        .submit-order-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* ========================================
+           Success Message
+           ======================================== */
+        .success-message {
+            text-align: center;
+            padding: var(--space-3xl);
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--space-xl);
+            background: var(--color-success-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .success-message h3 {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+            color: var(--color-success);
+        }
+        
+        .success-message p {
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-xl);
+        }
+        
+        .order-number {
+            background: var(--color-steel-100);
+            padding: var(--space-md);
+            border-radius: var(--border-radius-md);
+            font-family: monospace;
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            margin: var(--space-xl) 0;
+        }
+        
+        /* ========================================
+           Responsive
+           ======================================== */
+        @media (max-width: 1024px) {
+            .shop-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: relative;
+                top: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: var(--font-size-3xl);
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart-sidebar {
+                max-width: 100%;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-wrap: wrap;
+            }
+            
+            .back-link {
+                order: 3;
+                width: 100%;
+            }
+        }
+        
+        /* ========================================
+           Utilities
+           ======================================== */
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <span class="logo-mark">HRK</span>
+                    <span>Verkkokauppa</span>
+                </a>
+                <div class="header-actions">
+                    <a href="index.html" class="back-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                        Takaisin etusivulle
+                    </a>
+                    <button class="cart-button" id="cartToggle" aria-label="Avaa ostoskori">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"></path>
+                        </svg>
+                        Ostoskori
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Varaosat ja tarvikkeet ammattilaisille</h1>
+            <p>Laadukkaat varaosat, huoltopaketit ja tarvikkeet raskaan kaluston kunnossapitoon. Nopea toimitus pääkaupunkiseudulle.</p>
+        </div>
+    </section>
+    
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <div class="shop-layout">
+                <!-- Sidebar Filters -->
+                <aside class="sidebar">
+                    <h2>Suodata</h2>
+                    
+                    <div class="filter-group">
+                        <h3>Kategoria</h3>
+                        <label class="filter-option">
+                            <input type="checkbox" value="varaosat" data-filter="category">
+                            <span>Varaosat</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" value="huoltopaketit" data-filter="category">
+                            <span>Huoltopaketit</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" value="nesteet" data-filter="category">
+                            <span>Öljyt ja nesteet</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" value="tyokalut" data-filter="category">
+                            <span>Työkalut</span>
+                        </label>
+                    </div>
+                </aside>
+                
+                <!-- Products -->
+                <section class="products-section">
+                    <h2>Tuotteet</h2>
+                    <div class="products-grid" id="productsGrid">
+                        <!-- Products will be rendered here by JavaScript -->
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    
+    <!-- Cart Sidebar -->
+    <aside class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Ostoskori</h2>
+            <button class="close-cart-btn" id="closeCart" aria-label="Sulje ostoskori">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be rendered here -->
+        </div>
+        <div class="cart-summary" id="cartSummary">
+            <div class="cart-total">
+                <span class="cart-total-label">Yhteensä</span>
+                <span class="cart-total-value" id="cartTotal">0,00 €</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">Siirry kassalle</button>
+        </div>
+    </aside>
+    
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Kassa</h2>
+                <button class="close-cart-btn" id="closeCheckout" aria-label="Sulje kassa">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body" id="checkoutBody">
+                <!-- Checkout form will be here -->
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        (function() {
+            'use strict';
+            
+            // ========================================
+            // Product Catalog
+            // ========================================
+            const products = [
+                {
+                    id: 1,
+                    name: 'Moottoriöljy 15W-40',
+                    category: 'nesteet',
+                    price: 89.00,
+                    unit: '20L',
+                    description: 'Laadukas mineraaliöljy raskaaseen kalustoon. Täyttää API CJ-4 ja ACEA E7 -vaatimukset.',
+                    image: '🛢️',
+                    badge: 'Suosittu'
+                },
+                {
+                    id: 2,
+                    name: 'Hydrauliöljy HLP 46',
+                    category: 'nesteet',
+                    price: 125.00,
+                    unit: '20L',
+                    description: 'Korkealaatuinen hydrauliöljy työkoneisiin ja nostolaitteisiin.',
+                    image: '🛢️'
+                },
+                {
+                    id: 3,
+                    name: 'Öljynsuodatin',
+                    category: 'varaosat',
+                    price: 24.50,
+                    unit: 'kpl',
+                    description: 'Yleismalli kuorma-autoihin. Sopii useimpiin Scania, Volvo ja Mercedes-malleihin.',
+                    image: '⚙️',
+                    badge: 'Uusi'
+                },
+                {
+                    id: 4,
+                    name: 'Ilmansuodatin',
+                    category: 'varaosat',
+                    price: 45.00,
+                    unit: 'kpl',
+                    description: 'Tehokas ilmansuodatin dieselmoottoreihin. Pitkä käyttöikä.',
+                    image: '⚙️'
+                },
+                {
+                    id: 5,
+                    name: 'Polttoainesuodatin',
+                    category: 'varaosat',
+                    price: 32.00,
+                    unit: 'kpl',
+                    description: 'Korkealaatuinen polttoainesuodatin. Erottaa veden ja epäpuhtaudet tehokkaasti.',
+                    image: '⚙️'
+                },
+                {
+                    id: 6,
+                    name: 'Perushuoltopaketti',
+                    category: 'huoltopaketit',
+                    price: 450.00,
+                    unit: 'pkt',
+                    description: 'Sisältää öljynvaihdon (25L), kaikki suodattimet ja perushuollon kuorma-autolle.',
+                    image: '📦',
+                    badge: 'Suosittu'
+                },
+                {
+                    id: 7,
+                    name: 'Laaja huoltopaketti',
+                    category: 'huoltopaketit',
+                    price: 890.00,
+                    unit: 'pkt',
+                    description: 'Sisältää öljynvaihdon, kaikki suodattimet, jarrujen tarkastuksen ja erikoistarkastuksen.',
+                    image: '📦'
+                },
+                {
+                    id: 8,
+                    name: 'Työkonehuolto',
+                    category: 'huoltopaketit',
+                    price: 650.00,
+                    unit: 'pkt',
+                    description: 'Täydellinen huoltopaketti työkoneille. Hydrauliikka, öljyt ja perusteellinen tarkastus.',
+                    image: '📦'
+                },
+                {
+                    id: 9,
+                    name: 'Jarruöljy DOT 4',
+                    category: 'nesteet',
+                    price: 18.50,
+                    unit: '1L',
+                    description: 'Korkean suorituskyvyn jarruneste raskaaseen kalustoon.',
+                    image: '🛢️'
+                },
+                {
+                    id: 10,
+                    name: 'Jäähdytinneste',
+                    category: 'nesteet',
+                    price: 45.00,
+                    unit: '5L',
+                    description: 'Korkealaatuinen jäähdytinneste. Suojaa -35°C lämpötilaan.',
+                    image: '🛢️'
+                },
+                {
+                    id: 11,
+                    name: 'Momenttiavain 1/2"',
+                    category: 'tyokalut',
+                    price: 189.00,
+                    unit: 'kpl',
+                    description: 'Ammattilaisen momenttiavain 40-200 Nm. Sertifioitu tarkkuus.',
+                    image: '🔧',
+                    badge: 'Pro'
+                },
+                {
+                    id: 12,
+                    name: 'Hylsysarja 1/2"',
+                    category: 'tyokalut',
+                    price: 145.00,
+                    unit: 'sarja',
+                    description: 'Kattava 24-osainen hylsysarja metallisalkussa. Koot 10-32mm.',
+                    image: '🔧'
+                }
+            ];
+            
+            // ========================================
+            // State Management
+            // ========================================
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            let activeFilters = {
+                category: []
+            };
+            
+            // ========================================
+            // Helper Functions
+            // ========================================
+            function escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+            
+            function formatPrice(price) {
+                return price.toFixed(2).replace('.', ',') + ' €';
+            }
+            
+            function saveCart() {
+                localStorage.setItem('cart', JSON.stringify(cart));
+            }
+            
+            function updateCartCount() {
+                const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+                document.getElementById('cartCount').textContent = count;
+            }
+            
+            function getCartTotal() {
+                return cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            }
+            
+            // ========================================
+            // Product Rendering
+            // ========================================
+            function renderProducts() {
+                const grid = document.getElementById('productsGrid');
+                let filteredProducts = products;
+                
+                // Apply category filters
+                if (activeFilters.category.length > 0) {
+                    filteredProducts = products.filter(p => 
+                        activeFilters.category.includes(p.category)
+                    );
+                }
+                
+                if (filteredProducts.length === 0) {
+                    grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--color-text-muted);">Ei tuotteita valituilla suodattimilla.</p>';
+                    return;
+                }
+                
+                grid.innerHTML = filteredProducts.map(product => `
+                    <article class="product-card">
+                        <div class="product-image">
+                            <div style="font-size: 4rem;">${escapeHtml(product.image)}</div>
+                            ${product.badge ? `<span class="product-badge">${escapeHtml(product.badge)}</span>` : ''}
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">${escapeHtml(getCategoryName(product.category))}</div>
+                            <h3 class="product-name">${escapeHtml(product.name)}</h3>
+                            <p class="product-description">${escapeHtml(product.description)}</p>
+                            <div class="product-footer">
+                                <div class="product-price">
+                                    ${formatPrice(product.price)}
+                                    <span class="product-price-unit">/ ${escapeHtml(product.unit)}</span>
+                                </div>
+                                <button class="add-to-cart-btn" data-product-id="${product.id}">
+                                    Lisää koriin
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                `).join('');
+                
+                // Add event listeners
+                grid.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+                    btn.addEventListener('click', handleAddToCart);
+                });
+            }
+            
+            function getCategoryName(category) {
+                const names = {
+                    varaosat: 'Varaosat',
+                    huoltopaketit: 'Huoltopaketit',
+                    nesteet: 'Öljyt ja nesteet',
+                    tyokalut: 'Työkalut'
+                };
+                return names[category] || category;
+            }
+            
+            // ========================================
+            // Cart Functions
+            // ========================================
+            function handleAddToCart(e) {
+                const btn = e.currentTarget;
+                const productId = parseInt(btn.dataset.productId);
+                const product = products.find(p => p.id === productId);
+                
+                if (!product) return;
+                
+                const existingItem = cart.find(item => item.id === productId);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        unit: product.unit,
+                        image: product.image,
+                        quantity: 1
+                    });
+                }
+                
+                saveCart();
+                updateCartCount();
+                renderCart();
+                
+                // Visual feedback
+                btn.classList.add('added');
+                btn.textContent = 'Lisätty!';
+                setTimeout(() => {
+                    btn.classList.remove('added');
+                    btn.textContent = 'Lisää koriin';
+                }, 1000);
+            }
+            
+            function renderCart() {
+                const cartItems = document.getElementById('cartItems');
+                const cartSummary = document.getElementById('cartSummary');
+                
+                if (cart.length === 0) {
+                    cartItems.innerHTML = `
+                        <div class="cart-empty">
+                            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"></path>
+                            </svg>
+                            <p>Ostoskorisi on tyhjä</p>
+                        </div>
+                    `;
+                    cartSummary.classList.add('hidden');
+                    return;
+                }
+                
+                cartSummary.classList.remove('hidden');
+                
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <div style="font-size: 2rem;">${escapeHtml(item.image)}</div>
+                        </div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${escapeHtml(item.name)}</div>
+                            <div class="cart-item-price">${formatPrice(item.price)} / ${escapeHtml(item.unit)}</div>
+                            <div class="cart-item-controls">
+                                <div class="quantity-control">
+                                    <button class="quantity-btn" data-action="decrease" data-item-id="${item.id}">−</button>
+                                    <span class="quantity-display">${item.quantity}</span>
+                                    <button class="quantity-btn" data-action="increase" data-item-id="${item.id}">+</button>
+                                </div>
+                                <button class="remove-item-btn" data-item-id="${item.id}">Poista</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                document.getElementById('cartTotal').textContent = formatPrice(getCartTotal());
+                
+                // Event listeners
+                cartItems.querySelectorAll('.quantity-btn').forEach(btn => {
+                    btn.addEventListener('click', handleQuantityChange);
+                });
+                
+                cartItems.querySelectorAll('.remove-item-btn').forEach(btn => {
+                    btn.addEventListener('click', handleRemoveItem);
+                });
+            }
+            
+            function handleQuantityChange(e) {
+                const btn = e.currentTarget;
+                const itemId = parseInt(btn.dataset.itemId);
+                const action = btn.dataset.action;
+                
+                const item = cart.find(i => i.id === itemId);
+                if (!item) return;
+                
+                if (action === 'increase') {
+                    item.quantity += 1;
+                } else if (action === 'decrease') {
+                    item.quantity = Math.max(1, item.quantity - 1);
+                }
+                
+                saveCart();
+                updateCartCount();
+                renderCart();
+            }
+            
+            function handleRemoveItem(e) {
+                const btn = e.currentTarget;
+                const itemId = parseInt(btn.dataset.itemId);
+                
+                cart = cart.filter(item => item.id !== itemId);
+                
+                saveCart();
+                updateCartCount();
+                renderCart();
+            }
+            
+            // ========================================
+            // Cart UI Toggle
+            // ========================================
+            function toggleCart() {
+                const sidebar = document.getElementById('cartSidebar');
+                const overlay = document.getElementById('cartOverlay');
+                
+                sidebar.classList.toggle('open');
+                overlay.classList.toggle('active');
+            }
+            
+            document.getElementById('cartToggle').addEventListener('click', toggleCart);
+            document.getElementById('closeCart').addEventListener('click', toggleCart);
+            document.getElementById('cartOverlay').addEventListener('click', toggleCart);
+            
+            // ========================================
+            // Checkout
+            // ========================================
+            document.getElementById('checkoutBtn').addEventListener('click', () => {
+                if (cart.length === 0) return;
+                
+                toggleCart();
+                showCheckoutForm();
+            });
+            
+            function showCheckoutForm() {
+                const modal = document.getElementById('checkoutModal');
+                const body = document.getElementById('checkoutBody');
+                
+                body.innerHTML = `
+                    <div class="order-summary">
+                        <h3>Tilausyhteenveto</h3>
+                        ${cart.map(item => `
+                            <div class="order-item">
+                                <span>${escapeHtml(item.name)} × ${item.quantity}</span>
+                                <span>${formatPrice(item.price * item.quantity)}</span>
+                            </div>
+                        `).join('')}
+                        <div class="order-total">
+                            <span>Yhteensä</span>
+                            <span>${formatPrice(getCartTotal())}</span>
+                        </div>
+                    </div>
+                    
+                    <form id="checkoutForm">
+                        <div class="form-group">
+                            <label class="form-label required">Yrityksen nimi</label>
+                            <input type="text" class="form-input" name="company" required>
+                            <div class="form-error hidden" data-field="company"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label required">Y-tunnus</label>
+                            <input type="text" class="form-input" name="businessId" required pattern="[0-9]{7}-[0-9]">
+                            <div class="form-error hidden" data-field="businessId"></div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label required">Yhteyshenkilö</label>
+                                <input type="text" class="form-input" name="contactPerson" required>
+                                <div class="form-error hidden" data-field="contactPerson"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label required">Puhelin</label>
+                                <input type="tel" class="form-input" name="phone" required>
+                                <div class="form-error hidden" data-field="phone"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label required">Sähköposti</label>
+                            <input type="email" class="form-input" name="email" required>
+                            <div class="form-error hidden" data-field="email"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label required">Laskutusosoite</label>
+                            <input type="text" class="form-input" name="address" required>
+                            <div class="form-error hidden" data-field="address"></div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label required">Postinumero</label>
+                                <input type="text" class="form-input" name="postalCode" required pattern="[0-9]{5}">
+                                <div class="form-error hidden" data-field="postalCode"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label required">Postitoimipaikka</label>
+                                <input type="text" class="form-input" name="city" required>
+                                <div class="form-error hidden" data-field="city"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Lisätietoja tilauksesta</label>
+                            <textarea class="form-input" name="notes" rows="3"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-order-btn">Lähetä tilaus</button>
+                    </form>
+                `;
+                
+                modal.classList.add('active');
+                
+                document.getElementById('checkoutForm').addEventListener('submit', handleCheckoutSubmit);
+            }
+            
+            function handleCheckoutSubmit(e) {
+                e.preventDefault();
+                
+                const form = e.target;
+                const formData = new FormData(form);
+                
+                // Validate form
+                let isValid = true;
+                form.querySelectorAll('[required]').forEach(input => {
+                    const error = form.querySelector(`[data-field="${input.name}"]`);
+                    if (!input.value.trim()) {
+                        input.classList.add('error');
+                        if (error) {
+                            error.textContent = 'Tämä kenttä on pakollinen';
+                            error.classList.remove('hidden');
+                        }
+                        isValid = false;
+                    } else {
+                        input.classList.remove('error');
+                        if (error) {
+                            error.classList.add('hidden');
+                        }
+                    }
+                });
+                
+                if (!isValid) return;
+                
+                // Generate order number
+                const orderNumber = 'HRK-' + Date.now().toString().slice(-8);
+                
+                // In production, this would send to backend
+                console.log('Order placed:', {
+                    orderNumber,
+                    customer: Object.fromEntries(formData),
+                    items: cart,
+                    total: getCartTotal()
+                });
+                
+                // Show success message
+                showOrderSuccess(orderNumber);
+                
+                // Clear cart
+                cart = [];
+                saveCart();
+                updateCartCount();
+                renderCart();
+            }
+            
+            function showOrderSuccess(orderNumber) {
+                const body = document.getElementById('checkoutBody');
+                
+                body.innerHTML = `
+                    <div class="success-message">
+                        <div class="success-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                        </div>
+                        <h3>Tilaus vastaanotettu!</h3>
+                        <p>Kiitos tilauksestasi. Lähetämme sinulle vahvistuksen sähköpostitse.</p>
+                        <div class="order-number">
+                            Tilausnumero: ${escapeHtml(orderNumber)}
+                        </div>
+                        <p style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
+                            Otamme yhteyttä 1-2 arkipäivän kuluessa toimitus- ja maksutietojen vahvistamiseksi.
+                        </p>
+                        <button class="checkout-btn" onclick="document.getElementById('checkoutModal').classList.remove('active')">
+                            Sulje
+                        </button>
+                    </div>
+                `;
+            }
+            
+            document.getElementById('closeCheckout').addEventListener('click', () => {
+                document.getElementById('checkoutModal').classList.remove('active');
+            });
+            
+            // ========================================
+            // Filters
+            // ========================================
+            document.querySelectorAll('[data-filter]').forEach(checkbox => {
+                checkbox.addEventListener('change', (e) => {
+                    const filterType = e.target.dataset.filter;
+                    const value = e.target.value;
+                    
+                    if (e.target.checked) {
+                        if (!activeFilters[filterType].includes(value)) {
+                            activeFilters[filterType].push(value);
+                        }
+                    } else {
+                        activeFilters[filterType] = activeFilters[filterType].filter(v => v !== value);
+                    }
+                    
+                    renderProducts();
+                });
+            });
+            
+            // ========================================
+            // Initialize
+            // ========================================
+            renderProducts();
+            renderCart();
+            updateCartCount();
+        })();
+    </script>
+</body>
+</html>
