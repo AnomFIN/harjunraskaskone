@@ -1217,7 +1217,7 @@
                 grid.innerHTML = filteredProducts.map(product => `
                     <article class="product-card">
                         <div class="product-image">
-                            <div style="font-size: 4rem;">${escapeHtml(product.image)}</div>
+                            <div style="font-size: 4rem;" role="img" aria-label="${escapeHtml(product.name)}">${escapeHtml(product.image)}</div>
                             ${product.badge ? `<span class="product-badge">${escapeHtml(product.badge)}</span>` : ''}
                         </div>
                         <div class="product-content">
