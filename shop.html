@@ -1047,6 +1047,10 @@
             // ========================================
             // Product Catalog
             // ========================================
+            // Technical specifications reference:
+            // - API CJ-4: American Petroleum Institute standard for heavy-duty diesel engine oils (2006+)
+            // - ACEA E7: European Automobile Manufacturers' Association standard for heavy-duty diesel engines
+            // - HLP 46: Hydraulic oil classification (ISO VG 46 viscosity grade)
             const products = [
                 {
                     id: 1,
@@ -1166,13 +1170,14 @@
             // State Management
             // ========================================
             let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-            let activeFilters = {
-                category: []
-            };
+            let activeFilters = JSON.parse(localStorage.getItem('activeFilters') || '{"category":[]}');
             
             // ========================================
             // Helper Functions
             // ========================================
+            function saveFilters() {
+                localStorage.setItem('activeFilters', JSON.stringify(activeFilters));
+            }
             function escapeHtml(text) {
                 const div = document.createElement('div');
                 div.textContent = text;
@@ -1617,21 +1622,18 @@
                 });
             }
             
-            // Allow closing checkout modal by clicking on the backdrop
-            const checkoutModal = document.getElementById('checkoutModal');
-            if (checkoutModal) {
-                checkoutModal.addEventListener('click', (event) => {
-                    // Only close when clicking the overlay itself, not its children
-                    if (event.target === event.currentTarget) {
-                        checkoutModal.classList.remove('active');
-                    }
-                });
-            }
-            
             // ========================================
             // Filters
             // ========================================
             document.querySelectorAll('[data-filter]').forEach(checkbox => {
+                const filterType = checkbox.dataset.filter;
+                const value = checkbox.value;
+                
+                // Restore filter state from localStorage
+                if (activeFilters[filterType] && activeFilters[filterType].includes(value)) {
+                    checkbox.checked = true;
+                }
+                
                 checkbox.addEventListener('change', (e) => {
                     const filterType = e.target.dataset.filter;
                     const value = e.target.value;
@@ -1644,6 +1646,7 @@
                         activeFilters[filterType] = activeFilters[filterType].filter(v => v !== value);
                     }
                     
+                    saveFilters();
                     renderProducts();
                 });
             });
