@@ -46,6 +46,7 @@
             /* Success & Status */
             --color-success: #10b981;
             --color-success-bg: #d1fae5;
+            --color-success-dark: #059669;
             --color-warning: #f59e0b;
             --color-error: #ef4444;
             --color-error-bg: #fee2e2;
@@ -821,7 +822,7 @@
         }
         
         .submit-order-btn:hover {
-            background: #059669;
+            background: var(--color-success-dark);
         }
         
         .submit-order-btn:disabled {
@@ -1495,14 +1496,29 @@
                 let isValid = true;
                 form.querySelectorAll('[required]').forEach(input => {
                     const error = form.querySelector(`[data-field="${input.name}"]`);
-                    if (!input.value.trim()) {
+                    
+                    // Check if field is empty or invalid pattern
+                    const isEmpty = !input.value.trim();
+                    const hasInvalidPattern = input.pattern && !input.validity.valid && input.value.trim();
+                    
+                    if (isEmpty || hasInvalidPattern) {
                         input.classList.add('error');
                         if (error) {
                             let message = 'Tämä kenttä on pakollinen';
-                            if (input.name === 'businessId') {
-                                message = 'Y-tunnus on pakollinen. Käytä muotoa 1234567-8.';
-                            } else if (input.name === 'postalCode') {
-                                message = 'Postinumero on pakollinen. Käytä viisinumeroista postinumeroa (esim. 00100).';
+                            if (isEmpty) {
+                                if (input.name === 'businessId') {
+                                    message = 'Y-tunnus on pakollinen. Käytä muotoa 1234567-8 tai 12345678-9.';
+                                } else if (input.name === 'postalCode') {
+                                    message = 'Postinumero on pakollinen. Käytä viisinumeroista postinumeroa (esim. 00100).';
+                                }
+                            } else if (hasInvalidPattern) {
+                                if (input.name === 'businessId') {
+                                    message = 'Virheellinen Y-tunnus. Käytä muotoa 1234567-8 tai 12345678-9.';
+                                } else if (input.name === 'postalCode') {
+                                    message = 'Virheellinen postinumero. Käytä viisinumeroista postinumeroa (esim. 00100).';
+                                } else if (input.type === 'email') {
+                                    message = 'Virheellinen sähköpostiosoite.';
+                                }
                             }
                             error.textContent = message;
                             error.classList.remove('hidden');
@@ -1518,8 +1534,10 @@
                 
                 if (!isValid) return;
                 
-                // Generate order number
-                const orderNumber = 'HRK-' + Date.now().toString().slice(-8);
+                // Generate order number with random component for uniqueness
+                const timestamp = Date.now().toString().slice(-8);
+                const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+                const orderNumber = 'HRK-' + timestamp + '-' + random;
                 
                 // In production, this would send to backend
                 console.log('Order placed:', {
@@ -1581,6 +1599,14 @@
             if (checkoutModal && closeCheckoutButton) {
                 closeCheckoutButton.addEventListener('click', () => {
                     checkoutModal.classList.remove('active');
+                });
+            
+                // Allow closing checkout modal by clicking on the backdrop
+                checkoutModal.addEventListener('click', (event) => {
+                    // Only close when clicking the overlay itself, not its children
+                    if (event.target === event.currentTarget) {
+                        checkoutModal.classList.remove('active');
+                    }
                 });
             
                 document.addEventListener('keydown', (event) => {
