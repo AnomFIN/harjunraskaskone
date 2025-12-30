@@ -1551,16 +1551,39 @@
                         <p style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
                             Tallenna tilausnumerosi ja ota yhteyttä myyntiimme toimitus- ja maksutietojen sopimiseksi.
                         </p>
-                        <button class="checkout-btn" onclick="document.getElementById('checkoutModal').classList.remove('active')">
+                        <button class="checkout-btn" type="button" id="checkoutSuccessClose">
                             Sulje
                         </button>
                     </div>
                 `;
+                
+                const successCloseButton = document.getElementById('checkoutSuccessClose');
+                if (successCloseButton) {
+                    successCloseButton.addEventListener('click', () => {
+                        const checkoutModal = document.getElementById('checkoutModal');
+                        if (checkoutModal) {
+                            checkoutModal.classList.remove('active');
+                        }
+                    });
+                    successCloseButton.focus();
+                }
             }
             
-            document.getElementById('closeCheckout').addEventListener('click', () => {
-                document.getElementById('checkoutModal').classList.remove('active');
-            });
+            const checkoutModal = document.getElementById('checkoutModal');
+            const closeCheckoutButton = document.getElementById('closeCheckout');
+            
+            if (checkoutModal && closeCheckoutButton) {
+                closeCheckoutButton.addEventListener('click', () => {
+                    checkoutModal.classList.remove('active');
+                });
+            
+                document.addEventListener('keydown', (event) => {
+                    if ((event.key === 'Escape' || event.key === 'Esc') && checkoutModal.classList.contains('active')) {
+                        checkoutModal.classList.remove('active');
+                        closeCheckoutButton.focus();
+                    }
+                });
+            }
             
             // ========================================
             // Filters
