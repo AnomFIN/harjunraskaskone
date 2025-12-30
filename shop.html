@@ -1051,7 +1051,9 @@
             // - API CJ-4: American Petroleum Institute standard for heavy-duty diesel engine oils (2006+)
             // - ACEA E7: European Automobile Manufacturers' Association standard for heavy-duty diesel engines
             // - HLP 46: Hydraulic oil classification (ISO VG 46 viscosity grade)
-            const products = [
+            
+            // Default products (fallback if API not available)
+            const defaultProducts = [
                 {
                     id: 1,
                     name: 'Moottoriöljy 15W-40',
@@ -1165,6 +1167,9 @@
                     image: '🔧'
                 }
             ];
+            
+            // Products array - will be populated from API or fallback
+            let products = [];
             
             // ========================================
             // State Management
@@ -1652,9 +1657,38 @@
             });
             
             // ========================================
+            // Load Products from API
+            // ========================================
+            async function loadProducts() {
+                try {
+                    const response = await fetch('api_products.php');
+                    const data = await response.json();
+                    
+                    if (data.success && data.products && data.products.length > 0) {
+                        products = data.products;
+                        console.log('Products loaded from database:', products.length);
+                    } else {
+                        // Fallback to default products
+                        products = defaultProducts;
+                        console.log('Using fallback products (database not available)');
+                    }
+                } catch (error) {
+                    // Fallback to default products on error
+                    products = defaultProducts;
+                    console.log('Using fallback products (API error):', error.message);
+                }
+                
+                // Render products after loading
+                renderProducts();
+                renderCart();
+                updateCartCount();
+            }
+            
+            // ========================================
             // Initialize
             // ========================================
-            renderProducts();
+            loadProducts();
+            renderCart();
             renderCart();
             updateCartCount();
         })();
