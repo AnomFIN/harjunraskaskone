@@ -1498,7 +1498,13 @@
                     if (!input.value.trim()) {
                         input.classList.add('error');
                         if (error) {
-                            error.textContent = 'Tämä kenttä on pakollinen';
+                            let message = 'Tämä kenttä on pakollinen';
+                            if (input.name === 'businessId') {
+                                message = 'Y-tunnus on pakollinen. Käytä muotoa 1234567-8.';
+                            } else if (input.name === 'postalCode') {
+                                message = 'Postinumero on pakollinen. Käytä viisinumeroista postinumeroa (esim. 00100).';
+                            }
+                            error.textContent = message;
                             error.classList.remove('hidden');
                         }
                         isValid = false;
