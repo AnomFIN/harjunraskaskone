@@ -53,8 +53,9 @@ try {
     ]);
     
 } catch (PDOException $e) {
+    error_log('Database error in api_products.php: ' . $e->getMessage());
     echo json_encode([
         'success' => false,
-        'error' => 'Database error: ' . $e->getMessage()
+        'error' => 'Tietokantavirhe. Yritä myöhemmin uudelleen.'
     ]);
 }

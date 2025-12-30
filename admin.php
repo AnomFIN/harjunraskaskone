@@ -191,43 +191,86 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax'])) {
     try {
         switch ($action) {
             case 'add':
-                $stmt = $pdo->prepare("INSERT INTO products (name, category, price, unit, description, image, badge) VALUES (?, ?, ?, ?, ?, ?, ?)");
-                $stmt->execute([
-                    $_POST['name'],
-                    $_POST['category'],
-                    floatval($_POST['price']),
-                    $_POST['unit'],
-                    $_POST['description'],
-                    $_POST['image'] ?: null,
-                    $_POST['badge'] ?: null
-                ]);
-                echo json_encode(['success' => true, 'message' => 'Tuote lisätty']);
-                break;
-                
             case 'update':
-                $stmt = $pdo->prepare("UPDATE products SET name=?, category=?, price=?, unit=?, description=?, image=?, badge=? WHERE id=?");
-                $stmt->execute([
-                    $_POST['name'],
-                    $_POST['category'],
-                    floatval($_POST['price']),
-                    $_POST['unit'],
-                    $_POST['description'],
-                    $_POST['image'] ?: null,
-                    $_POST['badge'] ?: null,
-                    intval($_POST['id'])
-                ]);
-                echo json_encode(['success' => true, 'message' => 'Tuote päivitetty']);
+                // Validate required fields
+                $name = trim($_POST['name'] ?? '');
+                $category = trim($_POST['category'] ?? '');
+                $price = floatval($_POST['price'] ?? 0);
+                $unit = trim($_POST['unit'] ?? '');
+                $description = trim($_POST['description'] ?? '');
+                $image = trim($_POST['image'] ?? '');
+                $badge = trim($_POST['badge'] ?? '');
+                
+                // Validation
+                $allowedCategories = ['varaosat', 'huoltopaketit', 'nesteet', 'tyokalut'];
+                
+                if (empty($name) || strlen($name) > 255) {
+                    throw new Exception('Tuotteen nimi on pakollinen (max 255 merkkiä)');
+                }
+                if (!in_array($category, $allowedCategories)) {
+                    throw new Exception('Virheellinen kategoria');
+                }
+                if ($price < 0 || $price > 999999.99) {
+                    throw new Exception('Hinta ei ole kelvollinen');
+                }
+                if (empty($unit) || strlen($unit) > 20) {
+                    throw new Exception('Yksikkö on pakollinen (max 20 merkkiä)');
+                }
+                if (strlen($image) > 10) {
+                    throw new Exception('Kuva on liian pitkä (max 10 merkkiä)');
+                }
+                if (strlen($badge) > 50) {
+                    throw new Exception('Badge on liian pitkä (max 50 merkkiä)');
+                }
+                
+                if ($action === 'add') {
+                    $stmt = $pdo->prepare("INSERT INTO products (name, category, price, unit, description, image, badge) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                    $stmt->execute([
+                        $name,
+                        $category,
+                        $price,
+                        $unit,
+                        $description,
+                        $image ?: null,
+                        $badge ?: null
+                    ]);
+                    echo json_encode(['success' => true, 'message' => 'Tuote lisätty']);
+                } else {
+                    $id = intval($_POST['id'] ?? 0);
+                    if ($id <= 0) {
+                        throw new Exception('Virheellinen tuote-ID');
+                    }
+                    $stmt = $pdo->prepare("UPDATE products SET name=?, category=?, price=?, unit=?, description=?, image=?, badge=? WHERE id=?");
+                    $stmt->execute([
+                        $name,
+                        $category,
+                        $price,
+                        $unit,
+                        $description,
+                        $image ?: null,
+                        $badge ?: null,
+                        $id
+                    ]);
+                    echo json_encode(['success' => true, 'message' => 'Tuote päivitetty']);
+                }
                 break;
                 
             case 'delete':
+                $id = intval($_POST['id'] ?? 0);
+                if ($id <= 0) {
+                    throw new Exception('Virheellinen tuote-ID');
+                }
                 $stmt = $pdo->prepare("DELETE FROM products WHERE id=?");
-                $stmt->execute([intval($_POST['id'])]);
+                $stmt->execute([$id]);
                 echo json_encode(['success' => true, 'message' => 'Tuote poistettu']);
                 break;
                 
             default:
                 echo json_encode(['success' => false, 'message' => 'Tuntematon toiminto']);
         }
+    } catch (PDOException $e) {
+        error_log('Database error in admin.php: ' . $e->getMessage());
+        echo json_encode(['success' => false, 'message' => 'Tietokantavirhe. Yritä uudelleen.']);
     } catch (Exception $e) {
         echo json_encode(['success' => false, 'message' => $e->getMessage()]);
     }
