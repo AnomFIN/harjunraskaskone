@@ -5,7 +5,6 @@
  */
 
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
 
 // Check if config exists
 if (!file_exists(__DIR__ . '/config.php')) {
