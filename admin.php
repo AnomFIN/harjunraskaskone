@@ -530,7 +530,17 @@ $products = $pdo->query("SELECT * FROM products ORDER BY id ASC")->fetchAll();
                                 <td><?php echo e($product['unit']); ?></td>
                                 <td><?php echo e($product['badge'] ?: '-'); ?></td>
                                 <td>
-                                    <button class="btn btn-small" onclick='editProduct(<?php echo json_encode($product); ?>)'>Muokkaa</button>
+                                    <button class="btn btn-small edit-product-btn" 
+                                        data-product-id="<?php echo e($product['id']); ?>"
+                                        data-product-name="<?php echo e($product['name']); ?>"
+                                        data-product-category="<?php echo e($product['category']); ?>"
+                                        data-product-price="<?php echo e($product['price']); ?>"
+                                        data-product-unit="<?php echo e($product['unit']); ?>"
+                                        data-product-badge="<?php echo e($product['badge']); ?>"
+                                        data-product-image="<?php echo e($product['image']); ?>"
+                                        data-product-description="<?php echo e($product['description']); ?>">
+                                        Muokkaa
+                                    </button>
                                     <button class="btn btn-small btn-danger" onclick="deleteProduct(<?php echo e($product['id']); ?>)">Poista</button>
                                 </td>
                             </tr>
@@ -620,19 +630,29 @@ $products = $pdo->query("SELECT * FROM products ORDER BY id ASC")->fetchAll();
             document.getElementById('productModal').classList.remove('active');
         }
         
-        function editProduct(product) {
-            editingProductId = product.id;
+        function editProduct(button) {
+            const dataset = button.dataset;
+            editingProductId = dataset.productId;
             document.getElementById('modalTitle').textContent = 'Muokkaa tuotetta';
-            document.getElementById('productId').value = product.id;
-            document.getElementById('name').value = product.name;
-            document.getElementById('category').value = product.category;
-            document.getElementById('price').value = product.price;
-            document.getElementById('unit').value = product.unit;
-            document.getElementById('badge').value = product.badge || '';
-            document.getElementById('image').value = product.image || '';
-            document.getElementById('description').value = product.description || '';
+            document.getElementById('productId').value = dataset.productId;
+            document.getElementById('name').value = dataset.productName;
+            document.getElementById('category').value = dataset.productCategory;
+            document.getElementById('price').value = dataset.productPrice;
+            document.getElementById('unit').value = dataset.productUnit;
+            document.getElementById('badge').value = dataset.productBadge || '';
+            document.getElementById('image').value = dataset.productImage || '';
+            document.getElementById('description').value = dataset.productDescription || '';
             document.getElementById('productModal').classList.add('active');
         }
+        
+        // Add event listeners to edit buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.edit-product-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    editProduct(this);
+                });
+            });
+        });
         
         function saveProduct(event) {
             event.preventDefault();

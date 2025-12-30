@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     // Validate inputs
     if (empty($dbHost) || empty($dbName) || empty($dbUser) || empty($adminUser) || empty($adminPass)) {
-        $error = 'Kaikki kentät ovat pakollisia (paitsi salasana voi olla tyhjä).';
+        $error = 'Kaikki kentät ovat pakollisia (MySQL-salasana voi olla tyhjä).';
     } else {
         try {
             // Test database connection
