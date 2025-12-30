@@ -1591,6 +1591,17 @@
                 });
             }
             
+            // Allow closing checkout modal by clicking on the backdrop
+            const checkoutModal = document.getElementById('checkoutModal');
+            if (checkoutModal) {
+                checkoutModal.addEventListener('click', (event) => {
+                    // Only close when clicking the overlay itself, not its children
+                    if (event.target === event.currentTarget) {
+                        checkoutModal.classList.remove('active');
+                    }
+                });
+            }
+            
             // ========================================
             // Filters
             // ========================================
