@@ -27,6 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Validate inputs
     if (empty($dbHost) || empty($dbName) || empty($dbUser) || empty($adminUser) || empty($adminPass)) {
         $error = 'Kaikki kentät ovat pakollisia (MySQL-salasana voi olla tyhjä).';
+    // Huom: tietokannan nimi liitetään myöhemmin suoraan SQL-lauseeseen rivillä 42
+    // (CREATE DATABASE ... USE ...) backtick-merkkien (`) sisään, eikä identifioijia
+    // voi parametroida prepared statementissa. Rajoitamme nimen tahallisesti
+    // merkkeihin [a-zA-Z0-9_] yksinkertaisuuden ja injektioriskien minimoimiseksi.
     } elseif (!preg_match('/^[a-zA-Z0-9_]+$/', $dbName)) {
         $error = 'Tietokannan nimi saa sisältää vain kirjaimia, numeroita ja alaviivoja.';
     } else {
