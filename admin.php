@@ -51,20 +51,51 @@ $isAuthenticated = isset($_SESSION['admin_authenticated']) && $_SESSION['admin_a
 // Handle login
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'login') {
     $username = trim($_POST['username'] ?? '');
-    $password = $_POST['password'] ?? '';
-    
-    $stmt = $pdo->prepare("SELECT password_hash FROM admin_users WHERE username = ?");
-    $stmt->execute([$username]);
-    $user = $stmt->fetch();
-    
-    if ($user && password_verify($password, $user['password_hash'])) {
-        $_SESSION['admin_authenticated'] = true;
-        session_regenerate_id(true);
-        $_SESSION['admin_username'] = $username;
-        header('Location: admin.php');
-        exit;
+    // Simple session-based rate limiting for login attempts
+    $maxAttempts = 5;
+    $lockoutSeconds = 300; // 5 minutes
+    $now = time();
+
+    $lockedUntil = $_SESSION['login_locked_until'] ?? 0;
+
+    if ($lockedUntil > $now) {
+        // Too many attempts recently, do not even try to authenticate
+        $loginError = 'Liian monta kirjautumisyritystä. Yritä uudelleen myöhemmin.';
     } else {
-        $loginError = 'Virheellinen käyttäjätunnus tai salasana';
+        // Lockout expired (if there was one)
+        if ($lockedUntil > 0 && $lockedUntil <= $now) {
+            unset($_SESSION['login_locked_until']);
+            $_SESSION['login_attempts'] = 0;
+        }
+
+        $username = trim($_POST['username'] ?? '');
+        $password = $_POST['password'] ?? '';
+
+        $stmt = $pdo->prepare("SELECT password_hash FROM admin_users WHERE username = ?");
+        $stmt->execute([$username]);
+        $user = $stmt->fetch();
+
+        if ($user && password_verify($password, $user['password_hash'])) {
+            // Successful login resets attempt counter and lockout
+            $_SESSION['login_attempts'] = 0;
+            unset($_SESSION['login_locked_until']);
+
+            $_SESSION['admin_authenticated'] = true;
+            $_SESSION['admin_username'] = $username;
+            header('Location: admin.php');
+            exit;
+        } else {
+            // Failed login: increase attempt counter and possibly lock out
+            $attempts = $_SESSION['login_attempts'] ?? 0;
+            $attempts++;
+            $_SESSION['login_attempts'] = $attempts;
+
+            if ($attempts >= $maxAttempts) {
+                $_SESSION['login_locked_until'] = $now + $lockoutSeconds;
+            }
+
+            $loginError = 'Virheellinen käyttäjätunnus tai salasana';
+        }
     }
 }
 
