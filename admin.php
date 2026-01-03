@@ -48,6 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     
     if ($user && password_verify($password, $user['password_hash'])) {
         $_SESSION['admin_authenticated'] = true;
+        session_regenerate_id(true);
         $_SESSION['admin_username'] = $username;
         header('Location: admin.php');
         exit;
