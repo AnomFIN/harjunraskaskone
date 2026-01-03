@@ -79,7 +79,7 @@ Anna seuraavat tiedot:
 2. **SQL Injection**: Estetty prepared statements -kyselyillä
 3. **XSS**: Estetty htmlspecialchars()-funktiolla
 4. **Session**: PHP-sessiot admin-tunnistautumiseen
-5. **CSRF**: Lomakkeet käyttävät POST-metodia
+5. **CSRF**: Ei erillistä suojausta – lisää CSRF-tokenit lomakkeisiin ennen tuotantokäyttöä
 
 ### Suositukset:
 
