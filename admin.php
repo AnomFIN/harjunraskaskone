@@ -278,8 +278,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax'])) {
     exit;
 }
 
-// Fetch all products
-$products = $pdo->query("SELECT * FROM products ORDER BY id ASC")->fetchAll();
+// Fetch all products for list view (only columns shown in the table)
+$products = $pdo->query("
+    SELECT id, name, category, price, unit, badge
+    FROM products
+    ORDER BY id ASC
+")->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="fi">
