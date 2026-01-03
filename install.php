@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ");
             
             // Insert default admin user
-            $passwordHash = password_hash($adminPass, PASSWORD_BCRYPT);
+            $passwordHash = password_hash($adminPass, PASSWORD_BCRYPT, ['cost' => 12]);
             $stmt = $pdo->prepare("INSERT INTO admin_users (username, password_hash) VALUES (?, ?) ON DUPLICATE KEY UPDATE password_hash = ?");
             $stmt->execute([$adminUser, $passwordHash, $passwordHash]);
             
