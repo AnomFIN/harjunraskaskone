@@ -18,6 +18,9 @@ Thumbs.db
 dist/
 build/
 
+# PHP configuration (contains database credentials)
+config.php
+
 # Overmind Suite
 Overmind/server/node_modules/
 Overmind/server/.env
