@@ -785,18 +785,45 @@ $products = $pdo->query("
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.json())
+            .then(response => {
+                // Handle HTTP error statuses explicitly before parsing JSON
+                if (!response.ok) {
+                    // Encode status in the error message for later inspection
+                    throw new Error('HTTP_STATUS_' + response.status);
+                }
+                return response.json();
+            })
             .then(data => {
                 if (data.success) {
                     showNotification(data.message, 'success');
                     setTimeout(() => location.reload(), 1000);
                 } else {
-                    showNotification(data.message, 'error');
+                    showNotification(data.message || 'Tuntematon virhe poistettaessa tuotetta', 'error');
                 }
             })
             .catch(error => {
-                showNotification('Virhe poistamisessa', 'error');
-                console.error(error);
+                let message;
+                
+                // Network offline
+                if (typeof navigator !== 'undefined' && navigator && navigator.onLine === false) {
+                    message = 'Ei verkkoyhteyttä. Tarkista yhteys ja yritä uudelleen.';
+                }
+                // HTTP status-based errors (from above)
+                else if (error && typeof error.message === 'string' && error.message.startsWith('HTTP_STATUS_')) {
+                    const status = error.message.substring('HTTP_STATUS_'.length);
+                    if (status[0] === '5') {
+                        message = 'Palvelimella on tilapäinen virhe (' + status + '). Yritä hetken kuluttua uudelleen.';
+                    } else {
+                        message = 'Pyyntö epäonnistui (' + status + '). Lataa sivu uudelleen ja yritä uudelleen.';
+                    }
+                }
+                // Fallback for other errors (including JSON parse issues)
+                else {
+                    message = 'Tuntematon virhe poistamisessa. Yritä uudelleen.';
+                }
+                
+                showNotification(message, 'error');
+                console.error('Virhe tuotteen poistamisessa:', error);
             });
         }
         
