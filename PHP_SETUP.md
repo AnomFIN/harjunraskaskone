@@ -200,9 +200,47 @@ mysql -u root -p harjun_shop < backup.sql
 ### Ennen tuotantoon siirtoa:
 
 1. **Poista tai suojaa install.php**
-   - Poista tiedosto tai estä pääsy `.htaccess`:lla
-   - Tai lisää IP-rajoitus vain sisäisille IP:ille
+   - **Suositus:** Poista `install.php` kokonaan tuotantopalvelimelta asennuksen jälkeen.
+   - Jos poistaminen ei ole mahdollista, estä pääsy tiedostoon web-palvelimen asetuksilla.
 
+     **Apache (.htaccess samassa kansiossa kuin install.php):**
+
+     ```apacheconf
+     <Files "install.php">
+         Require all denied
+     </Files>
+     ```
+
+     Tämä estää kaiken HTTP-pääsyn `install.php`-tiedostoon.
+
+     **Apache (virtuaalipalvelimen konfiguraatio, IP-allowlist esimerkki):**
+
+     ```apacheconf
+     <Location "/install.php">
+         Require ip 10.0.0.0/8
+         Require ip 192.168.0.0/16
+         Require ip 127.0.0.1
+     </Location>
+     ```
+
+     Tämä sallii pääsyn vain sisäverkon / kehitysympäristön IP-osoitteista. Muokkaa IP-osoitteet vastaamaan omaa verkkoasi.
+
+     **nginx (palvelimen konfiguraatio):**
+
+     ```nginx
+     location = /install.php {
+         # Vaihtoehto 1: Estä kaikki pääsy (turvallisin, tuotanto)
+         deny all;
+
+         # Vaihtoehto 2: Salli vain sisäverkon IP:t (poista "deny all;" jos käytät tätä)
+         # allow 10.0.0.0/8;
+         # allow 192.168.0.0/16;
+         # allow 127.0.0.1;
+         # deny all;
+     }
+     ```
+
+     Varmista, että muutokset ladataan uudelleen (`apachectl graceful` tai `nginx -s reload`) ja testaa, että `install.php` ei ole julkisesti saavutettavissa.
 2. **Ota HTTPS käyttöön**
    - Hanki SSL-sertifikaatti (Let's Encrypt on ilmainen)
    - Ohjaa HTTP-liikenne HTTPS:ään
