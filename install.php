@@ -118,8 +118,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $configContent .= "define('DB_USER', " . var_export($dbUser, true) . ");\n";
             $configContent .= "define('DB_PASS', " . var_export($dbPass, true) . ");\n";
             
-            if (file_put_contents(CONFIG_FILE, $configContent) === false) {
+            if (file_put_contents(CONFIG_FILE, $configContent, LOCK_EX) === false) {
                 throw new Exception('Konfiguraatiotiedoston kirjoitus epäonnistui');
+            }
+            
+            // Restrict config.php permissions to owner read/write only
+            if (!chmod(CONFIG_FILE, 0600)) {
+                throw new Exception('Konfiguraatiotiedoston oikeuksien asettaminen epäonnistui (vaaditaan 0600)');
             }
             
             $success = 'Asennus onnistui! Voit nyt kirjautua admin.php -sivulle.';
