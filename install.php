@@ -71,8 +71,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             // Insert default admin user
             $passwordHash = password_hash($adminPass, PASSWORD_BCRYPT, ['cost' => 12]);
-            $stmt = $pdo->prepare("INSERT INTO admin_users (username, password_hash) VALUES (?, ?) ON DUPLICATE KEY UPDATE password_hash = ?");
-            $stmt->execute([$adminUser, $passwordHash, $passwordHash]);
+
+            // Check if admin user with the same username already exists to avoid silent password reset
+            $stmt = $pdo->prepare("SELECT COUNT(*) FROM admin_users WHERE username = ?");
+            $stmt->execute([$adminUser]);
+            $existingCount = (int) $stmt->fetchColumn();
+
+            if ($existingCount > 0) {
+                // Fail fast instead of silently overwriting existing admin password
+                throw new RuntimeException('Ylläpitokäyttäjä on jo olemassa. Asennusta ei voi käyttää salasanan nollaamiseen.');
+            }
+
+            $stmt = $pdo->prepare("INSERT INTO admin_users (username, password_hash) VALUES (?, ?)");
+            $stmt->execute([$adminUser, $passwordHash]);
             
             // Insert default products from shop.html
             $defaultProducts = [
