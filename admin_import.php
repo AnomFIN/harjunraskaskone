@@ -70,8 +70,17 @@ function validateUploadedFile($file, $allowedMimes, $maxSize) {
     
     // Check MIME type
     $finfo = finfo_open(FILEINFO_MIME_TYPE);
+    if ($finfo === false) {
+        // Fileinfo-laajennus ei ole käytettävissä tai sen alustaminen epäonnistui
+        return ['success' => false, 'error' => 'Palvelimen tiedostotyyppitarkistus ei ole käytettävissä. Ota yhteys ylläpitoon.'];
+    }
+
     $mimeType = finfo_file($finfo, $file['tmp_name']);
     finfo_close($finfo);
+
+    if ($mimeType === false) {
+        return ['success' => false, 'error' => 'Tiedostotyypin tunnistus epäonnistui. Yritä uudelleen tai ota yhteys ylläpitoon.'];
+    }
     
     if (!in_array($mimeType, $allowedMimes)) {
         return ['success' => false, 'error' => 'Virheellinen tiedostotyyppi'];
