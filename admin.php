@@ -1272,7 +1272,7 @@ $products = $pdo->query("
                 html += '<h3>⚠️ Virheet</h3>';
                 html += '<ul>';
                 data.errors.forEach(error => {
-                    html += `<li>${error}</li>`;
+                    html += `<li>${escapeHtml(String(error))}</li>`;
                 });
                 html += '</ul>';
                 html += '</div>';
