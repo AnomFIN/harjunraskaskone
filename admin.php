@@ -25,6 +25,19 @@ if (!file_exists(__DIR__ . '/config.php')) {
 
 require_once __DIR__ . '/config.php';
 
+// Shared category definitions
+// Note: Import functionality is more flexible and accepts any category string
+define('ALLOWED_CATEGORIES', [
+    'varaosat' => 'Varaosat',
+    'huoltopaketit' => 'Huoltopaketit',
+    'nesteet' => 'Öljyt ja nesteet',
+    'tyokalut' => 'Työkalut',
+    'Korjaamolaitteet' => 'Korjaamolaitteet',
+    'Sähkölaitteet' => 'Sähkölaitteet',
+    'Työkalut' => 'Työkalut',
+    'Tauko-/keittiö' => 'Tauko-/keittiö'
+]);
+
 // Load import functions
 define('ADMIN_IMPORT_ALLOWED', true);
 require_once __DIR__ . '/admin_import.php';
@@ -392,15 +405,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax'])) {
                 $price = floatval($_POST['price'] ?? 0);
                 $unit = trim($_POST['unit'] ?? '');
                 $description = trim($_POST['description'] ?? '');
+                // Note: 'image' field stores emoji/icon, not file path
+                // 'image_path' field (used by import) stores actual image file paths
                 $image = trim($_POST['image'] ?? '');
                 $badge = trim($_POST['badge'] ?? '');
                 
                 // Validation
-                $allowedCategories = ['varaosat', 'huoltopaketit', 'nesteet', 'tyokalut', 'Korjaamolaitteet', 'Sähkölaitteet', 'Työkalut', 'Tauko-/keittiö'];
-                
                 if (empty($name) || strlen($name) > 255) {
                     throw new Exception('Tuotteen nimi on pakollinen (max 255 merkkiä)');
                 }
+                // Category validation: Allow any category for flexibility, but limit length
                 if (empty($category) || strlen($category) > 50) {
                     throw new Exception('Kategoria on pakollinen (max 50 merkkiä)');
                 }
@@ -998,14 +1012,9 @@ $products = $pdo->query("
                     <div class="form-group">
                         <label for="category">Kategoria *</label>
                         <select id="category" name="category" required>
-                            <option value="varaosat">Varaosat</option>
-                            <option value="huoltopaketit">Huoltopaketit</option>
-                            <option value="nesteet">Öljyt ja nesteet</option>
-                            <option value="tyokalut">Työkalut</option>
-                            <option value="Korjaamolaitteet">Korjaamolaitteet</option>
-                            <option value="Sähkölaitteet">Sähkölaitteet</option>
-                            <option value="Työkalut">Työkalut</option>
-                            <option value="Tauko-/keittiö">Tauko-/keittiö</option>
+                            <?php foreach (ALLOWED_CATEGORIES as $value => $label): ?>
+                                <option value="<?php echo e($value); ?>"><?php echo e($label); ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     
@@ -1030,6 +1039,9 @@ $products = $pdo->query("
                 <div class="form-group">
                     <label for="image">Emoji-kuvake</label>
                     <input type="text" id="image" name="image" placeholder="esim. ⚙️, 🛢️, 📦, 🔧" maxlength="20">
+                    <small style="color: #6b7280; display: block; margin-top: 5px;">
+                        Huom: Tämä on emoji/ikoni. Varsinaiset kuvatiedostot ladataan tuontiominaisuuden kautta.
+                    </small>
                 </div>
                 
                 <div class="form-group">

@@ -105,6 +105,8 @@ function parseImportJSON($jsonContent) {
 
 /**
  * Validate a single product
+ * Note: Category validation is intentionally flexible to allow new categories via import.
+ * This is different from the UI form which restricts to predefined categories.
  * @param array $product Product data
  * @param int $index Product index (for error messages)
  * @return array ['valid' => bool, 'errors' => array]
@@ -119,8 +121,12 @@ function validateProduct($product, $index) {
         $errors[] = "Rivi $index: Tuotteen nimi on liian pitkä (max 255 merkkiä)";
     }
     
+    // Category: flexible validation - any non-empty string up to 50 chars is allowed
+    // This allows importing products with new categories not yet in the UI dropdown
     if (empty($product['category'])) {
         $errors[] = "Rivi $index: Kategoria puuttuu";
+    } elseif (strlen($product['category']) > 50) {
+        $errors[] = "Rivi $index: Kategoria on liian pitkä (max 50 merkkiä)";
     }
     
     if (!isset($product['price_eur']) || !is_numeric($product['price_eur'])) {
