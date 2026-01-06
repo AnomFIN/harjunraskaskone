@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     price DECIMAL(10,2) NOT NULL,
                     unit VARCHAR(20) NOT NULL,
                     description TEXT,
-                    image VARCHAR(10),
+                    image VARCHAR(20),
                     badge VARCHAR(50),
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

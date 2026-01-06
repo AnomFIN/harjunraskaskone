@@ -396,13 +396,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax'])) {
                 $badge = trim($_POST['badge'] ?? '');
                 
                 // Validation
-                $allowedCategories = ['varaosat', 'huoltopaketit', 'nesteet', 'tyokalut'];
+                $allowedCategories = ['varaosat', 'huoltopaketit', 'nesteet', 'tyokalut', 'Korjaamolaitteet', 'Sähkölaitteet', 'Työkalut', 'Tauko-/keittiö'];
                 
                 if (empty($name) || strlen($name) > 255) {
                     throw new Exception('Tuotteen nimi on pakollinen (max 255 merkkiä)');
                 }
-                if (!in_array($category, $allowedCategories)) {
-                    throw new Exception('Virheellinen kategoria');
+                if (empty($category) || strlen($category) > 50) {
+                    throw new Exception('Kategoria on pakollinen (max 50 merkkiä)');
                 }
                 if ($price < 0 || $price > 999999.99) {
                     throw new Exception('Hinta ei ole kelvollinen');
@@ -410,8 +410,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax'])) {
                 if (empty($unit) || strlen($unit) > 20) {
                     throw new Exception('Yksikkö on pakollinen (max 20 merkkiä)');
                 }
-                if (strlen($image) > 10) {
-                    throw new Exception('Kuva on liian pitkä (max 10 merkkiä)');
+                if (strlen($image) > 20) {
+                    throw new Exception('Kuva on liian pitkä (max 20 merkkiä)');
                 }
                 if (strlen($badge) > 50) {
                     throw new Exception('Badge on liian pitkä (max 50 merkkiä)');
@@ -1002,6 +1002,10 @@ $products = $pdo->query("
                             <option value="huoltopaketit">Huoltopaketit</option>
                             <option value="nesteet">Öljyt ja nesteet</option>
                             <option value="tyokalut">Työkalut</option>
+                            <option value="Korjaamolaitteet">Korjaamolaitteet</option>
+                            <option value="Sähkölaitteet">Sähkölaitteet</option>
+                            <option value="Työkalut">Työkalut</option>
+                            <option value="Tauko-/keittiö">Tauko-/keittiö</option>
                         </select>
                     </div>
                     
@@ -1025,7 +1029,7 @@ $products = $pdo->query("
                 
                 <div class="form-group">
                     <label for="image">Emoji-kuvake</label>
-                    <input type="text" id="image" name="image" placeholder="esim. ⚙️, 🛢️, 📦, 🔧" maxlength="10">
+                    <input type="text" id="image" name="image" placeholder="esim. ⚙️, 🛢️, 📦, 🔧" maxlength="20">
                 </div>
                 
                 <div class="form-group">

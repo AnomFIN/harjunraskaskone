@@ -140,8 +140,8 @@ function validateProduct($product, $index) {
         $errors[] = "Rivi $index: Badge on liian pitkä (max 50 merkkiä)";
     }
     
-    if (isset($product['emoji']) && strlen($product['emoji']) > 10) {
-        $errors[] = "Rivi $index: Emoji on liian pitkä (max 10 merkkiä)";
+    if (isset($product['emoji']) && strlen($product['emoji']) > 20) {
+        $errors[] = "Rivi $index: Emoji on liian pitkä (max 20 merkkiä)";
     }
     
     return ['valid' => empty($errors), 'errors' => $errors];
