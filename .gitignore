@@ -21,6 +21,10 @@ build/
 # PHP configuration (contains database credentials)
 config.php
 
+# Uploaded files
+uploads/products/*
+!uploads/products/.gitkeep
+
 # Overmind Suite
 Overmind/server/node_modules/
 Overmind/server/.env

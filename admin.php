@@ -25,6 +25,10 @@ if (!file_exists(__DIR__ . '/config.php')) {
 
 require_once __DIR__ . '/config.php';
 
+// Load import functions
+define('ADMIN_IMPORT_ALLOWED', true);
+require_once __DIR__ . '/admin_import.php';
+
 // Database connection
 try {
     $pdo = new PDO(
@@ -39,6 +43,10 @@ try {
 } catch (PDOException $e) {
     die('Tietokantayhteys epäonnistui: ' . htmlspecialchars($e->getMessage()));
 }
+
+// Ensure image_path column exists and uploads directory is ready
+ensureImagePathColumn($pdo);
+ensureUploadsDirectory(__DIR__ . '/uploads/products');
 
 // Helper function to escape HTML
 function e($text) {
@@ -222,6 +230,149 @@ if (!$isAuthenticated) {
     </body>
     </html>
     <?php
+    exit;
+}
+
+// Handle import preview request
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'preview_import') {
+    header('Content-Type: application/json');
+    
+    // Verify CSRF token
+    if (!isset($_POST['csrf_token']) || !verifyCSRFToken($_POST['csrf_token'])) {
+        echo json_encode(['success' => false, 'error' => 'Virheellinen CSRF-token']);
+        exit;
+    }
+    
+    try {
+        // Validate JSON file
+        if (!isset($_FILES['json_file']) || $_FILES['json_file']['error'] === UPLOAD_ERR_NO_FILE) {
+            throw new Exception('JSON-tiedosto puuttuu');
+        }
+        
+        $validation = validateUploadedFile(
+            $_FILES['json_file'],
+            ['application/json', 'text/plain'],
+            20 * 1024 * 1024 // 20MB
+        );
+        
+        if (!$validation['success']) {
+            throw new Exception($validation['error']);
+        }
+        
+        // Parse JSON
+        $jsonContent = file_get_contents($_FILES['json_file']['tmp_name']);
+        $parseResult = parseImportJSON($jsonContent);
+        
+        if (!$parseResult['success']) {
+            throw new Exception($parseResult['error']);
+        }
+        
+        // Validate products
+        $products = $parseResult['data'];
+        $validProducts = [];
+        $errors = [];
+        
+        foreach ($products as $index => $product) {
+            $validation = validateProduct($product, $index + 1);
+            if ($validation['valid']) {
+                $validProducts[] = $product;
+            } else {
+                $errors = array_merge($errors, $validation['errors']);
+            }
+        }
+        
+        echo json_encode([
+            'success' => true,
+            'products' => $validProducts,
+            'total' => count($products),
+            'valid' => count($validProducts),
+            'invalid' => count($products) - count($validProducts),
+            'errors' => $errors
+        ]);
+        
+    } catch (Exception $e) {
+        echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+    }
+    exit;
+}
+
+// Handle import execution request
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'execute_import') {
+    header('Content-Type: application/json');
+    
+    // Verify CSRF token
+    if (!isset($_POST['csrf_token']) || !verifyCSRFToken($_POST['csrf_token'])) {
+        echo json_encode(['success' => false, 'error' => 'Virheellinen CSRF-token']);
+        exit;
+    }
+    
+    try {
+        // Validate JSON file
+        if (!isset($_FILES['json_file']) || $_FILES['json_file']['error'] === UPLOAD_ERR_NO_FILE) {
+            throw new Exception('JSON-tiedosto puuttuu');
+        }
+        
+        $validation = validateUploadedFile(
+            $_FILES['json_file'],
+            ['application/json', 'text/plain'],
+            20 * 1024 * 1024 // 20MB
+        );
+        
+        if (!$validation['success']) {
+            throw new Exception($validation['error']);
+        }
+        
+        // Parse JSON
+        $jsonContent = file_get_contents($_FILES['json_file']['tmp_name']);
+        $parseResult = parseImportJSON($jsonContent);
+        
+        if (!$parseResult['success']) {
+            throw new Exception($parseResult['error']);
+        }
+        
+        $products = $parseResult['data'];
+        
+        // Handle image ZIP if provided
+        $imageFiles = [];
+        if (isset($_FILES['image_zip']) && $_FILES['image_zip']['error'] !== UPLOAD_ERR_NO_FILE) {
+            $validation = validateUploadedFile(
+                $_FILES['image_zip'],
+                ['application/zip', 'application/x-zip-compressed'],
+                200 * 1024 * 1024 // 200MB
+            );
+            
+            if (!$validation['success']) {
+                throw new Exception($validation['error']);
+            }
+            
+            // Extract images
+            $extractPath = __DIR__ . '/uploads/products';
+            $extractResult = extractImagesFromZip($_FILES['image_zip']['tmp_name'], $extractPath);
+            
+            if (!$extractResult['success']) {
+                throw new Exception($extractResult['error']);
+            }
+            
+            $imageFiles = $extractResult['files'];
+        }
+        
+        // Get import options
+        $options = [
+            'skipDuplicates' => isset($_POST['skip_duplicates']) && $_POST['skip_duplicates'] === '1',
+            'updateExisting' => isset($_POST['update_existing']) && $_POST['update_existing'] === '1'
+        ];
+        
+        // Execute import
+        $stats = importProducts($pdo, $products, $options, $imageFiles);
+        
+        echo json_encode([
+            'success' => true,
+            'stats' => $stats
+        ]);
+        
+    } catch (Exception $e) {
+        echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+    }
     exit;
 }
 
@@ -578,6 +729,141 @@ $products = $pdo->query("
         .back-link:hover {
             opacity: 1;
         }
+        
+        /* Import section styles */
+        .import-section {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .import-section h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #374151;
+        }
+        
+        .file-input-group {
+            margin-bottom: 20px;
+        }
+        
+        .file-input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .file-input-group input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px dashed #e5e7eb;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        .checkbox-group {
+            margin-bottom: 20px;
+        }
+        
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 8px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .preview-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        
+        .preview-table th,
+        .preview-table td {
+            padding: 10px;
+            border: 1px solid #e5e7eb;
+            text-align: left;
+        }
+        
+        .preview-table th {
+            background: #f9fafb;
+            font-weight: 600;
+        }
+        
+        .preview-table tbody tr:hover {
+            background: #f9fafb;
+        }
+        
+        .import-stats {
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 16px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+        
+        .import-stats h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #1e40af;
+        }
+        
+        .import-stats ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .import-stats li {
+            padding: 5px 0;
+            color: #374151;
+        }
+        
+        .error-list {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 16px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+        
+        .error-list h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #dc2626;
+        }
+        
+        .error-list ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+        
+        .error-list li {
+            padding: 3px 0;
+            color: #991b1b;
+        }
+        
+        .btn-secondary {
+            background: #6b7280;
+        }
+        
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+        
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -594,6 +880,53 @@ $products = $pdo->query("
     <div class="container">
         <div class="actions">
             <button class="btn" onclick="openModal()">+ Lisää uusi tuote</button>
+        </div>
+        
+        <!-- Import Section -->
+        <div class="import-section">
+            <h2>📦 Tuo tuotteet (JSON)</h2>
+            
+            <form id="importForm" enctype="multipart/form-data">
+                <input type="hidden" name="csrf_token" value="<?php echo generateCSRFToken(); ?>">
+                
+                <div class="file-input-group">
+                    <label for="json_file">JSON-tiedosto * (max 20MB)</label>
+                    <input type="file" id="json_file" name="json_file" accept=".json,application/json" required>
+                    <small style="color: #6b7280; display: block; margin-top: 5px;">
+                        Formaatti: product_import_v1
+                    </small>
+                </div>
+                
+                <div class="file-input-group">
+                    <label for="image_zip">Kuvien ZIP-tiedosto (valinnainen, max 200MB)</label>
+                    <input type="file" id="image_zip" name="image_zip" accept=".zip,application/zip">
+                    <small style="color: #6b7280; display: block; margin-top: 5px;">
+                        Sisältää tuotteiden kuvat (jpg, png, webp)
+                    </small>
+                </div>
+                
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="skip_duplicates" id="skip_duplicates" checked>
+                        Ohita duplikaatit (nimi + kategoria)
+                    </label>
+                    <label>
+                        <input type="checkbox" name="update_existing" id="update_existing">
+                        Päivitä olemassaolevat (nimi + kategoria match)
+                    </label>
+                </div>
+                
+                <div style="display: flex; gap: 10px;">
+                    <button type="button" class="btn" onclick="previewImport()">Esikatsele</button>
+                    <button type="button" class="btn btn-secondary hidden" id="executeImportBtn" onclick="executeImport()">Tuo tuotteet</button>
+                </div>
+            </form>
+            
+            <!-- Preview Results -->
+            <div id="previewResults" class="hidden"></div>
+            
+            <!-- Import Results -->
+            <div id="importResults" class="hidden"></div>
         </div>
         
         <div class="products-table">
@@ -851,6 +1184,190 @@ $products = $pdo->query("
                 closeModal();
             }
         });
+        
+        // Import functions
+        function previewImport() {
+            const form = document.getElementById('importForm');
+            const formData = new FormData(form);
+            formData.append('action', 'preview_import');
+            
+            const jsonFile = document.getElementById('json_file').files[0];
+            if (!jsonFile) {
+                showNotification('Valitse JSON-tiedosto', 'error');
+                return;
+            }
+            
+            // Show loading
+            const previewResults = document.getElementById('previewResults');
+            previewResults.innerHTML = '<p style="padding: 20px; text-align: center;">Ladataan...</p>';
+            previewResults.classList.remove('hidden');
+            document.getElementById('executeImportBtn').classList.add('hidden');
+            document.getElementById('importResults').classList.add('hidden');
+            
+            fetch('admin.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    displayPreview(data);
+                    if (data.valid > 0) {
+                        document.getElementById('executeImportBtn').classList.remove('hidden');
+                    }
+                } else {
+                    previewResults.innerHTML = `
+                        <div class="error-list">
+                            <h3>❌ Virhe</h3>
+                            <p>${data.error}</p>
+                        </div>
+                    `;
+                }
+            })
+            .catch(error => {
+                showNotification('Virhe esikatselussa: ' + error.message, 'error');
+                console.error(error);
+                previewResults.classList.add('hidden');
+            });
+        }
+        
+        function displayPreview(data) {
+            let html = '<div class="import-stats">';
+            html += '<h3>📊 Esikatselu</h3>';
+            html += '<ul>';
+            html += `<li>Yhteensä tuotteita: ${data.total}</li>`;
+            html += `<li>Kelvolliset: ${data.valid}</li>`;
+            html += `<li>Virheelliset: ${data.invalid}</li>`;
+            html += '</ul>';
+            html += '</div>';
+            
+            if (data.errors && data.errors.length > 0) {
+                html += '<div class="error-list">';
+                html += '<h3>⚠️ Virheet</h3>';
+                html += '<ul>';
+                data.errors.forEach(error => {
+                    html += `<li>${error}</li>`;
+                });
+                html += '</ul>';
+                html += '</div>';
+            }
+            
+            if (data.products && data.products.length > 0) {
+                html += '<div style="overflow-x: auto;">';
+                html += '<table class="preview-table">';
+                html += '<thead><tr>';
+                html += '<th>Nimi</th><th>Kategoria</th><th>Hinta (€)</th><th>Yksikkö</th>';
+                html += '<th>Badge</th><th>Emoji</th><th>Kuvaus</th>';
+                html += '</tr></thead>';
+                html += '<tbody>';
+                
+                data.products.slice(0, 10).forEach(product => {
+                    html += '<tr>';
+                    html += `<td>${escapeHtml(product.name || '')}</td>`;
+                    html += `<td>${escapeHtml(product.category || '')}</td>`;
+                    html += `<td>${product.price_eur || 0}</td>`;
+                    html += `<td>${escapeHtml(product.unit || '')}</td>`;
+                    html += `<td>${escapeHtml(product.badge || '-')}</td>`;
+                    html += `<td>${escapeHtml(product.emoji || '-')}</td>`;
+                    html += `<td>${escapeHtml((product.description || '').substring(0, 50))}${product.description && product.description.length > 50 ? '...' : ''}</td>`;
+                    html += '</tr>';
+                });
+                
+                if (data.products.length > 10) {
+                    html += `<tr><td colspan="7" style="text-align: center; color: #6b7280;">... ja ${data.products.length - 10} muuta tuotetta</td></tr>`;
+                }
+                
+                html += '</tbody></table>';
+                html += '</div>';
+            }
+            
+            document.getElementById('previewResults').innerHTML = html;
+        }
+        
+        function executeImport() {
+            if (!confirm('Haluatko varmasti tuoda tuotteet tietokantaan?')) {
+                return;
+            }
+            
+            const form = document.getElementById('importForm');
+            const formData = new FormData(form);
+            formData.append('action', 'execute_import');
+            formData.append('skip_duplicates', document.getElementById('skip_duplicates').checked ? '1' : '0');
+            formData.append('update_existing', document.getElementById('update_existing').checked ? '1' : '0');
+            
+            // Show loading
+            const importResults = document.getElementById('importResults');
+            importResults.innerHTML = '<p style="padding: 20px; text-align: center;">Tuodaan tuotteita...</p>';
+            importResults.classList.remove('hidden');
+            document.getElementById('executeImportBtn').disabled = true;
+            
+            fetch('admin.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    displayImportResults(data.stats);
+                    showNotification('Tuonti valmis!', 'success');
+                    
+                    // Reload page after 3 seconds to show new products
+                    setTimeout(() => {
+                        location.reload();
+                    }, 3000);
+                } else {
+                    importResults.innerHTML = `
+                        <div class="error-list">
+                            <h3>❌ Virhe</h3>
+                            <p>${data.error}</p>
+                        </div>
+                    `;
+                    showNotification('Tuonti epäonnistui', 'error');
+                    document.getElementById('executeImportBtn').disabled = false;
+                }
+            })
+            .catch(error => {
+                showNotification('Virhe tuonnissa: ' + error.message, 'error');
+                console.error(error);
+                importResults.innerHTML = `
+                    <div class="error-list">
+                        <h3>❌ Virhe</h3>
+                        <p>Tuntematon virhe tuonnissa</p>
+                    </div>
+                `;
+                document.getElementById('executeImportBtn').disabled = false;
+            });
+        }
+        
+        function displayImportResults(stats) {
+            let html = '<div class="import-stats">';
+            html += '<h3>✅ Tuonti valmis</h3>';
+            html += '<ul>';
+            html += `<li>Luotiin: ${stats.created_count} tuotetta</li>`;
+            html += `<li>Päivitettiin: ${stats.updated_count} tuotetta</li>`;
+            html += `<li>Ohitettiin: ${stats.skipped_count} tuotetta</li>`;
+            html += '</ul>';
+            html += '</div>';
+            
+            if (stats.errors && stats.errors.length > 0) {
+                html += '<div class="error-list">';
+                html += '<h3>⚠️ Virheet</h3>';
+                html += '<ul>';
+                stats.errors.forEach(error => {
+                    html += `<li>${escapeHtml(error)}</li>`;
+                });
+                html += '</ul>';
+                html += '</div>';
+            }
+            
+            document.getElementById('importResults').innerHTML = html;
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
     </script>
 </body>
 </html>
