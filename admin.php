@@ -264,7 +264,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         
         $validation = validateUploadedFile(
             $_FILES['json_file'],
-            ['application/json', 'text/plain'],
+            ['application/json'],
             20 * 1024 * 1024 // 20MB
         );
         
