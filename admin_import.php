@@ -95,7 +95,8 @@ function validateUploadedFile($file, $allowedMimes, $maxSize) {
  * @return array ['success' => bool, 'data' => array, 'error' => string]
  */
 function parseImportJSON($jsonContent) {
-    $data = json_decode($jsonContent, true);
+    // Explicitly limit JSON nesting depth for security and resource control
+    $data = json_decode($jsonContent, true, 512);
     
     if (json_last_error() !== JSON_ERROR_NONE) {
         return ['success' => false, 'error' => 'JSON-virhe: ' . json_last_error_msg()];
