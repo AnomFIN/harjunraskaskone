@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import Feature Demo - Admin Panel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .import-section {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .import-section h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #374151;
+        }
+        
+        .file-input-group {
+            margin-bottom: 20px;
+        }
+        
+        .file-input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .file-input-group input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px dashed #e5e7eb;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        .checkbox-group {
+            margin-bottom: 20px;
+        }
+        
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 8px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        
+        .btn:hover {
+            background: #5568d3;
+        }
+        
+        .btn-secondary {
+            background: #6b7280;
+        }
+        
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+        
+        .preview-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        
+        .preview-table th,
+        .preview-table td {
+            padding: 10px;
+            border: 1px solid #e5e7eb;
+            text-align: left;
+        }
+        
+        .preview-table th {
+            background: #f9fafb;
+            font-weight: 600;
+        }
+        
+        .import-stats {
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 16px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+        
+        .import-stats h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #1e40af;
+        }
+        
+        .import-stats ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .import-stats li {
+            padding: 5px 0;
+            color: #374151;
+        }
+        
+        small {
+            color: #6b7280;
+            display: block;
+            margin-top: 5px;
+        }
+        
+        .screenshot {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .screenshot h3 {
+            margin-bottom: 15px;
+            color: #374151;
+        }
+        
+        .screenshot img {
+            max-width: 100%;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📦 Product Import Feature - Visual Guide</h1>
+        
+        <div class="screenshot">
+            <h3>Step 1: Import Form</h3>
+            <div class="import-section">
+                <h2>📦 Tuo tuotteet (JSON)</h2>
+                
+                <form>
+                    <div class="file-input-group">
+                        <label for="json_file">JSON-tiedosto * (max 20MB)</label>
+                        <input type="file" id="json_file" accept=".json">
+                        <small>Formaatti: product_import_v1</small>
+                    </div>
+                    
+                    <div class="file-input-group">
+                        <label for="image_zip">Kuvien ZIP-tiedosto (valinnainen, max 200MB)</label>
+                        <input type="file" id="image_zip" accept=".zip">
+                        <small>Sisältää tuotteiden kuvat (jpg, png, webp)</small>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" checked>
+                            Ohita duplikaatit (nimi + kategoria)
+                        </label>
+                        <label>
+                            <input type="checkbox">
+                            Päivitä olemassaolevat (nimi + kategoria match)
+                        </label>
+                    </div>
+                    
+                    <div>
+                        <button type="button" class="btn">Esikatsele</button>
+                        <button type="button" class="btn btn-secondary" disabled>Tuo tuotteet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="screenshot">
+            <h3>Step 2: Preview Results</h3>
+            <div class="import-stats">
+                <h3>📊 Esikatselu</h3>
+                <ul>
+                    <li>Yhteensä tuotteita: 16</li>
+                    <li>Kelvolliset: 16</li>
+                    <li>Virheelliset: 0</li>
+                </ul>
+            </div>
+            
+            <div style="overflow-x: auto;">
+                <table class="preview-table">
+                    <thead>
+                        <tr>
+                            <th>Nimi</th>
+                            <th>Kategoria</th>
+                            <th>Hinta (€)</th>
+                            <th>Yksikkö</th>
+                            <th>Badge</th>
+                            <th>Emoji</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Täysi rengaslinja: Ravaglioli FK452 + Hofmann Geodyna 6300P</td>
+                            <td>Korjaamolaitteet</td>
+                            <td>3800</td>
+                            <td>kpl</td>
+                            <td>Paketti</td>
+                            <td>🛞⚖️</td>
+                        </tr>
+                        <tr>
+                            <td>Rotary Lift 2-pilarinostin + Midatron NIB teollinen akkulaturi</td>
+                            <td>Korjaamolaitteet</td>
+                            <td>4900</td>
+                            <td>kpl</td>
+                            <td>Paketti</td>
+                            <td>🏗️🔋</td>
+                        </tr>
+                        <tr>
+                            <td>Korjaamon ydinkalusto: nostin + rengaskone + tasapainotuskone</td>
+                            <td>Korjaamolaitteet</td>
+                            <td>7900</td>
+                            <td>kpl</td>
+                            <td>Paketti</td>
+                            <td>🏭🛞</td>
+                        </tr>
+                        <tr>
+                            <td colspan="6" style="text-align: center; color: #6b7280;">... ja 13 muuta tuotetta</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="screenshot">
+            <h3>Step 3: Import Complete</h3>
+            <div class="import-stats">
+                <h3>✅ Tuonti valmis</h3>
+                <ul>
+                    <li>Luotiin: 16 tuotetta</li>
+                    <li>Päivitettiin: 0 tuotetta</li>
+                    <li>Ohitettiin: 0 tuotetta</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="screenshot">
+            <h3>Key Features</h3>
+            <ul style="padding-left: 20px;">
+                <li>✅ CSRF token protection</li>
+                <li>✅ File type validation (MIME + extension)</li>
+                <li>✅ File size limits (20MB JSON, 200MB ZIP)</li>
+                <li>✅ XSS prevention via text sanitization</li>
+                <li>✅ SQL injection prevention via prepared statements</li>
+                <li>✅ Database transactions with rollback on failure</li>
+                <li>✅ Detailed error reporting per product</li>
+                <li>✅ Preview before import</li>
+                <li>✅ Flexible category support</li>
+                <li>✅ Optional image uploads via ZIP</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
