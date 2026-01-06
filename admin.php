@@ -1345,7 +1345,7 @@ $products = $pdo->query("
                     importResults.innerHTML = `
                         <div class="error-list">
                             <h3>❌ Virhe</h3>
-                            <p>${data.error}</p>
+                            <p>${escapeHtml(data.error)}</p>
                         </div>
                     `;
                     showNotification('Tuonti epäonnistui', 'error');
