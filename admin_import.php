@@ -209,13 +209,30 @@ function extractImagesFromZip($zipPath, $extractPath) {
         
         // Extract file
         $basename = basename($filename);
+        
+        // Validate that basename doesn't contain directory traversal sequences
+        // and that the resolved path is still within the extraction directory
+        if (strpos($basename, '..') !== false || strpos($basename, '/') !== false || strpos($basename, '\\') !== false) {
+            continue; // Skip files with suspicious names
+        }
+        
         $targetPath = $extractPath . '/' . $basename;
+        
+        // Verify the real path is still within the extraction directory after resolution
+        $realExtractPath = realpath($extractPath);
+        if ($realExtractPath !== false) {
+            $realTargetDir = realpath(dirname($targetPath));
+            if ($realTargetDir === false || strpos($realTargetDir, $realExtractPath) !== 0) {
+                continue; // Skip if path validation fails
+            }
+        }
         
         // Avoid silently overwriting existing files by generating a unique filename on collision
         if (file_exists($targetPath)) {
             $nameWithoutExt = pathinfo($basename, PATHINFO_FILENAME);
             $uniqueBasename = $nameWithoutExt . '_' . uniqid('', true) . '.' . $ext;
             $targetPath = $extractPath . '/' . $uniqueBasename;
+            $basename = $uniqueBasename; // Update basename to match the actual saved file
         }
         
         if (copy("zip://" . $zipPath . "#" . $filename, $targetPath)) {
@@ -346,21 +363,27 @@ function importProducts($pdo, $products, $options, $imageFiles = []) {
 
 /**
  * Ensure database has image_path column
+ * Uses portable SQL that works across different database systems
  * @param PDO $pdo Database connection
  * @return bool Success status
  */
 function ensureImagePathColumn($pdo) {
     try {
-        // Check if column exists
-        $stmt = $pdo->query("SHOW COLUMNS FROM products LIKE 'image_path'");
-        if ($stmt->rowCount() === 0) {
-            // Add column
-            $pdo->exec("ALTER TABLE products ADD COLUMN image_path VARCHAR(255) NULL AFTER image");
+        // Portable way to check if column exists by attempting to select it
+        // This works across MySQL, PostgreSQL, SQLite, etc.
+        try {
+            $stmt = $pdo->query("SELECT image_path FROM products LIMIT 1");
+            // If we got here, column exists
+            return true;
+        } catch (PDOException $e) {
+            // Column doesn't exist, try to add it
+            // Note: ALTER TABLE syntax is generally portable, but column positioning (AFTER) is MySQL-specific
+            // For maximum portability, we omit the AFTER clause
+            $pdo->exec("ALTER TABLE products ADD COLUMN image_path VARCHAR(255)");
             return true;
         }
-        return true;
     } catch (PDOException $e) {
-        error_log('Failed to add image_path column: ' . $e->getMessage());
+        error_log('Failed to ensure image_path column: ' . $e->getMessage());
         return false;
     }
 }

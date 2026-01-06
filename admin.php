@@ -34,7 +34,6 @@ define('ALLOWED_CATEGORIES', [
     'tyokalut' => 'Työkalut',
     'Korjaamolaitteet' => 'Korjaamolaitteet',
     'Sähkölaitteet' => 'Sähkölaitteet',
-    'Työkalut' => 'Työkalut',
     'Tauko-/keittiö' => 'Tauko-/keittiö'
 ]);
 
@@ -878,6 +877,21 @@ $products = $pdo->query("
         .hidden {
             display: none;
         }
+        
+        .loading-message {
+            padding: 20px;
+            text-align: center;
+            color: #6b7280;
+        }
+        
+        .overflow-auto {
+            overflow-x: auto;
+        }
+        
+        .text-center-muted {
+            text-align: center;
+            color: #6b7280;
+        }
     </style>
 </head>
 <body>
@@ -1215,7 +1229,7 @@ $products = $pdo->query("
             
             // Show loading
             const previewResults = document.getElementById('previewResults');
-            previewResults.innerHTML = '<p style="padding: 20px; text-align: center;">Ladataan...</p>';
+            previewResults.innerHTML = '<p class="loading-message">Ladataan...</p>';
             previewResults.classList.remove('hidden');
             document.getElementById('executeImportBtn').classList.add('hidden');
             document.getElementById('importResults').classList.add('hidden');
@@ -1279,7 +1293,7 @@ $products = $pdo->query("
             }
             
             if (data.products && data.products.length > 0) {
-                html += '<div style="overflow-x: auto;">';
+                html += '<div class="overflow-auto">';
                 html += '<table class="preview-table">';
                 html += '<thead><tr>';
                 html += '<th>Nimi</th><th>Kategoria</th><th>Hinta (€)</th><th>Yksikkö</th>';
@@ -1300,7 +1314,7 @@ $products = $pdo->query("
                 });
                 
                 if (data.products.length > 10) {
-                    html += `<tr><td colspan="7" style="text-align: center; color: #6b7280;">... ja ${data.products.length - 10} muuta tuotetta</td></tr>`;
+                    html += `<tr><td colspan="7" class="text-center-muted">... ja ${data.products.length - 10} muuta tuotetta</td></tr>`;
                 }
                 
                 html += '</tbody></table>';
@@ -1323,7 +1337,7 @@ $products = $pdo->query("
             
             // Show loading
             const importResults = document.getElementById('importResults');
-            importResults.innerHTML = '<p style="padding: 20px; text-align: center;">Tuodaan tuotteita...</p>';
+            importResults.innerHTML = '<p class="loading-message">Tuodaan tuotteita...</p>';
             importResults.classList.remove('hidden');
             document.getElementById('executeImportBtn').disabled = true;
             
