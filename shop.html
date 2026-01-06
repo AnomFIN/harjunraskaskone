@@ -334,51 +334,110 @@
             border: 1px solid var(--color-steel-200);
             border-radius: var(--border-radius-lg);
             overflow: hidden;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
+            cursor: pointer;
+            position: relative;
         }
         
         .product-card:hover {
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.12), 0 4px 8px -2px rgba(0, 0, 0, 0.06);
             border-color: var(--color-steel-300);
-            transform: translateY(-2px);
+            transform: translateY(-4px);
         }
         
         .product-image {
             width: 100%;
-            height: 200px;
-            background: var(--color-steel-100);
+            height: 240px;
+            background: linear-gradient(135deg, var(--color-steel-50) 0%, var(--color-steel-100) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
+            border-bottom: 1px solid var(--color-steel-200);
+        }
+        
+        .product-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.02) 100%);
         }
         
         .product-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
         }
         
         .product-badge {
             position: absolute;
-            top: var(--space-sm);
-            right: var(--space-sm);
+            top: var(--space-md);
+            right: var(--space-md);
             background: var(--color-warning);
             color: white;
-            padding: var(--space-xs) var(--space-sm);
-            border-radius: var(--border-radius-sm);
+            padding: var(--space-xs) var(--space-md);
+            border-radius: var(--border-radius-md);
             font-size: var(--font-size-xs);
-            font-weight: 600;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: var(--shadow-md);
+            z-index: 2;
+        }
+        
+        .favorite-btn {
+            position: absolute;
+            top: var(--space-md);
+            left: var(--space-md);
+            width: 36px;
+            height: 36px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            z-index: 2;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+        }
+        
+        .product-card:hover .favorite-btn {
+            opacity: 1;
+        }
+        
+        .favorite-btn:hover {
+            background: var(--color-error);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .favorite-btn.active {
+            background: var(--color-error);
+            color: white;
+            opacity: 1;
         }
         
         .product-content {
-            padding: var(--space-lg);
+            padding: var(--space-xl);
             flex: 1;
             display: flex;
             flex-direction: column;
+        }
+        
+        .product-meta {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            margin-bottom: var(--space-sm);
         }
         
         .product-category {
@@ -386,68 +445,107 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            color: var(--color-accent-primary);
-            margin-bottom: var(--space-xs);
+            color: var(--color-text-muted);
+        }
+        
+        .product-seller {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
         }
         
         .product-name {
             font-size: var(--font-size-lg);
             font-weight: 600;
             color: var(--color-text-primary);
-            margin-bottom: var(--space-sm);
-            line-height: 1.3;
+            margin-bottom: var(--space-md);
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
         
         .product-description {
             font-size: var(--font-size-sm);
             color: var(--color-text-secondary);
             margin-bottom: var(--space-lg);
-            line-height: 1.5;
+            line-height: 1.6;
             flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
         
         .product-footer {
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             justify-content: space-between;
             gap: var(--space-md);
-            padding-top: var(--space-md);
-            border-top: 1px solid var(--color-steel-200);
+            padding-top: var(--space-lg);
+        }
+        
+        .product-price-wrapper {
+            flex: 1;
+        }
+        
+        .product-price-label {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
         }
         
         .product-price {
-            font-size: var(--font-size-xl);
+            font-size: var(--font-size-2xl);
             font-weight: 700;
             color: var(--color-text-primary);
+            line-height: 1;
         }
         
         .product-price-unit {
-            font-size: var(--font-size-xs);
+            font-size: var(--font-size-sm);
             font-weight: 400;
             color: var(--color-text-muted);
             margin-left: var(--space-xs);
         }
         
+        .product-time {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+            margin-top: var(--space-xs);
+        }
+        
         .add-to-cart-btn {
             background: var(--color-accent-primary);
             color: white;
-            padding: var(--space-sm) var(--space-lg);
+            padding: var(--space-md) var(--space-xl);
             border-radius: var(--border-radius-md);
             font-weight: 600;
             font-size: var(--font-size-sm);
             transition: all 0.2s;
+            white-space: nowrap;
+            box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
         }
         
         .add-to-cart-btn:hover {
             background: var(--color-accent-dark);
+            box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+            transform: translateY(-1px);
         }
         
         .add-to-cart-btn:active {
-            transform: scale(0.98);
+            transform: translateY(0);
         }
         
         .add-to-cart-btn.added {
             background: var(--color-success);
+            box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
         }
         
         /* ========================================
@@ -675,6 +773,298 @@
         }
         
         /* ========================================
+           Product Detail Modal
+           ======================================== */
+        .product-detail-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2500;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            padding: var(--space-xl);
+            overflow-y: auto;
+        }
+        
+        .product-detail-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .product-detail-content {
+            background: var(--color-bg-secondary);
+            border-radius: var(--border-radius-xl);
+            width: 100%;
+            max-width: 1100px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transform: scale(0.95);
+            transition: transform 0.3s;
+            overflow: hidden;
+            max-height: 95vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-detail-modal.active .product-detail-content {
+            transform: scale(1);
+        }
+        
+        .product-detail-header {
+            padding: var(--space-xl);
+            border-bottom: 1px solid var(--color-steel-200);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--color-bg-tertiary);
+        }
+        
+        .product-detail-header h2 {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .product-detail-body {
+            overflow-y: auto;
+            padding: var(--space-2xl);
+        }
+        
+        .product-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-3xl);
+        }
+        
+        .product-detail-images {
+            position: sticky;
+            top: 0;
+        }
+        
+        .product-main-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--color-steel-50) 0%, var(--color-steel-100) 100%);
+            border-radius: var(--border-radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--color-steel-200);
+            overflow: hidden;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .product-main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-thumbnails {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md);
+        }
+        
+        .product-thumbnail {
+            aspect-ratio: 1;
+            background: var(--color-steel-100);
+            border-radius: var(--border-radius-md);
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+            overflow: hidden;
+        }
+        
+        .product-thumbnail:hover {
+            border-color: var(--color-accent-primary);
+        }
+        
+        .product-thumbnail.active {
+            border-color: var(--color-accent-primary);
+        }
+        
+        .product-detail-info h1 {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-md);
+            line-height: 1.2;
+        }
+        
+        .product-detail-meta {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+            padding: var(--space-lg) 0;
+            border-bottom: 1px solid var(--color-steel-200);
+            margin-bottom: var(--space-xl);
+        }
+        
+        .product-detail-category {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-muted);
+        }
+        
+        .product-detail-seller {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+        
+        .product-detail-price-box {
+            background: linear-gradient(135deg, var(--color-accent-primary) 0%, var(--color-accent-secondary) 100%);
+            color: white;
+            padding: var(--space-2xl);
+            border-radius: var(--border-radius-lg);
+            margin-bottom: var(--space-xl);
+        }
+        
+        .product-detail-price-label {
+            font-size: var(--font-size-sm);
+            opacity: 0.9;
+            margin-bottom: var(--space-sm);
+            font-weight: 500;
+        }
+        
+        .product-detail-price {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: var(--space-xs);
+        }
+        
+        .product-detail-time {
+            font-size: var(--font-size-sm);
+            opacity: 0.9;
+        }
+        
+        .product-detail-actions {
+            display: flex;
+            gap: var(--space-md);
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .product-detail-add-cart {
+            flex: 1;
+            background: var(--color-success);
+            color: white;
+            padding: var(--space-lg) var(--space-xl);
+            border-radius: var(--border-radius-md);
+            font-weight: 600;
+            font-size: var(--font-size-base);
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+        
+        .product-detail-add-cart:hover {
+            background: var(--color-success-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(16, 185, 129, 0.4);
+        }
+        
+        .product-detail-favorite {
+            width: 56px;
+            height: 56px;
+            border: 2px solid var(--color-steel-300);
+            border-radius: var(--border-radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            background: white;
+        }
+        
+        .product-detail-favorite:hover {
+            border-color: var(--color-error);
+            color: var(--color-error);
+            background: var(--color-error-bg);
+        }
+        
+        .product-detail-description {
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .product-detail-description h3 {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+            color: var(--color-text-primary);
+        }
+        
+        .product-detail-description p {
+            font-size: var(--font-size-base);
+            line-height: 1.7;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-md);
+        }
+        
+        .product-detail-specs {
+            background: var(--color-bg-tertiary);
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-xl);
+        }
+        
+        .product-detail-specs h3 {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-bottom: var(--space-lg);
+            color: var(--color-text-primary);
+        }
+        
+        .product-spec-row {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--space-md) 0;
+            border-bottom: 1px solid var(--color-steel-200);
+            font-size: var(--font-size-sm);
+        }
+        
+        .product-spec-row:last-child {
+            border-bottom: none;
+        }
+        
+        .product-spec-label {
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+        
+        .product-spec-value {
+            color: var(--color-text-primary);
+            font-weight: 600;
+        }
+        
+        .product-detail-location {
+            margin-top: var(--space-xl);
+            padding: var(--space-xl);
+            background: var(--color-bg-tertiary);
+            border-radius: var(--border-radius-lg);
+        }
+        
+        .product-detail-location h3 {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+            color: var(--color-text-primary);
+        }
+        
+        .product-detail-location p {
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-sm);
+        }
+        
+        /* ========================================
            Checkout Modal
            ======================================== */
         .modal {
@@ -883,6 +1273,15 @@
                 position: relative;
                 top: 0;
             }
+            
+            .product-detail-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-xl);
+            }
+            
+            .product-detail-images {
+                position: relative;
+            }
         }
         
         @media (max-width: 768px) {
@@ -908,6 +1307,36 @@
             
             .back-link {
                 order: 3;
+                width: 100%;
+            }
+            
+            .product-detail-modal {
+                padding: 0;
+                align-items: flex-start;
+            }
+            
+            .product-detail-content {
+                border-radius: 0;
+                max-height: 100vh;
+            }
+            
+            .product-detail-body {
+                padding: var(--space-xl);
+            }
+            
+            .product-detail-info h1 {
+                font-size: var(--font-size-2xl);
+            }
+            
+            .product-detail-price {
+                font-size: var(--font-size-3xl);
+            }
+            
+            .product-detail-actions {
+                flex-direction: column;
+            }
+            
+            .product-detail-favorite {
                 width: 100%;
             }
         }
@@ -1040,6 +1469,23 @@
         </div>
     </div>
     
+    <!-- Product Detail Modal -->
+    <div class="product-detail-modal" id="productDetailModal">
+        <div class="product-detail-content">
+            <div class="product-detail-header">
+                <h2>Tuotetiedot</h2>
+                <button class="close-cart-btn" id="closeProductDetail" aria-label="Sulje tuotetiedot">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="product-detail-body" id="productDetailBody">
+                <!-- Product details will be rendered here -->
+            </div>
+        </div>
+    </div>
+    
     <script>
         (function() {
             'use strict';
@@ -1061,8 +1507,20 @@
                     price: 89.00,
                     unit: '20L',
                     description: 'Laadukas mineraaliöljy raskaaseen kalustoon. Täyttää API CJ-4 ja ACEA E7 -vaatimukset.',
+                    longDescription: 'Korkealaatuinen moottoriöljy, joka on suunniteltu erityisesti raskaan kaluston vaativiin olosuhteisiin. Erinomainen suojaus kulumista vastaan ja pitkä vaihtoväli.',
                     image: '🛢️',
-                    badge: 'Suosittu'
+                    badge: 'Suosittu',
+                    seller: 'Macca Machinery',
+                    location: 'Hollola, Suomi',
+                    businessId: '1234567-8',
+                    timeLeft: 'Aikaa jäljellä 14 t 56 min',
+                    deliveryInfo: 'Nouto 50 €',
+                    specs: {
+                        'Tilavuus': '20 litraa',
+                        'Viskositeetti': '15W-40',
+                        'Standardi': 'API CJ-4, ACEA E7',
+                        'Tyyppi': 'Mineraaliöljy'
+                    }
                 },
                 {
                     id: 2,
@@ -1071,7 +1529,14 @@
                     price: 125.00,
                     unit: '20L',
                     description: 'Korkealaatuinen hydrauliöljy työkoneisiin ja nostolaitteisiin.',
-                    image: '🛢️'
+                    image: '🛢️',
+                    seller: 'Macca Machinery',
+                    location: 'Hollola, Suomi',
+                    specs: {
+                        'Tilavuus': '20 litraa',
+                        'Viskositeetti': 'ISO VG 46',
+                        'Tyyppi': 'Hydrauliöljy'
+                    }
                 },
                 {
                     id: 3,
@@ -1081,7 +1546,10 @@
                     unit: 'kpl',
                     description: 'Yleismalli kuorma-autoihin. Sopii useimpiin Scania, Volvo ja Mercedes-malleihin.',
                     image: '⚙️',
-                    badge: 'Uusi'
+                    badge: 'Uusi',
+                    seller: 'Macca Machinery',
+                    location: 'Hollola, Suomi',
+                    timeLeft: 'Aikaa jäljellä 13 t 21 min'
                 },
                 {
                     id: 4,
@@ -1090,7 +1558,9 @@
                     price: 45.00,
                     unit: 'kpl',
                     description: 'Tehokas ilmansuodatin dieselmoottoreihin. Pitkä käyttöikä.',
-                    image: '⚙️'
+                    image: '⚙️',
+                    seller: 'AGCO Suomi Oy',
+                    location: 'Viitasaari, Suomi'
                 },
                 {
                     id: 5,
@@ -1099,7 +1569,9 @@
                     price: 32.00,
                     unit: 'kpl',
                     description: 'Korkealaatuinen polttoainesuodatin. Erottaa veden ja epäpuhtaudet tehokkaasti.',
-                    image: '⚙️'
+                    image: '⚙️',
+                    seller: 'Macca Machinery',
+                    location: 'Hollola, Suomi'
                 },
                 {
                     id: 6,
@@ -1109,7 +1581,15 @@
                     unit: 'pkt',
                     description: 'Sisältää öljynvaihdon (25L), kaikki suodattimet ja perushuollon kuorma-autolle.',
                     image: '📦',
-                    badge: 'Suosittu'
+                    badge: 'Suosittu',
+                    seller: 'Hautala Service Oy',
+                    location: 'Ilmajoki, Suomi',
+                    timeLeft: 'Aikaa jäljellä 13 t 41 min',
+                    specs: {
+                        'Sisältö': 'Öljynvaihto 25L',
+                        'Suodattimet': 'Öljy, ilma, polttoaine',
+                        'Tarkastus': 'Perustarkastus sisältyy'
+                    }
                 },
                 {
                     id: 7,
@@ -1118,7 +1598,9 @@
                     price: 890.00,
                     unit: 'pkt',
                     description: 'Sisältää öljynvaihdon, kaikki suodattimet, jarrujen tarkastuksen ja erikoistarkastuksen.',
-                    image: '📦'
+                    image: '📦',
+                    seller: 'Hautala Service Oy',
+                    location: 'Ilmajoki, Suomi'
                 },
                 {
                     id: 8,
@@ -1127,7 +1609,9 @@
                     price: 650.00,
                     unit: 'pkt',
                     description: 'Täydellinen huoltopaketti työkoneille. Hydrauliikka, öljyt ja perusteellinen tarkastus.',
-                    image: '📦'
+                    image: '📦',
+                    seller: 'Macca Machinery',
+                    location: 'Hollola, Suomi'
                 },
                 {
                     id: 9,
@@ -1136,7 +1620,9 @@
                     price: 18.50,
                     unit: '1L',
                     description: 'Korkean suorituskyvyn jarruneste raskaaseen kalustoon.',
-                    image: '🛢️'
+                    image: '🛢️',
+                    seller: 'Ikka Säkkinen Ky',
+                    location: 'Posio, Suomi'
                 },
                 {
                     id: 10,
@@ -1145,7 +1631,9 @@
                     price: 45.00,
                     unit: '5L',
                     description: 'Korkealaatuinen jäähdytinneste. Suojaa -35°C lämpötilaan.',
-                    image: '🛢️'
+                    image: '🛢️',
+                    seller: 'Macca Machinery',
+                    location: 'Hollola, Suomi'
                 },
                 {
                     id: 11,
@@ -1155,7 +1643,10 @@
                     unit: 'kpl',
                     description: 'Ammattilaisen momenttiavain 40-200 Nm. Sertifioitu tarkkuus.',
                     image: '🔧',
-                    badge: 'Pro'
+                    badge: 'Pro',
+                    seller: 'Cinern-Anniskelu Oy',
+                    location: 'Pieksämäki, Suomi',
+                    timeLeft: 'Aikaa jäljellä 13 t 41 min'
                 },
                 {
                     id: 12,
@@ -1164,7 +1655,9 @@
                     price: 145.00,
                     unit: 'sarja',
                     description: 'Kattava 24-osainen hylsysarja metallisalkussa. Koot 10-32mm.',
-                    image: '🔧'
+                    image: '🔧',
+                    seller: 'Rakennus ja Kone Latvala',
+                    location: 'Kurikka, Suomi'
                 }
             ];
             
@@ -1226,21 +1719,39 @@
                 }
                 
                 grid.innerHTML = filteredProducts.map(product => `
-                    <article class="product-card">
+                    <article class="product-card" data-product-id="${product.id}">
                         <div class="product-image">
+                            <button class="favorite-btn" data-product-id="${product.id}" data-action="favorite" aria-label="Lisää suosikkeihin">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                </svg>
+                            </button>
                             <div style="font-size: 4rem;" role="img" aria-label="${escapeHtml(product.name)}">${escapeHtml(product.image)}</div>
                             ${product.badge ? `<span class="product-badge">${escapeHtml(product.badge)}</span>` : ''}
                         </div>
                         <div class="product-content">
-                            <div class="product-category">${escapeHtml(getCategoryName(product.category))}</div>
+                            <div class="product-meta">
+                                <div class="product-category">${escapeHtml(getCategoryName(product.category))}</div>
+                                ${product.seller ? `<div class="product-seller">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                    ${escapeHtml(product.seller)}
+                                </div>` : ''}
+                            </div>
                             <h3 class="product-name">${escapeHtml(product.name)}</h3>
                             <p class="product-description">${escapeHtml(product.description)}</p>
                             <div class="product-footer">
-                                <div class="product-price">
-                                    ${formatPrice(product.price)}
-                                    <span class="product-price-unit">/ ${escapeHtml(product.unit)}</span>
+                                <div class="product-price-wrapper">
+                                    <div class="product-price-label">Hinta</div>
+                                    <div class="product-price">
+                                        ${formatPrice(product.price)}
+                                        <span class="product-price-unit">/ ${escapeHtml(product.unit)}</span>
+                                    </div>
+                                    ${product.timeLeft ? `<div class="product-time">${escapeHtml(product.timeLeft)}</div>` : ''}
                                 </div>
-                                <button class="add-to-cart-btn" data-product-id="${product.id}">
+                                <button class="add-to-cart-btn" data-product-id="${product.id}" data-action="add-cart">
                                     Lisää koriin
                                 </button>
                             </div>
@@ -1250,7 +1761,26 @@
                 
                 // Add event listeners
                 grid.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-                    btn.addEventListener('click', handleAddToCart);
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        handleAddToCart(e);
+                    });
+                });
+                
+                grid.querySelectorAll('.favorite-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        handleFavoriteToggle(e);
+                    });
+                });
+                
+                grid.querySelectorAll('.product-card').forEach(card => {
+                    card.addEventListener('click', (e) => {
+                        if (!e.target.closest('.add-to-cart-btn') && !e.target.closest('.favorite-btn')) {
+                            const productId = parseInt(card.dataset.productId);
+                            showProductDetail(productId);
+                        }
+                    });
                 });
             }
             
@@ -1654,6 +2184,176 @@
                     saveFilters();
                     renderProducts();
                 });
+            });
+            
+            // ========================================
+            // Favorites
+            // ========================================
+            let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            
+            function handleFavoriteToggle(e) {
+                const btn = e.currentTarget;
+                const productId = parseInt(btn.dataset.productId);
+                
+                if (favorites.includes(productId)) {
+                    favorites = favorites.filter(id => id !== productId);
+                    btn.classList.remove('active');
+                } else {
+                    favorites.push(productId);
+                    btn.classList.add('active');
+                }
+                
+                localStorage.setItem('favorites', JSON.stringify(favorites));
+            }
+            
+            // ========================================
+            // Product Detail Modal
+            // ========================================
+            function showProductDetail(productId) {
+                const product = products.find(p => p.id === productId);
+                if (!product) return;
+                
+                const modal = document.getElementById('productDetailModal');
+                const body = document.getElementById('productDetailBody');
+                
+                const isFavorite = favorites.includes(productId);
+                
+                body.innerHTML = `
+                    <div class="product-detail-grid">
+                        <div class="product-detail-images">
+                            <div class="product-main-image">
+                                <div style="font-size: 6rem;" role="img" aria-label="${escapeHtml(product.name)}">${escapeHtml(product.image)}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-detail-info">
+                            <h1>${escapeHtml(product.name)}</h1>
+                            
+                            <div class="product-detail-meta">
+                                <div class="product-detail-category">${escapeHtml(getCategoryName(product.category))}</div>
+                                ${product.seller ? `<div class="product-detail-seller">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                    ${escapeHtml(product.seller)}
+                                </div>` : ''}
+                            </div>
+                            
+                            <div class="product-detail-price-box">
+                                <div class="product-detail-price-label">Hinta</div>
+                                <div class="product-detail-price">
+                                    ${formatPrice(product.price)}
+                                    <span style="font-size: var(--font-size-xl); opacity: 0.9;">/ ${escapeHtml(product.unit)}</span>
+                                </div>
+                                ${product.timeLeft ? `<div class="product-detail-time">${escapeHtml(product.timeLeft)}</div>` : ''}
+                            </div>
+                            
+                            <div class="product-detail-actions">
+                                <button class="product-detail-add-cart" data-product-id="${product.id}" data-action="add-cart-detail">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;">
+                                        <circle cx="9" cy="21" r="1"></circle>
+                                        <circle cx="20" cy="21" r="1"></circle>
+                                        <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"></path>
+                                    </svg>
+                                    Lisää ostoskoriin
+                                </button>
+                                <button class="product-detail-favorite ${isFavorite ? 'active' : ''}" data-product-id="${product.id}" data-action="favorite-detail" aria-label="Lisää suosikkeihin">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="${isFavorite ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            
+                            <div class="product-detail-description">
+                                <h3>Tuotteen kuvaus</h3>
+                                <p>${escapeHtml(product.description)}</p>
+                                ${product.longDescription ? `<p>${escapeHtml(product.longDescription)}</p>` : ''}
+                            </div>
+                            
+                            ${product.specs ? `
+                                <div class="product-detail-specs">
+                                    <h3>Tekniset tiedot</h3>
+                                    ${Object.entries(product.specs).map(([key, value]) => `
+                                        <div class="product-spec-row">
+                                            <div class="product-spec-label">${escapeHtml(key)}</div>
+                                            <div class="product-spec-value">${escapeHtml(value)}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            ` : ''}
+                            
+                            <div class="product-detail-location">
+                                <h3>Kohteen sijainti</h3>
+                                <p><strong>Toimipiste:</strong> ${escapeHtml(product.location || 'Hollola, Suomi')}</p>
+                                <p><strong>Y-tunnus:</strong> ${escapeHtml(product.businessId || '1234567-8')}</p>
+                                ${product.deliveryInfo ? `<p><strong>Toimitus:</strong> ${escapeHtml(product.deliveryInfo)}</p>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                modal.classList.add('active');
+                
+                // Event listeners for add to cart and favorite buttons
+                const addCartBtn = body.querySelector('[data-action="add-cart-detail"]');
+                if (addCartBtn) {
+                    addCartBtn.addEventListener('click', (e) => {
+                        handleAddToCart(e);
+                        // Update button state
+                        addCartBtn.innerHTML = `
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                            Lisätty ostoskoriin!
+                        `;
+                        setTimeout(() => {
+                            addCartBtn.innerHTML = `
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"></path>
+                                </svg>
+                                Lisää ostoskoriin
+                            `;
+                        }, 2000);
+                    });
+                }
+                
+                const favoriteBtn = body.querySelector('[data-action="favorite-detail"]');
+                if (favoriteBtn) {
+                    favoriteBtn.addEventListener('click', (e) => {
+                        handleFavoriteToggle(e);
+                        const isFav = favorites.includes(productId);
+                        favoriteBtn.classList.toggle('active', isFav);
+                        const svg = favoriteBtn.querySelector('svg');
+                        if (svg) {
+                            svg.setAttribute('fill', isFav ? 'currentColor' : 'none');
+                        }
+                    });
+                }
+            }
+            
+            function closeProductDetail() {
+                const modal = document.getElementById('productDetailModal');
+                modal.classList.remove('active');
+            }
+            
+            // Product detail modal close handlers
+            document.getElementById('closeProductDetail').addEventListener('click', closeProductDetail);
+            document.getElementById('productDetailModal').addEventListener('click', (e) => {
+                if (e.target === e.currentTarget) {
+                    closeProductDetail();
+                }
+            });
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    const detailModal = document.getElementById('productDetailModal');
+                    if (detailModal && detailModal.classList.contains('active')) {
+                        closeProductDetail();
+                    }
+                }
             });
             
             // ========================================
