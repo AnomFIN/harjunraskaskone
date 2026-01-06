@@ -1232,12 +1232,22 @@ $products = $pdo->query("
                         document.getElementById('executeImportBtn').classList.remove('hidden');
                     }
                 } else {
-                    previewResults.innerHTML = `
-                        <div class="error-list">
-                            <h3>❌ Virhe</h3>
-                            <p>${data.error}</p>
-                        </div>
-                    `;
+                    // Clear previous content and safely render error message without using innerHTML for user data
+                    previewResults.innerHTML = '';
+
+                    const errorList = document.createElement('div');
+                    errorList.className = 'error-list';
+
+                    const heading = document.createElement('h3');
+                    heading.textContent = '❌ Virhe';
+
+                    const message = document.createElement('p');
+                    // Use textContent to avoid interpreting any HTML in error message
+                    message.textContent = data.error || 'Tuntematon virhe esikatselussa';
+
+                    errorList.appendChild(heading);
+                    errorList.appendChild(message);
+                    previewResults.appendChild(errorList);
                 }
             })
             .catch(error => {
