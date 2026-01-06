@@ -211,7 +211,16 @@ function extractImagesFromZip($zipPath, $extractPath) {
         $basename = basename($filename);
         $targetPath = $extractPath . '/' . $basename;
         
+        // Avoid silently overwriting existing files by generating a unique filename on collision
+        if (file_exists($targetPath)) {
+            $nameWithoutExt = pathinfo($basename, PATHINFO_FILENAME);
+            $uniqueBasename = $nameWithoutExt . '_' . uniqid('', true) . '.' . $ext;
+            $targetPath = $extractPath . '/' . $uniqueBasename;
+        }
+        
         if (copy("zip://" . $zipPath . "#" . $filename, $targetPath)) {
+            // Use the original basename as the key so callers can map by the name in the ZIP,
+            // but store the actual path (which may use a unique filename) as the value.
             $extractedFiles[$basename] = $targetPath;
         }
     }
