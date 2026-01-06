@@ -261,7 +261,7 @@ function importProducts($pdo, $products, $options, $imageFiles = []) {
             $unit = sanitizeText($product['unit']);
             $badge = isset($product['badge']) && !empty($product['badge']) ? sanitizeText($product['badge']) : null;
             $emoji = isset($product['emoji']) && !empty($product['emoji']) ? sanitizeText($product['emoji']) : null;
-            $description = isset($product['description']) ? sanitizeText($product['description']) : null;
+            $description = isset($product['description']) && !empty($product['description']) ? sanitizeText($product['description']) : null;
             
             // Handle image
             $imagePath = null;
