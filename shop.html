@@ -1699,6 +1699,7 @@
             // ========================================
             let cart = JSON.parse(localStorage.getItem('cart') || '[]');
             let activeFilters = JSON.parse(localStorage.getItem('activeFilters') || '{"category":[]}');
+            let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
             
             // ========================================
             // Helper Functions
@@ -2222,7 +2223,6 @@
             // ========================================
             // Favorites
             // ========================================
-            let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
             
             function handleFavoriteToggle(e) {
                 const btn = e.currentTarget;
