@@ -185,8 +185,11 @@ function extractImagesFromZip($zipPath, $extractPath) {
     $extractedFiles = [];
     
     // Create extraction directory if it doesn't exist
+    // The recursive flag (3rd parameter = true) handles race conditions gracefully
+    // by not failing if the directory already exists
     if (!is_dir($extractPath)) {
-        if (!mkdir($extractPath, 0755, true)) {
+        // Suppress warnings for race condition where another process might create the dir
+        if (!@mkdir($extractPath, 0755, true) && !is_dir($extractPath)) {
             $zip->close();
             return ['success' => false, 'error' => 'Hakemiston luominen epäonnistui'];
         }
@@ -267,6 +270,12 @@ function importProducts($pdo, $products, $options, $imageFiles = []) {
         // Start transaction
         $pdo->beginTransaction();
         
+        // Note: This import processes all valid products and skips invalid ones.
+        // The transaction will commit successfully even if some products fail validation.
+        // This allows partial imports - valid products are saved, invalid ones are reported in errors.
+        // If you need strict validation (all-or-nothing), modify the validation loop to
+        // check all products first and rollback the transaction if any are invalid.
+        
         // Prepare statements
         $checkStmt = $pdo->prepare("SELECT id FROM products WHERE name = ? AND category = ? LIMIT 1");
         $insertStmt = $pdo->prepare("
@@ -315,9 +324,10 @@ function importProducts($pdo, $products, $options, $imageFiles = []) {
             $existing = $checkStmt->fetch();
             
             if ($existing) {
-                if ($options['skipDuplicates'] && !$options['updateExisting']) {
-                    $stats['skipped_count']++;
-                } elseif ($options['updateExisting']) {
+                // Handle duplicate products based on options
+                // Priority: updateExisting takes precedence over skipDuplicates when both are true
+                if ($options['updateExisting']) {
+                    // Update existing product
                     $updateStmt->execute([
                         $price,
                         $unit,
@@ -328,7 +338,11 @@ function importProducts($pdo, $products, $options, $imageFiles = []) {
                         $existing['id']
                     ]);
                     $stats['updated_count']++;
+                } elseif ($options['skipDuplicates']) {
+                    // Skip duplicate
+                    $stats['skipped_count']++;
                 } else {
+                    // Neither option set, skip by default
                     $stats['skipped_count']++;
                 }
             } else {
