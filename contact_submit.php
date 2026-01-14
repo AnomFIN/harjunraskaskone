@@ -78,10 +78,17 @@ $email_body .= "---\n";
 $email_body .= "Lähetetty: " . date('d.m.Y H:i:s') . "\n";
 $email_body .= "IP-osoite: " . $_SERVER['REMOTE_ADDR'] . "\n";
 
+// Prepare safe Reply-To header value to prevent header injection
+$reply_to_email = 'noreply@rakennusliikesuvenkari.fi';
+if (!empty($email)) {
+    // Remove any newline characters that could be used for header injection
+    $reply_to_email = str_replace(array("\r", "\n"), '', $email);
+}
+
 // Set email headers
 $headers = [];
 $headers[] = 'From: noreply@rakennusliikesuvenkari.fi';
-$headers[] = 'Reply-To: ' . (!empty($email) ? $email : 'noreply@rakennusliikesuvenkari.fi');
+$headers[] = 'Reply-To: ' . $reply_to_email;
 $headers[] = 'X-Mailer: PHP/' . phpversion();
 $headers[] = 'Content-Type: text/plain; charset=UTF-8';
 
