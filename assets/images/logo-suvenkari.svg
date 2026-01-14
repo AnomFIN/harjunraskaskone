@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <!-- Professional construction company logo -->
+  <!-- Buildings -->
+  <g id="buildings">
+    <!-- Left tall building -->
+    <rect x="250" y="180" width="80" height="220" fill="#2C3E50" rx="4"/>
+    <rect x="260" y="195" width="15" height="20" fill="#34495E"/>
+    <rect x="285" y="195" width="15" height="20" fill="#34495E"/>
+    <rect x="310" y="195" width="15" height="20" fill="#34495E"/>
+    <rect x="260" y="230" width="15" height="20" fill="#34495E"/>
+    <rect x="285" y="230" width="15" height="20" fill="#34495E"/>
+    <rect x="310" y="230" width="15" height="20" fill="#34495E"/>
+    <rect x="260" y="265" width="15" height="20" fill="#34495E"/>
+    <rect x="285" y="265" width="15" height="20" fill="#34495E"/>
+    <rect x="310" y="265" width="15" height="20" fill="#34495E"/>
+    
+    <!-- Middle building -->
+    <rect x="340" y="160" width="70" height="240" fill="#34495E" rx="4"/>
+    <rect x="350" y="175" width="12" height="18" fill="#4A5F7F"/>
+    <rect x="372" y="175" width="12" height="18" fill="#4A5F7F"/>
+    <rect x="350" y="205" width="12" height="18" fill="#4A5F7F"/>
+    <rect x="372" y="205" width="12" height="18" fill="#4A5F7F"/>
+    <rect x="350" y="235" width="12" height="18" fill="#4A5F7F"/>
+    <rect x="372" y="235" width="12" height="18" fill="#4A5F7F"/>
+    
+    <!-- Right building with vertical lines -->
+    <rect x="420" y="200" width="65" height="200" fill="#7F8C8D" rx="4"/>
+    <line x1="435" y1="210" x2="435" y2="390" stroke="#95A5A6" stroke-width="3"/>
+    <line x1="453" y1="210" x2="453" y2="390" stroke="#95A5A6" stroke-width="3"/>
+    <line x1="470" y1="210" x2="470" y2="390" stroke="#95A5A6" stroke-width="3"/>
+  </g>
+  
+  <!-- Orange roof/house -->
+  <g id="roof">
+    <!-- House structure -->
+    <rect x="490" y="280" width="90" height="120" fill="#E8E8E8" rx="3"/>
+    
+    <!-- Orange roof -->
+    <path d="M 485 280 L 535 240 L 585 280 Z" fill="#E67E22"/>
+    <path d="M 535 240 L 585 280 L 585 285 L 535 245 Z" fill="#D35400" opacity="0.7"/>
+    
+    <!-- Door -->
+    <rect x="515" y="350" width="20" height="50" fill="#34495E" rx="2"/>
+    
+    <!-- Windows -->
+    <rect x="500" y="295" width="18" height="18" fill="#525252" rx="1"/>
+    <rect x="555" y="295" width="18" height="18" fill="#525252" rx="1"/>
+    <line x1="509" y1="295" x2="509" y2="313" stroke="#7F8C8D" stroke-width="1.5"/>
+    <line x1="500" y1="304" x2="518" y2="304" stroke="#7F8C8D" stroke-width="1.5"/>
+    <line x1="564" y1="295" x2="564" y2="313" stroke="#7F8C8D" stroke-width="1.5"/>
+    <line x1="555" y1="304" x2="573" y2="304" stroke="#7F8C8D" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Curved base line -->
+  <path d="M 220 400 Q 400 380 580 400" stroke="#34495E" stroke-width="3" fill="none"/>
+  
+  <!-- Text -->
+  <text x="400" y="470" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#2C3E50" text-anchor="middle">RAKENNUSLIIKE</text>
+  <text x="400" y="520" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#E67E22" text-anchor="middle">SUVENKARI OY</text>
+</svg>

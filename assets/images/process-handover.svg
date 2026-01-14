@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" fill="none">
+  <!-- Handover and warranty -->
+  <rect width="600" height="400" fill="#F8FAFC"/>
+  
+  <!-- Completed building -->
+  <rect x="180" y="120" width="240" height="200" fill="#E2E8F0" rx="4"/>
+  
+  <!-- Roof -->
+  <path d="M 170 120 L 300 60 L 430 120 Z" fill="#2563EB"/>
+  
+  <!-- Windows -->
+  <rect x="210" y="150" width="50" height="60" fill="#94A3B8" rx="2"/>
+  <rect x="275" y="150" width="50" height="60" fill="#94A3B8" rx="2"/>
+  <rect x="340" y="150" width="50" height="60" fill="#94A3B8" rx="2"/>
+  
+  <rect x="210" y="230" width="50" height="60" fill="#94A3B8" rx="2"/>
+  <rect x="275" y="230" width="50" height="60" fill="#94A3B8" rx="2"/>
+  <rect x="340" y="230" width="50" height="60" fill="#94A3B8" rx="2"/>
+  
+  <!-- Door -->
+  <rect x="280" y="260" width="40" height="60" fill="#64748B" rx="2"/>
+  
+  <!-- Checkmark badge -->
+  <circle cx="450" cy="180" r="45" fill="#10B981"/>
+  <path d="M 430 180 L 442 195 L 470 165" stroke="#FFF" stroke-width="6" fill="none" stroke-linecap="round"/>
+  
+  <!-- Key handover -->
+  <circle cx="120" cy="250" r="25" fill="#F59E0B" opacity="0.3"/>
+  <rect x="115" y="245" width="10" height="15" fill="#F59E0B" rx="2"/>
+  <circle cx="120" cy="253" r="3" fill="#FFF"/>
+  
+  <!-- Document/warranty -->
+  <rect x="80" y="150" width="80" height="60" fill="#E2E8F0" rx="2"/>
+  <line x1="90" y1="165" x2="150" y2="165" stroke="#64748B" stroke-width="2"/>
+  <line x1="90" y1="180" x2="140" y2="180" stroke="#64748B" stroke-width="2"/>
+  <line x1="90" y1="195" x2="150" y2="195" stroke="#64748B" stroke-width="2"/>
+  
+  <!-- Ground -->
+  <rect x="0" y="320" width="600" height="80" fill="#CBD5E1"/>
+</svg>

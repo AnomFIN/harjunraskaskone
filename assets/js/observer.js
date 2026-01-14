@@ -1,5 +1,5 @@
 /* ========================================
-   Harjun Raskaskone v4.0 - Intersection Observer
+   Rakennusliike Suvenkari v4.0 - Intersection Observer
    Active navigation section highlighting
    ======================================== */
 

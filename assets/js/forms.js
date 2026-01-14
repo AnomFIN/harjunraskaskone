@@ -1,5 +1,5 @@
 /* ========================================
-   Harjun Raskaskone v4.0 - Form Handler
+   Rakennusliike Suvenkari v4.0 - Form Handler
    Contact form with POST/mailto fallback
    ======================================== */
 
@@ -70,7 +70,7 @@
 
         function fallbackToMailto(data) {
             // Construct mailto link
-            const subject = encodeURIComponent('Yhteydenottopyyntö - Harjun Raskaskone');
+            const subject = encodeURIComponent('Yhteydenottopyyntö - Rakennusliike Suvenkari');
             let body = `Nimi: ${data.name}%0D%0A`;
             
             if (data.company) {
@@ -89,12 +89,12 @@
             
             body += `%0D%0AViesti:%0D%0A${encodeURIComponent(data.message)}`;
 
-            const mailtoLink = `mailto:info@harjunraskaskone.fi?subject=${subject}&body=${body}`;
+            const mailtoLink = `mailto:info@rakennusliikesuvenkari.fi?subject=${subject}&body=${body}`;
             
             // Open mailto link
             window.location.href = mailtoLink;
             
-            showStatus('Sähköpostiohjelma avataan... Jos se ei avaudu, ota yhteyttä suoraan: info@harjunraskaskone.fi', 'success');
+            showStatus('Sähköpostiohjelma avataan... Jos se ei avaudu, ota yhteyttä suoraan: info@rakennusliikesuvenkari.fi', 'success');
         }
 
         function showStatus(message, type) {
