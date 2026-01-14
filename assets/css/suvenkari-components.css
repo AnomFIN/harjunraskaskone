@@ -610,6 +610,104 @@
     }
 }
 
+/* Project Cards */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--suv-space-8);
+    margin: var(--suv-space-12) 0;
+}
+
+.project-card {
+    overflow: hidden;
+    transition: all var(--suv-transition-normal);
+    background: var(--suv-color-bg-card);
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--suv-shadow-xl);
+}
+
+.project-image {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16/10;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--suv-transition-slow);
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.05);
+}
+
+.project-content {
+    padding: var(--suv-space-6);
+}
+
+.project-content h4 {
+    font-size: var(--suv-font-lg);
+    font-weight: var(--suv-weight-bold);
+    color: var(--suv-color-text-primary);
+    margin-bottom: var(--suv-space-2);
+}
+
+.project-type {
+    font-size: var(--suv-font-sm);
+    color: var(--suv-color-accent-primary);
+    font-weight: var(--suv-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: var(--suv-tracking-wide);
+    margin-bottom: var(--suv-space-3);
+}
+
+.project-content p {
+    color: var(--suv-color-text-secondary);
+    line-height: var(--suv-leading-relaxed);
+    margin-bottom: var(--suv-space-4);
+}
+
+.project-specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--suv-space-2);
+}
+
+.project-specs span {
+    background: var(--suv-color-bg-secondary);
+    color: var(--suv-color-text-secondary);
+    padding: var(--suv-space-1) var(--suv-space-3);
+    border-radius: var(--suv-radius-full);
+    font-size: var(--suv-font-xs);
+    font-weight: var(--suv-weight-medium);
+}
+
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: var(--suv-space-6);
+        margin: var(--suv-space-8) 0;
+    }
+    
+    .project-content {
+        padding: var(--suv-space-5);
+    }
+    
+    .project-specs {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .project-specs span {
+        align-self: flex-start;
+    }
+}
+
 .suv-nav-link::after {
     content: '';
     position: absolute;
