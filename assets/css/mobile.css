@@ -5,6 +5,34 @@
 
 /* Hide heavy content on mobile */
 @media (max-width: 767px) {
+    /* CRITICAL: Force dark text on all elements for readability */
+    * {
+        color: var(--suv-color-text-primary) !important;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        color: #1a1d23 !important;
+        font-weight: var(--suv-weight-bold) !important;
+    }
+    
+    p, span, div {
+        color: #3d4451 !important;
+    }
+    
+    .section-subtitle {
+        color: var(--suv-color-accent-primary) !important;
+    }
+    
+    .lead-text {
+        color: #1a1d23 !important;
+        font-weight: var(--suv-weight-medium) !important;
+    }
+    
+    /* Force white background for better contrast */
+    .section, .section-gray {
+        background: #ffffff !important;
+    }
+    
     /* Hide detailed process steps on mobile */
     .process-step-detailed .process-step-content ul {
         display: none;
@@ -15,26 +43,33 @@
         display: none;
     }
     
-    /* Fix contrast issues on mobile */
-    .section-gray .section-header .section-subtitle,
-    .section-gray .section-header .section-title,
-    .section-gray .section-header p,
-    .section-gray .lead-text {
-        color: var(--suv-color-text-primary) !important;
+    /* Ensure high contrast for stats and numbers */
+    .suv-hero-stat-value,
+    .suv-hero-stat-label,
+    .suv-stat-value,
+    .suv-stat-label {
+        color: #1a1d23 !important;
     }
     
-    .section-gray .suv-service-feature-content h3 {
-        color: var(--suv-color-text-primary) !important;
+    /* Navigation text */
+    .suv-nav-link {
+        color: #1a1d23 !important;
     }
     
-    .section-gray .suv-service-feature-content p {
-        color: var(--suv-color-text-secondary) !important;
-        font-weight: var(--suv-weight-medium);
+    /* Button text should be visible */
+    .suv-btn {
+        color: white !important;
     }
     
-    /* Ensure service section has better contrast */
-    .suv-services.section-gray {
-        background: var(--suv-color-bg-primary) !important;
+    .suv-btn-secondary {
+        color: #1a1d23 !important;
+    }
+    
+    /* Project card text */
+    .project-content h4,
+    .project-content p,
+    .project-type {
+        color: #1a1d23 !important;
     }
     
     /* Hide sidebar info boxes on mobile */
