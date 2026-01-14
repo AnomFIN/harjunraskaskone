@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" fill="none">
+  <!-- Business/commercial building -->
+  <rect width="600" height="400" fill="#F8FAFC"/>
+  
+  <!-- Main office building -->
+  <rect x="100" y="80" width="400" height="280" fill="#E2E8F0" rx="4"/>
+  
+  <!-- Glass facade -->
+  <rect x="120" y="100" width="80" height="100" fill="#94A3B8" opacity="0.5" rx="2"/>
+  <rect x="220" y="100" width="80" height="100" fill="#94A3B8" opacity="0.5" rx="2"/>
+  <rect x="320" y="100" width="80" height="100" fill="#94A3B8" opacity="0.5" rx="2"/>
+  <rect x="420" y="100" width="60" height="100" fill="#94A3B8" opacity="0.5" rx="2"/>
+  
+  <rect x="120" y="220" width="80" height="100" fill="#94A3B8" opacity="0.5" rx="2"/>
+  <rect x="220" y="220" width="80" height="100" fill="#94A3B8" opacity="0.5" rx="2"/>
+  <rect x="320" y="220" width="80" height="100" fill="#94A3B8" opacity="0.5" rx="2"/>
+  <rect x="420" y="220" width="60" height="100" fill="#94A3B8" opacity="0.5" rx="2"/>
+  
+  <!-- Entrance -->
+  <rect x="250" y="300" width="100" height="60" fill="#2563EB" rx="3"/>
+  
+  <!-- Logo placeholder -->
+  <rect x="240" y="320" width="120" height="30" fill="#F59E0B" opacity="0.3" rx="2"/>
+  
+  <!-- Ground -->
+  <rect x="0" y="360" width="600" height="40" fill="#CBD5E1"/>
+  
+  <!-- Decorative -->
+  <circle cx="500" cy="100" r="35" fill="#2563EB" opacity="0.15"/>
+</svg>

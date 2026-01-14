@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" fill="none">
+  <!-- Interior renovation -->
+  <rect width="600" height="400" fill="#F8FAFC"/>
+  
+  <!-- Room perspective -->
+  <path d="M 50 50 L 50 350 L 550 350 L 550 50 Z" fill="#E2E8F0"/>
+  <path d="M 50 50 L 200 120 L 200 280 L 50 350 Z" fill="#CBD5E1"/>
+  <path d="M 50 50 L 200 120 L 550 120 L 550 50 Z" fill="#94A3B8"/>
+  
+  <!-- Floor -->
+  <rect x="50" y="300" width="500" height="50" fill="#64748B" opacity="0.3"/>
+  
+  <!-- Paint roller -->
+  <rect x="350" y="180" width="15" height="100" fill="#94A3B8" rx="2"/>
+  <rect x="345" y="160" width="25" height="30" fill="#2563EB" rx="4"/>
+  
+  <!-- Paint bucket -->
+  <ellipse cx="250" cy="310" rx="30" ry="15" fill="#F59E0B"/>
+  <rect x="220" y="280" width="60" height="30" fill="#F59E0B" rx="2"/>
+  
+  <!-- Window -->
+  <rect x="400" y="150" width="100" height="120" fill="#94A3B8" opacity="0.3" rx="2"/>
+  <line x1="450" y1="150" x2="450" y2="270" stroke="#64748B" stroke-width="2"/>
+  <line x1="400" y1="210" x2="500" y2="210" stroke="#64748B" stroke-width="2"/>
+</svg>
