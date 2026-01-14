@@ -194,9 +194,9 @@
 }
 
 .suv-logo img {
-    max-width: 180px;
+    max-width: 280px;
     height: auto;
-    max-height: 48px;
+    max-height: 80px;
     object-fit: contain;
     transition: all var(--suv-transition-normal);
     filter: brightness(1) saturate(1);
@@ -214,8 +214,8 @@
 
 @media (max-width: 768px) {
     .suv-logo img {
-        max-width: 140px;
-        max-height: 36px;
+        max-width: 200px;
+        max-height: 60px;
     }
 }
 

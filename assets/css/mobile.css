@@ -15,6 +15,28 @@
         display: none;
     }
     
+    /* Fix contrast issues on mobile */
+    .section-gray .section-header .section-subtitle,
+    .section-gray .section-header .section-title,
+    .section-gray .section-header p,
+    .section-gray .lead-text {
+        color: var(--suv-color-text-primary) !important;
+    }
+    
+    .section-gray .suv-service-feature-content h3 {
+        color: var(--suv-color-text-primary) !important;
+    }
+    
+    .section-gray .suv-service-feature-content p {
+        color: var(--suv-color-text-secondary) !important;
+        font-weight: var(--suv-weight-medium);
+    }
+    
+    /* Ensure service section has better contrast */
+    .suv-services.section-gray {
+        background: var(--suv-color-bg-primary) !important;
+    }
+    
     /* Hide sidebar info boxes on mobile */
     .content-rich-sidebar .info-box:nth-child(2) {
         display: none;
