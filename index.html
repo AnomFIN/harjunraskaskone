@@ -27,6 +27,21 @@
     <link rel="icon" type="image/svg+xml" sizes="16x16" href="assets/images/favicon-16x16.svg">
     <link rel="apple-touch-icon" href="assets/images/favicon.svg">
     
+    <!-- Mobile Performance Meta -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#c87941">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="assets/images/logo.png" as="image" importance="high">
+    <link rel="preload" href="assets/css/suvenkari-tokens.css" as="style">
+    <link rel="preload" href="assets/css/suvenkari-base.css" as="style">
+    
+    <!-- DNS Prefetch for external resources -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    
     <!-- Preconnect to Google Fonts for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,6 +51,8 @@
     <link rel="stylesheet" href="assets/css/suvenkari-base.css">
     <link rel="stylesheet" href="assets/css/suvenkari-components.css">
     <link rel="stylesheet" href="assets/css/suvenkari-sections.css">
+    <link rel="stylesheet" href="assets/css/popups.css">
+    <link rel="stylesheet" href="assets/css/mobile.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -108,7 +125,21 @@
                 </div>
                 
                 <div class="suv-hero-visual" data-reveal>
-                    <img src="assets/images/hero-construction.jpg" alt="Rakennustyömaa" class="suv-hero-image" loading="eager">
+                    <picture>
+                        <source media="(max-width: 767px)" 
+                                srcset="assets/images/hero-mobile.webp" 
+                                type="image/webp">
+                        <source media="(max-width: 767px)" 
+                                srcset="assets/images/hero-mobile.jpg">
+                        <source srcset="assets/images/hero-construction.webp" 
+                                type="image/webp">
+                        <img src="assets/images/hero-construction.jpg" 
+                             alt="Rakennustyömaa" 
+                             class="suv-hero-image" 
+                             loading="eager"
+                             width="600" 
+                             height="400">
+                    </picture>
                 </div>
             </div>
         </div>
@@ -647,5 +678,46 @@
     </script>
 
     <script src="assets/js/suvenkari.js"></script>
+    <!-- Cookie Popup -->
+    <div id="cookiePopup" class="cookie-popup" style="display: none;">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <h4>Evästeiden käyttö</h4>
+                <p>Käytämme evästeitä parantaaksemme käyttökokemustasi ja analysoidaksemme sivuston käyttöä. Hyväksymällä evästeet autat meitä tarjoamaan sinulle parempaa palvelua.</p>
+            </div>
+            <div class="cookie-actions">
+                <button id="acceptCookies" class="suv-btn suv-btn-primary cookie-btn">Hyväksy kaikki</button>
+                <button id="rejectCookies" class="suv-btn suv-btn-secondary cookie-btn">Vain välttämättömät</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Popup -->
+    <div id="newsletterPopup" class="newsletter-popup" style="display: none;">
+        <div class="newsletter-modal">
+            <button class="newsletter-close" id="closeNewsletter" aria-label="Sulje">&times;</button>
+            <div class="newsletter-content">
+                <div class="newsletter-icon">📧</div>
+                <h3>Pysy ajan tasalla!</h3>
+                <p>Liity postituslistallemme ja saa:<br>• Rakennusvinkkejä<br>• Projekti-ideoita<br>• Tarjouksia ensimmäisten joukossa</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <div class="form-group">
+                        <input type="email" id="newsletterEmail" placeholder="Sähköpostiosoitteesi" required class="newsletter-input">
+                        <button type="submit" class="suv-btn suv-btn-primary newsletter-btn">Liity listalle</button>
+                    </div>
+                    <label class="newsletter-checkbox">
+                        <input type="checkbox" id="newsletterConsent" required>
+                        <span class="checkmark"></span>
+                        Suostun sähköpostimarkkinointiin
+                    </label>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/mobile-popups.js"></script>
+    <script src="assets/js/observer.js"></script>
+    <script src="assets/js/forms.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

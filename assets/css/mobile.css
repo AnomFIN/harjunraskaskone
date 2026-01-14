@@ -1,0 +1,166 @@
+/* ========================================
+   Mobile Performance Optimizations
+   Data reduction + UX improvements
+   ======================================== */
+
+/* Hide heavy content on mobile */
+@media (max-width: 767px) {
+    /* Hide detailed process steps on mobile */
+    .process-step-detailed .process-step-content ul {
+        display: none;
+    }
+    
+    /* Simplify service cards */
+    .suv-service-feature-list {
+        display: none;
+    }
+    
+    /* Hide sidebar info boxes on mobile */
+    .content-rich-sidebar .info-box:nth-child(2) {
+        display: none;
+    }
+    
+    /* Reduce hero content */
+    .suv-hero-description {
+        font-size: var(--suv-font-base);
+        margin-bottom: var(--suv-space-6);
+    }
+    
+    /* Compact trust strip */
+    .suv-trust-strip {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--suv-space-4);
+    }
+    
+    .suv-trust-item:nth-child(n+3) {
+        display: none;
+    }
+    
+    /* Lazy load images */
+    img {
+        loading: lazy;
+    }
+    
+    /* First hero image loads eagerly */
+    .suv-hero-image {
+        loading: eager;
+    }
+    
+    /* Hide decorative elements */
+    .process-step-image,
+    .suv-service-feature-visual {
+        display: none;
+    }
+    
+    /* Compact header */
+    .suv-header {
+        padding: var(--suv-space-3) 0;
+    }
+    
+    /* Reduce section spacing */
+    .section {
+        padding: var(--suv-space-16) 0;
+    }
+    
+    /* Mobile-first navigation */
+    .suv-nav-links {
+        background: var(--suv-color-bg-card);
+        backdrop-filter: blur(20px);
+    }
+    
+    /* Optimize forms */
+    .suv-form-group {
+        margin-bottom: var(--suv-space-4);
+    }
+    
+    /* Compact stats */
+    .suv-hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--suv-space-4);
+    }
+    
+    .suv-hero-stat:nth-child(n+3) {
+        display: none;
+    }
+}
+
+/* Touch-friendly interactions */
+@media (max-width: 767px) {
+    /* Larger tap targets */
+    .suv-btn {
+        min-height: 48px;
+        padding: var(--suv-space-3) var(--suv-space-6);
+    }
+    
+    /* Bigger nav toggle */
+    .suv-nav-toggle {
+        width: 48px;
+        height: 48px;
+    }
+    
+    /* Improved form inputs */
+    .suv-form-input,
+    .suv-form-textarea {
+        min-height: 48px;
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    /* Better spacing */
+    .container {
+        padding: 0 var(--suv-space-4);
+    }
+}
+
+/* Performance optimizations */
+@media (max-width: 767px) {
+    /* Reduce animations */
+    * {
+        animation-duration: 0.2s !important;
+        transition-duration: 0.2s !important;
+    }
+    
+    /* Simplified shadows */
+    .suv-card {
+        box-shadow: var(--suv-shadow-sm);
+    }
+    
+    /* Reduce blur effects */
+    .suv-header.scrolled::before {
+        backdrop-filter: blur(8px);
+    }
+}
+
+/* Data saver mode */
+@media (max-width: 767px) and (prefers-reduced-data: reduce) {
+    /* Hide all images except logo */
+    img:not(.suv-logo img) {
+        display: none;
+    }
+    
+    /* Remove background images */
+    .suv-hero::before {
+        display: none;
+    }
+    
+    /* Disable animations */
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* Focus improvements for mobile */
+@media (max-width: 767px) {
+    :focus-visible {
+        outline: 3px solid var(--suv-color-accent-primary);
+        outline-offset: 2px;
+    }
+    
+    /* Better form focus */
+    .suv-form-input:focus,
+    .suv-form-textarea:focus {
+        outline: none;
+        border-color: var(--suv-color-accent-primary);
+        box-shadow: 0 0 0 3px rgba(200, 121, 65, 0.3);
+    }
+}

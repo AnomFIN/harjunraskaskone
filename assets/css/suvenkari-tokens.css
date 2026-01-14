@@ -193,5 +193,12 @@
         --suv-font-3xl: 1.625rem;   /* 26px on mobile */
         --suv-section-spacing: var(--suv-section-spacing-mobile);
         --suv-header-height: 72px;
+        
+        /* Mobile-first additions */
+        --suv-z-popup: 500;
+        --suv-mobile-max: 767px;
+        --suv-tablet-min: 768px;
+        --suv-desktop-min: 1024px;
+        --suv-desktop-large-min: 1280px;
     }
 }
