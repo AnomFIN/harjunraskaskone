@@ -499,175 +499,117 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="section" id="contact">
+    <!-- Proposal Banner Section -->
+    <section class="section suv-proposal-banner" id="contact">
         <div class="container">
-            <div class="contact-hero">
-                <h2>Ota yhteyttä</h2>
-                <p>Kerro meille tarpeestasi, niin laaditaan yhdessä paras ratkaisu. Vastataan nopeasti, sovitaan aikataulu ja pidetään kiinni.</p>
-            </div>
-            
-            <div class="contact-methods">
-                <div class="contact-method-card">
-                    <div class="contact-method-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"></path>
-                        </svg>
-                    </div>
-                    <h3>Puhelin</h3>
-                    <p>Nopein tapa tavoittaa</p>
-                    <a href="tel:0403706498" class="contact-primary">040 370 6498</a>
-                    <button class="btn-copy-inline" data-copy="0403706498" title="Kopioi leikepöydälle">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                        Kopioi
-                    </button>
-                </div>
+            <div class="suv-proposal-content">
+                <h2>Aloitetaan yhteistyö</h2>
+                <p>Kerro meille tarpeestasi, niin laaditaan yhdessä paras ratkaisu. Vastataan nopeasti, sovitaan aikataulu ja pidetään kiinni lupauksista.</p>
                 
-                <div class="contact-method-card">
-                    <div class="contact-method-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                    </div>
-                    <h3>Sähköposti</h3>
-                    <p>Kerro tarpeestasi, liitä tiedot</p>
-                    <a href="mailto:info@rakennusliikesuvenkari.fi" class="contact-primary">info@rakennusliikesuvenkari.fi</a>
-                    <button class="btn-copy-inline" data-copy="info@rakennusliikesuvenkari.fi" title="Kopioi leikepöydälle">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                        Kopioi
-                    </button>
-                </div>
-                
-                <div class="contact-method-card">
-                    <div class="contact-method-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                            <circle cx="12" cy="10" r="3"></circle>
-                        </svg>
-                    </div>
-                    <h3>Käyntiosoite</h3>
-                    <p>Vuolteenmäentie 6 J, 04600 Mäntsälä</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Vuolteenmäentie+6+J,+Mäntsälä" target="_blank" rel="noopener">Avaa kartalla</a>
-                </div>
-            </div>
-            
-            <!-- What Happens Next -->
-            <div class="contact-next-steps">
-                <h3>Mitä tapahtuu seuraavaksi</h3>
-                <div class="next-steps-grid">
-                    <div class="next-step">
-                        <div class="next-step-number">1</div>
-                        <div class="next-step-content">
-                            <h4>Vahvistus</h4>
-                            <p>Saat vahvistusviestin yhteydenottopyynnöstäsi</p>
+                <form class="suv-proposal-form" id="suvenkariContactForm">
+                    <div class="suv-proposal-form-grid">
+                        <div class="suv-form-group">
+                            <label for="name" class="suv-form-label">Nimi *</label>
+                            <input type="text" id="name" name="name" class="suv-form-input" required>
+                        </div>
+                        
+                        <div class="suv-form-group">
+                            <label for="phone" class="suv-form-label">Puhelin *</label>
+                            <input type="tel" id="phone" name="phone" class="suv-form-input" required>
+                        </div>
+                        
+                        <div class="suv-form-group">
+                            <label for="email" class="suv-form-label">Sähköposti</label>
+                            <input type="email" id="email" name="email" class="suv-form-input">
                         </div>
                     </div>
-                    <div class="next-step">
-                        <div class="next-step-number">2</div>
-                        <div class="next-step-content">
-                            <h4>Yhteydenotto</h4>
-                            <p>Otamme yhteyttä samana tai seuraavana arkipäivänä</p>
-                        </div>
-                    </div>
-                    <div class="next-step">
-                        <div class="next-step-number">3</div>
-                        <div class="next-step-content">
-                            <h4>Tarjous ja aikataulutus</h4>
-                            <p>Laaditaan tarjous ja sovitaan toteutusaikataulu</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="contact-content">
-                <div class="contact-details">
-                    <h3>Yritystiedot</h3>
-                    <p><strong>Rakennusliike Suvenkari Oy</strong></p>
-                    <p>Y-tunnus: 2901490-8<br>
-                    Osakeyhtiö<br>
-                    Perustettu: 2018<br>
-                    Maa: Suomi</p>
                     
-                    <p style="margin-top: 1.5rem;">
-                        <strong>Postiosoite:</strong><br>
-                        Klaavuntie 11 C 78<br>
-                        00910 Helsinki
-                    </p>
+                    <div class="suv-form-group">
+                        <label for="message" class="suv-form-label">Viesti *</label>
+                        <textarea id="message" name="message" class="suv-form-textarea" rows="5" required placeholder="Kerro lyhyesti projektistasi: mitä haluat rakentaa tai remontoida, missä, milloin..."></textarea>
+                    </div>
                     
-                    <p style="margin-top: 1.5rem;">
-                        <strong>Käyntiosoite:</strong><br>
-                        Vuolteenmäentie 6 J<br>
-                        04600 Mäntsälä
-                    </p>
-                    
-                    <p style="margin-top: 1.5rem;">
-                        <strong>Puhelin:</strong> <a href="tel:0403706498">040 370 6498</a><br>
-                        <strong>Sähköposti:</strong> <a href="mailto:info@rakennusliikesuvenkari.fi">info@rakennusliikesuvenkari.fi</a><br>
-                        <strong>Verkkosivu:</strong> <a href="https://www.rakennusliikesuvenkari.fi">www.rakennusliikesuvenkari.fi</a>
-                    </p>
-                    
-                    <p style="margin-top: 2rem; color: var(--color-text-muted); font-size: var(--font-size-sm);">
-                        Rekisterit: Kaupparekisteri, Ennakkoperintärekisteri, Työnantajarekisteri, Arvonlisäverovelvollinen
-                    </p>
-                </div>
-                <form class="contact-form" id="contactForm" data-endpoint="">
-                    <h3 style="margin-bottom: 1.5rem;">Pyydä tarjous</h3>
-                    <div class="form-group">
-                        <label for="name">Nimi *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="company">Yritys</label>
-                        <input type="text" id="company" name="company">
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Puhelin *</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Sähköposti</label>
-                        <input type="email" id="email" name="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Viesti *</label>
-                        <textarea id="message" name="message" rows="5" required placeholder="Kerro lyhyesti projektistasi: mitä haluat rakentaa tai remontoida, missä, milloin..."></textarea>
-                    </div>
-                    <div class="form-group form-checkbox">
-                        <label>
-                            <input type="checkbox" name="callback">
-                            <span>Pyydän takaisinsoittoa</span>
+                    <div class="suv-form-group" style="margin-bottom: var(--suv-space-8);">
+                        <label style="display: flex; align-items: flex-start; gap: var(--suv-space-3); cursor: pointer;">
+                            <input type="checkbox" name="consent" required style="margin-top: 4px;">
+                            <span style="font-size: var(--suv-font-sm); color: var(--suv-color-text-secondary);">Hyväksyn, että yhteystietoihini otetaan yhteyttä tämän yhteydenottopyynnön johdosta. *</span>
                         </label>
                     </div>
-                    <div class="form-group form-checkbox">
-                        <label>
-                            <input type="checkbox" name="consent" required>
-                            <span>Hyväksyn, että yhteystietoihini otetaan yhteyttä tämän yhteydenottopyynnön johdosta. Tietoja ei käytetä muuhun tarkoitukseen. *</span>
-                        </label>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-lg">Lähetä viesti</button>
-                    <div class="form-status" id="formStatus"></div>
+                    
+                    <button type="submit" class="suv-btn suv-btn-primary suv-btn-lg" disabled>
+                        Lähetä viesti
+                        <span class="arrow-icon">→</span>
+                    </button>
                 </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="suv-footer">
         <div class="container">
-            <div class="footer-content">
-                <p>&copy; <span id="currentYear">2024</span> Rakennusliike Suvenkari Oy. Y-tunnus: 2901490-8</p>
+            <div class="suv-footer-grid">
+                <div class="suv-footer-brand">
+                    <h3>Rakennusliike Suvenkari Oy</h3>
+                    <p>Luotettava rakennusalan kumppani Helsingissä ja Mäntsälässä. Uudisrakentaminen, saneeraus ja rakennuspalvelut yrityksille ja yksityisille.</p>
+                    <p style="margin-top: var(--suv-space-5); font-size: var(--suv-font-sm); color: rgba(253, 252, 251, 0.6);">
+                        <strong>Y-tunnus:</strong> 2901490-8<br>
+                        <strong>Perustettu:</strong> 2018
+                    </p>
+                </div>
+                
+                <div class="suv-footer-section">
+                    <h4>Yhteystiedot</h4>
+                    <ul class="suv-footer-links">
+                        <li>
+                            <a href="tel:0403706498">040 370 6498</a>
+                        </li>
+                        <li>
+                            <a href="mailto:info@rakennusliikesuvenkari.fi">info@rakennusliikesuvenkari.fi</a>
+                        </li>
+                        <li style="margin-top: var(--suv-space-4); color: rgba(253, 252, 251, 0.7); font-size: var(--suv-font-sm);">
+                            <strong>Postiosoite:</strong><br>
+                            Klaavuntie 11 C 78<br>
+                            00910 Helsinki
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="suv-footer-section">
+                    <h4>Käyntiosoite</h4>
+                    <ul class="suv-footer-links">
+                        <li style="color: rgba(253, 252, 251, 0.7); font-size: var(--suv-font-sm);">
+                            Vuolteenmäentie 6 J<br>
+                            04600 Mäntsälä
+                        </li>
+                        <li style="margin-top: var(--suv-space-4);">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Vuolteenmäentie+6+J,+Mäntsälä" target="_blank" rel="noopener">
+                                Avaa kartalla →
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="suv-footer-section">
+                    <h4>Rekisterit</h4>
+                    <ul class="suv-footer-links">
+                        <li><span style="color: rgba(253, 252, 251, 0.7); font-size: var(--suv-font-sm);">Kaupparekisteri</span></li>
+                        <li><span style="color: rgba(253, 252, 251, 0.7); font-size: var(--suv-font-sm);">Ennakkoperintärekisteri</span></li>
+                        <li><span style="color: rgba(253, 252, 251, 0.7); font-size: var(--suv-font-sm);">Työnantajarekisteri</span></li>
+                        <li><span style="color: rgba(253, 252, 251, 0.7); font-size: var(--suv-font-sm);">ALV-rekisteri</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="suv-footer-bottom">
+                <p>&copy; <span id="currentYear">2024</span> Rakennusliike Suvenkari Oy. Kaikki oikeudet pidätetään.</p>
+                <p>Suunniteltu ja toteutettu Suomessa</p>
             </div>
         </div>
     </footer>
     
     <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop" aria-label="Takaisin ylös">
+    <button class="suv-back-to-top" aria-label="Takaisin ylös">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
@@ -704,9 +646,6 @@
     }
     </script>
 
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/observer.js"></script>
-    <script src="assets/js/forms.js"></script>
-    <script src="assets/js/ui-effects.js"></script>
+    <script src="assets/js/suvenkari.js"></script>
 </body>
 </html>
