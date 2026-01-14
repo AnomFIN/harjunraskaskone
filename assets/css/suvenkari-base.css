@@ -1,0 +1,186 @@
+/* ========================================
+   Suvenkari v1.0 - Base Styles
+   Premium Foundation with Enhanced Typography
+   ======================================== */
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+body {
+    font-family: var(--suv-font-body);
+    font-size: var(--suv-font-base);
+    line-height: var(--suv-leading-normal);
+    color: var(--suv-color-text-primary);
+    background-color: var(--suv-color-bg-primary);
+    font-weight: var(--suv-weight-normal);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--suv-font-display);
+    font-weight: var(--suv-weight-bold);
+    line-height: var(--suv-leading-tight);
+    letter-spacing: var(--suv-tracking-tight);
+    color: var(--suv-color-text-primary);
+    margin-bottom: var(--suv-space-6);
+}
+
+h1 {
+    font-size: var(--suv-font-6xl);
+    font-weight: var(--suv-weight-extrabold);
+    letter-spacing: var(--suv-tracking-tighter);
+}
+
+h2 {
+    font-size: var(--suv-font-4xl);
+}
+
+h3 {
+    font-size: var(--suv-font-2xl);
+}
+
+h4 {
+    font-size: var(--suv-font-xl);
+}
+
+p {
+    margin-bottom: var(--suv-space-4);
+}
+
+.lead-text {
+    font-size: var(--suv-font-lg);
+    line-height: var(--suv-leading-relaxed);
+    color: var(--suv-color-text-secondary);
+    font-weight: var(--suv-weight-normal);
+}
+
+a {
+    color: var(--suv-color-accent-primary);
+    text-decoration: none;
+    transition: color var(--suv-transition-fast);
+}
+
+a:hover {
+    color: var(--suv-color-accent-dark);
+}
+
+/* Layout */
+.container {
+    max-width: var(--suv-container-max);
+    margin: 0 auto;
+    padding: 0 var(--suv-container-padding);
+}
+
+.section {
+    padding: var(--suv-section-spacing) 0;
+}
+
+.section-gray {
+    background-color: var(--suv-color-bg-secondary);
+}
+
+.section-dark {
+    background-color: var(--suv-color-bg-dark);
+    color: var(--suv-color-text-inverse);
+}
+
+.section-dark h1,
+.section-dark h2,
+.section-dark h3,
+.section-dark h4 {
+    color: var(--suv-color-text-inverse);
+}
+
+/* Section Headers */
+.section-header {
+    text-align: center;
+    max-width: 880px;
+    margin: 0 auto var(--suv-space-16);
+}
+
+.section-subtitle {
+    display: inline-block;
+    font-size: var(--suv-font-sm);
+    font-weight: var(--suv-weight-semibold);
+    letter-spacing: var(--suv-tracking-widest);
+    text-transform: uppercase;
+    color: var(--suv-color-accent-primary);
+    margin-bottom: var(--suv-space-4);
+}
+
+.section-title {
+    font-size: var(--suv-font-4xl);
+    font-weight: var(--suv-weight-extrabold);
+    line-height: var(--suv-leading-snug);
+    margin-bottom: var(--suv-space-6);
+}
+
+/* Utility Classes */
+.gradient-mesh {
+    background-image: var(--suv-gradient-mesh);
+    background-size: 100% 100%;
+}
+
+/* Reveal animations */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity var(--suv-transition-slower), 
+                transform var(--suv-transition-slower);
+}
+
+[data-reveal].revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Focus visible styles */
+:focus-visible {
+    outline: 2px solid var(--suv-color-accent-primary);
+    outline-offset: 3px;
+    border-radius: var(--suv-radius-sm);
+}
+
+/* Selection */
+::selection {
+    background-color: var(--suv-color-accent-light);
+    color: var(--suv-color-text-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 var(--suv-space-5);
+    }
+    
+    .section {
+        padding: var(--suv-section-spacing-mobile) 0;
+    }
+    
+    .section-header {
+        margin-bottom: var(--suv-space-12);
+    }
+}
