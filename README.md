@@ -1,4 +1,4 @@
-# Harjun Raskaskone Oy
+# Rakennusliike Suvenkari Oy
 
 This repository contains two parts:
 
@@ -9,7 +9,7 @@ This repository contains two parts:
 
 ## Part 1: Main Website
 
-Corporate website for Harjun Raskaskone Oy, a Finnish heavy vehicle maintenance and repair company based in Helsinki.
+Corporate website for Rakennusliike Suvenkari Oy, a Finnish construction company based in Helsinki and Mäntsälä.
 
 ### About the Website
 
@@ -21,9 +21,8 @@ This is a production-ready, single-page corporate website built with:
 
 ### Design Principles
 
-- **Dark Industrial Premium**: Deep black background (#0a0a0a) with amber accent colors (#f59e0b) for a modern, high-end industrial aesthetic
-- **Theme Toggle**: Built-in dark/light mode switch with localStorage persistence
-- **Visual Service Cards**: Image-based card layout for services section inspired by premium industrial design
+- **Light Industrial Finance**: Clean, professional design with refined blue accents for a modern, premium aesthetic
+- **Visual Service Cards**: Image-based card layout for services section inspired by premium design
 - **Performance First**: Fast load times, minimal file sizes
 - **Fully Responsive**: Desktop-first approach with mobile optimization (4-column grid on desktop, responsive down to 1-column on mobile)
 - **Accessibility**: Semantic HTML, keyboard navigation support, and respects prefers-reduced-motion
@@ -33,16 +32,15 @@ This is a production-ready, single-page corporate website built with:
 
 The single-page website includes these sections:
 
-1. **Hero** - Main headline, CTA, and trust bar
+1. **Hero** - Main headline, CTA, and financial highlights
 2. **About** - Company introduction and key facts
-3. **Operating Model** - How we work
-4. **Industries** - Target customer segments
-5. **Services** - Four core service offerings
-6. **Process Timeline** - 4-step service process
-7. **Key Numbers** - Financial metrics for trust building
-8. **Trust Proof** - Compliance and company facts
-9. **FAQ** - Common questions with SLA promise
-10. **Contact** - Company information and contact form
+3. **Services** - Six core construction services
+4. **Process** - 4-step service process
+5. **Avainluvut 2024** - Financial metrics for trust building
+6. **Company Info** - Leadership and registrations
+7. **References** - Project portfolio
+8. **FAQ** - Common questions
+9. **Contact** - Company information with both addresses
 
 ### Running the Main Website
 
@@ -63,7 +61,7 @@ Then visit `http://localhost:8000`
 
 ## Part 2: Overmind Tools Suite
 
-Internal tools dashboard for Harjun Raskaskone Oy operations.
+Internal tools dashboard for Rakennusliike Suvenkari Oy operations.
 
 ### Tools Included
 
@@ -106,12 +104,13 @@ Then:
 
 ## Company Information
 
-**Harjun Raskaskone Oy**
-- Y-tunnus: 2578643-3
-- Location: Helsinki, Finland
-- Founded: 2019
-- Specialization: Heavy vehicle maintenance and repair
+**Rakennusliike Suvenkari Oy**
+- Y-tunnus: 2901490-8
+- Postal Address: Klaavuntie 11 C 78, 00910 Helsinki
+- Visiting Address: Vuolteenmäentie 6 J, 04600 Mäntsälä
+- Founded: 2018
+- Specialization: Construction and renovation services
 
 ## License
 
-© 2024 Harjun Raskaskone Oy. All rights reserved.
+© 2024 Rakennusliike Suvenkari Oy. All rights reserved.

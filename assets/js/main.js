@@ -1,5 +1,5 @@
 /* ========================================
-   Harjun Raskaskone v5.0 - Premium JavaScript
+   Rakennusliike Suvenkari v5.0 - Premium JavaScript
    High-investment UX engineering with smooth interactions
    ======================================== */
 

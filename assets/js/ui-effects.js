@@ -1,5 +1,5 @@
 /* ========================================
-   Harjun Raskaskone - Premium UI Microinteractions
+   Rakennusliike Suvenkari - Premium UI Microinteractions
    Smooth animations, scroll reveals, progress bars, count-ups
    ======================================== */
 
