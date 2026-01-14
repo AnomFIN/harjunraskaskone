@@ -39,9 +39,7 @@ The single-page website includes these sections:
 5. **Avainluvut 2024** - Financial metrics for trust building
 6. **Company Info** - Leadership and registrations
 7. **References** - Project portfolio
-8. **FAQ** - Common questions
-9. **Contact** - Company information with both addresses
-
+8. **Contact** - Company information with both addresses
 ### Running the Main Website
 
 Simply open `index.html` in a web browser. No build process or server required.
