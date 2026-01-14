@@ -1,0 +1,165 @@
+{
+  "format": "product_import_v1",
+  "products": [
+    {
+      "name": "Täysi rengaslinja: Ravaglioli FK452 + Hofmann Geodyna 6300P",
+      "category": "Korjaamolaitteet",
+      "price_eur": 3800,
+      "unit": "kpl",
+      "badge": "Paketti",
+      "emoji": "🛞⚖️",
+      "description": "Koko rengashomma yhdellä ostolla: Ravaglioli FK452 rengaskone + Hofmann Geodyna 6300P tasapainotuskone.",
+      "image": null
+    },
+    {
+      "name": "Rotary Lift 2-pilarinostin + Midatron NIB (MIDA) teollinen akkulaturi",
+      "category": "Korjaamolaitteet",
+      "price_eur": 4900,
+      "unit": "kpl",
+      "badge": "Paketti",
+      "emoji": "🏗️🔋",
+      "description": "Nostin ja virransyöttö samaan pakettiin, valmis korjaamokäyttöön.",
+      "image": null
+    },
+    {
+      "name": "Korjaamon ydinkalusto: nostin + rengaskone + tasapainotuskone",
+      "category": "Korjaamolaitteet",
+      "price_eur": 7900,
+      "unit": "kpl",
+      "badge": "Paketti",
+      "emoji": "🏭🛞",
+      "description": "Käytännössä valmis peruskorjaamo yhdellä kaupalla (nostin + rengaskone + tasapainotuskone).",
+      "image": null
+    },
+    {
+      "name": "Koko korjaamo: kaikki koneet, laitteet ja työkalut (paketti)",
+      "category": "Korjaamolaitteet",
+      "price_eur": 14900,
+      "unit": "kpl",
+      "badge": "Paketti",
+      "emoji": "🏁🧰",
+      "description": "Kaikki koneet, laitteet ja työkalut yhtenä pakettina. Ei lajittelua, kerralla pois.",
+      "image": null
+    },
+    {
+      "name": "Rotary Lift 2-pilarinostin (2-post)",
+      "category": "Korjaamolaitteet",
+      "price_eur": 3990,
+      "unit": "kpl",
+      "badge": "",
+      "emoji": "🏗️",
+      "description": "Järeä ammattinostin, ei harrastemalli, kestää käyttöä.",
+      "image": null
+    },
+    {
+      "name": "Ravaglioli FK452 rengaskone apuvarrella",
+      "category": "Korjaamolaitteet",
+      "price_eur": 1290,
+      "unit": "kpl",
+      "badge": "",
+      "emoji": "🛞",
+      "description": "Oikea rengaskone, myös matalaprofiilit ilman turhaa vääntöä.",
+      "image": null
+    },
+    {
+      "name": "Hofmann Geodyna 6300P tasapainotuskone",
+      "category": "Korjaamolaitteet",
+      "price_eur": 1690,
+      "unit": "kpl",
+      "badge": "",
+      "emoji": "⚖️",
+      "description": "Tunnettu ja tarkka kone, tekee sen mitä pitää.",
+      "image": null
+    },
+    {
+      "name": "Biltema tasapainotuskone (rengastasapainotin)",
+      "category": "Korjaamolaitteet",
+      "price_eur": 690,
+      "unit": "kpl",
+      "badge": "",
+      "emoji": "🛞",
+      "description": "Perusvarma tasapainotin kakkoskoneeksi tai pienempään rengashommaan.",
+      "image": null
+    },
+    {
+      "name": "MKH hydrauliprässi (raskas teollisuusmalli)",
+      "category": "Korjaamolaitteet",
+      "price_eur": 2490,
+      "unit": "kpl",
+      "badge": "",
+      "emoji": "🧱",
+      "description": "Vanhaa kunnon rautaa, ei notku kuormassa. Laakerit ja puslat irti ilman draamaa.",
+      "image": null
+    },
+    {
+      "name": "WULKAN 200 osienpesukone (E220 CDI)",
+      "category": "Korjaamolaitteet",
+      "price_eur": 1190,
+      "unit": "kpl",
+      "badge": "",
+      "emoji": "🧼",
+      "description": "Iso teollinen pesukone moottori- ja voimansiirto-osille.",
+      "image": null
+    },
+    {
+      "name": "Öljynjakelu- ja voitelujärjestelmä (pumppu + letkut + jakopisteet)",
+      "category": "Korjaamolaitteet",
+      "price_eur": 2490,
+      "unit": "kpl",
+      "badge": "",
+      "emoji": "🛢️",
+      "description": "Pumppu, letkut ja jakopisteet; voidaan myös jakaa pienempiin osiin (mittari + öljynpistooli).",
+      "image": null
+    },
+    {
+      "name": "Midatron NIB teollinen akkulaturi (MIDA)",
+      "category": "Sähkölaitteet",
+      "price_eur": 790,
+      "unit": "kpl",
+      "badge": "",
+      "emoji": "🔋",
+      "description": "Jatkuvaan käyttöön, ei markettilaturi.",
+      "image": null
+    },
+    {
+      "name": "Hörmann A445 teollisuusoven ohjain",
+      "category": "Sähkölaitteet",
+      "price_eur": 449,
+      "unit": "kpl",
+      "badge": "",
+      "emoji": "🚪",
+      "description": "Varaosaksi tai suoraan käyttöön, näille on aina kysyntää.",
+      "image": null
+    },
+    {
+      "name": "Korjaamotyöpöytä + 2 laatikostoa",
+      "category": "Työkalut",
+      "price_eur": 990,
+      "unit": "setti",
+      "badge": "",
+      "emoji": "🧰",
+      "description": "Tukeva työpiste, kestää painoa ja käyttöä.",
+      "image": null
+    },
+    {
+      "name": "Käsityökaluseinä + hylsyt ja lenkit (iso paketti)",
+      "category": "Työkalut",
+      "price_eur": 1490,
+      "unit": "paketti",
+      "badge": "Lotti",
+      "emoji": "🔧",
+      "description": "Koko seinällinen työkaluja kerralla, ei pilkota yksittäisiin.",
+      "image": null
+    },
+    {
+      "name": "BUNN ammattikäyttöön tehty kahvinkeitin",
+      "category": "Tauko-/keittiö",
+      "price_eur": 349,
+      "unit": "kpl",
+      "badge": "",
+      "emoji": "☕",
+      "description": "Keittää kahvia koko päivän ilman temppuilua.",
+      "image": null
+    }
+  ]
+}
