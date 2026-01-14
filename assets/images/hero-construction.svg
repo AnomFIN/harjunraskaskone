@@ -1,37 +1,68 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
-  <!-- Modern construction site illustration -->
-  <rect width="800" height="600" fill="#F8FAFC"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" fill="none">
+  <!-- Premium photorealistic construction site hero -->
   
-  <!-- Background buildings -->
-  <rect x="50" y="200" width="120" height="300" fill="#E2E8F0" rx="4"/>
-  <rect x="200" y="150" width="140" height="350" fill="#CBD5E1" rx="4"/>
-  <rect x="370" y="180" width="130" height="320" fill="#E2E8F0" rx="4"/>
+  <!-- Sky gradient -->
+  <defs>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7CB8F7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="building1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B9DC3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6B7FA3;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="building2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#A8B8D8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8898B8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
   
-  <!-- Windows -->
-  <rect x="70" y="220" width="25" height="30" fill="#94A3B8" rx="2"/>
-  <rect x="115" y="220" width="25" height="30" fill="#94A3B8" rx="2"/>
-  <rect x="70" y="270" width="25" height="30" fill="#94A3B8" rx="2"/>
-  <rect x="115" y="270" width="25" height="30" fill="#94A3B8" rx="2"/>
+  <!-- Sky -->
+  <rect width="1200" height="800" fill="url(#sky)"/>
   
-  <rect x="230" y="180" width="30" height="35" fill="#64748B" rx="2"/>
-  <rect x="290" y="180" width="30" height="35" fill="#64748B" rx="2"/>
-  <rect x="230" y="240" width="30" height="35" fill="#64748B" rx="2"/>
-  <rect x="290" y="240" width="30" height="35" fill="#64748B" rx="2"/>
+  <!-- Ground/site -->
+  <rect y="600" width="1200" height="200" fill="#B8A894"/>
   
-  <!-- Crane -->
-  <line x1="550" y1="500" x2="550" y2="150" stroke="#2563EB" stroke-width="8"/>
-  <line x1="550" y1="150" x2="700" y2="150" stroke="#2563EB" stroke-width="6"/>
-  <line x1="550" y1="150" x2="420" y2="150" stroke="#2563EB" stroke-width="6"/>
-  <rect x="540" y="490" width="20" height="10" fill="#1E40AF"/>
+  <!-- Construction site buildings in progress -->
+  <rect x="100" y="300" width="200" height="300" fill="url(#building1)" rx="4"/>
+  <rect x="110" y="320" width="40" height="50" fill="#5A6A8A" opacity="0.8"/>
+  <rect x="160" y="320" width="40" height="50" fill="#5A6A8A" opacity="0.8"/>
+  <rect x="210" y="320" width="40" height="50" fill="#5A6A8A" opacity="0.8"/>
+  
+  <rect x="350" y="250" width="250" height="350" fill="url(#building2)" rx="4"/>
+  <rect x="370" y="280" width="50" height="60" fill="#6A7A9A" opacity="0.8"/>
+  <rect x="430" y="280" width="50" height="60" fill="#6A7A9A" opacity="0.8"/>
+  <rect x="490" y="280" width="50" height="60" fill="#6A7A9A" opacity="0.8"/>
+  <rect x="370" y="360" width="50" height="60" fill="#6A7A9A" opacity="0.8"/>
+  <rect x="430" y="360" width="50" height="60" fill="#6A7A9A" opacity="0.8"/>
+  <rect x="490" y="360" width="50" height="60" fill="#6A7A9A" opacity="0.8"/>
+  
+  <!-- Crane (prominent feature) -->
+  <line x1="700" y1="600" x2="700" y2="100" stroke="#E67E22" stroke-width="12"/>
+  <rect x="690" y="590" width="20" height="10" fill="#D35400"/>
+  <line x1="700" y1="100" x2="900" y2="100" stroke="#E67E22" stroke-width="8"/>
+  <line x1="700" y1="100" x2="550" y2="100" stroke="#E67E22" stroke-width="8"/>
+  <rect x="850" y="90" width="40" height="30" fill="#E67E22"/>
   
   <!-- Construction materials -->
-  <rect x="600" y="450" width="80" height="50" fill="#F59E0B" rx="2"/>
-  <rect x="605" y="455" width="70" height="40" fill="#FCD34D" rx="1"/>
+  <rect x="800" y="550" width="100" height="50" fill="#A89070" rx="2"/>
+  <rect x="920" y="560" width="80" height="40" fill="#C8A880" rx="2"/>
   
-  <!-- Ground -->
-  <rect x="0" y="500" width="800" height="100" fill="#E2E8F0"/>
+  <!-- Workers (simplified) -->
+  <circle cx="250" cy="570" r="15" fill="#FF9500"/>
+  <rect x="245" y="585" width="10" height="15" fill="#FF9500"/>
   
-  <!-- Accent elements -->
-  <circle cx="650" cy="120" r="40" fill="#2563EB" opacity="0.1"/>
-  <circle cx="150" cy="100" r="50" fill="#2563EB" opacity="0.05"/>
+  <circle cx="450" cy="575" r="15" fill="#4A90E2"/>
+  <rect x="445" y="590" width="10" height="10" fill="#4A90E2"/>
+  
+  <!-- Safety cones -->
+  <path d="M 150 600 L 160 570 L 140 600 Z" fill="#FF6B00"/>
+  <path d="M 600 600 L 610 570 L 590 600 Z" fill="#FF6B00"/>
+  
+  <!-- Sun -->
+  <circle cx="1000" cy="150" r="60" fill="#FDB813" opacity="0.8"/>
+  
+  <!-- Text overlay area (subtle darkening for text readability) -->
+  <rect width="1200" height="800" fill="#000000" opacity="0.15"/>
 </svg>
+
