@@ -30,54 +30,60 @@
     <!-- Preconnect to Google Fonts for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="assets/css/tokens.css">
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/components.css">
-    <link rel="stylesheet" href="assets/css/vnext.css">
+    <link rel="stylesheet" href="assets/css/suvenkari-tokens.css">
+    <link rel="stylesheet" href="assets/css/suvenkari-base.css">
+    <link rel="stylesheet" href="assets/css/suvenkari-components.css">
+    <link rel="stylesheet" href="assets/css/suvenkari-sections.css">
 </head>
 <body>
     <!-- Navigation -->
-    <header class="header" id="header">
+    <header class="suv-header" id="header">
         <div class="container">
-            <div class="header-content">
-                <a href="#hero" class="logo">
-                    <img src="assets/images/logo-suvenkari-compact.svg" alt="Rakennusliike Suvenkari Oy" class="logo-image" style="height: 48px; width: auto; margin-right: 12px;">
-                    <span class="logo-text">Rakennusliike Suvenkari</span>
+            <div class="suv-header-content">
+                <a href="#hero" class="suv-logo">
+                    <img src="assets/images/logo-suvenkari-compact.svg" alt="Rakennusliike Suvenkari Oy">
+                    <span>Suvenkari</span>
                 </a>
-                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+                <button class="suv-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
-                <nav>
-                    <ul class="nav-list" id="navList">
-                        <li><a href="#" class="nav-link">Etusivu</a></li>
-                        <li><a href="#about" class="nav-link">Yritys</a></li>
-                        <li><a href="#services" class="nav-link">Palvelut</a></li>
-                        <li><a href="#process" class="nav-link">Toimintatapa</a></li>
-                        <li><a href="#numbers" class="nav-link">Avainluvut</a></li>
-                        <li><a href="#references" class="nav-link">Referenssit</a></li>
-                        <li><a href="#contact" class="nav-link nav-link-cta">Yhteystiedot</a></li>
+                <nav class="suv-nav">
+                    <ul class="suv-nav-list">
+                        <li><a href="#hero" class="suv-nav-link">Etusivu</a></li>
+                        <li><a href="#services" class="suv-nav-link">Palvelut</a></li>
+                        <li><a href="#numbers" class="suv-nav-link">Avainluvut 2024</a></li>
+                        <li><a href="#about" class="suv-nav-link">Yritys</a></li>
+                        <li><a href="#process" class="suv-nav-link">Toimintatapa</a></li>
+                        <li><a href="#contact" class="suv-nav-link">Yhteystiedot</a></li>
                     </ul>
+                    <a href="#contact" class="suv-btn suv-btn-primary">
+                        Pyydä tarjous
+                        <span class="arrow-icon">→</span>
+                    </a>
                 </nav>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-vnext section gradient-mesh" id="hero">
+    <!-- Hero Section - Split Layout -->
+    <section class="suv-hero section" id="hero">
         <div class="container">
-            <div class="hero-vnext-grid">
-                <div class="hero-vnext-main">
-                    <span class="hero-vnext-badge">Perustettu 2018</span>
-                    <h1 class="hero-vnext-title">Rakennamme laadukkaasti.<br>Toimitamme luotettavasti.</h1>
-                    <p class="hero-vnext-subtitle">Uudisrakentaminen, saneeraus ja rakennuspalvelut yrityksille ja yksityisille. Toimimme Helsingissä ja Mäntsälässä – ammattitaitoa, joka näkyy.</p>
+            <div class="suv-hero-grid">
+                <div class="suv-hero-content" data-reveal>
+                    <span class="suv-hero-badge">Perustettu 2018 • Kasvu +73%</span>
+                    <h1 class="suv-hero-title">Luotettava kumppani<br>rakentamiseen</h1>
+                    <p class="suv-hero-subtitle">Rakennamme laadukkaasti ja toimitamme luotettavasti. Uudisrakentaminen, saneeraus ja rakennuspalvelut yrityksille ja yksityisille Helsingissä ja Mäntsälässä.</p>
                     
-                    <div class="hero-vnext-cta">
-                        <a href="#contact" class="btn btn-primary btn-lg">Pyydä tarjous</a>
-                        <a href="tel:0403706498" class="btn btn-secondary btn-lg">
+                    <div class="suv-hero-cta">
+                        <a href="#contact" class="suv-btn suv-btn-primary suv-btn-lg">
+                            Pyydä tarjous
+                            <span class="arrow-icon">→</span>
+                        </a>
+                        <a href="tel:0403706498" class="suv-btn suv-btn-secondary suv-btn-lg">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"></path>
                             </svg>
@@ -85,31 +91,60 @@
                         </a>
                     </div>
                     
-                    <div class="hero-vnext-metrics">
-                        <div class="hero-metric">
-                            <span class="hero-metric-value">1,9 M€</span>
-                            <span class="hero-metric-label">Liikevaihto 2024</span>
+                    <div class="suv-hero-stats">
+                        <div class="suv-hero-stat">
+                            <span class="suv-hero-stat-value" data-countup="1,9 M€">0</span>
+                            <span class="suv-hero-stat-label">Liikevaihto 2024</span>
                         </div>
-                        <div class="hero-metric">
-                            <span class="hero-metric-value">+73%</span>
-                            <span class="hero-metric-label">Kasvu 2024</span>
+                        <div class="suv-hero-stat">
+                            <span class="suv-hero-stat-value" data-countup="+73%">0</span>
+                            <span class="suv-hero-stat-label">Kasvu 2024</span>
                         </div>
-                        <div class="hero-metric">
-                            <span class="hero-metric-value">52%</span>
-                            <span class="hero-metric-label">Omavaraisuus</span>
-                        </div>
-                        <div class="hero-metric">
-                            <span class="hero-metric-value">39,9 %</span>
-                            <span class="hero-metric-label">Liikevoitto-%</span>
+                        <div class="suv-hero-stat">
+                            <span class="suv-hero-stat-value" data-countup="52%">0</span>
+                            <span class="suv-hero-stat-label">Omavaraisuus</span>
                         </div>
                     </div>
                 </div>
                 
-                <div class="hero-vnext-visual">
-                    <div class="hero-image-card">
-                        <img src="assets/images/hero-construction.svg" alt="Rakennustyömaa" loading="eager">
-                        <div class="hero-image-overlay"></div>
-                    </div>
+                <div class="suv-hero-visual" data-reveal>
+                    <img src="assets/images/hero-construction.jpg" alt="Rakennustyömaa" class="suv-hero-image" loading="eager">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Trust Strip -->
+    <section class="section">
+        <div class="container">
+            <div class="suv-trust-strip">
+                <div class="suv-trust-item">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        <polyline points="9 12 11 14 15 10"></polyline>
+                    </svg>
+                    <span>Kaupparekisteri</span>
+                </div>
+                <div class="suv-trust-item">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        <polyline points="9 12 11 14 15 10"></polyline>
+                    </svg>
+                    <span>Ennakkoperintärekisteri</span>
+                </div>
+                <div class="suv-trust-item">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        <polyline points="9 12 11 14 15 10"></polyline>
+                    </svg>
+                    <span>Työnantajarekisteri</span>
+                </div>
+                <div class="suv-trust-item">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        <polyline points="9 12 11 14 15 10"></polyline>
+                    </svg>
+                    <span>ALV-rekisteri</span>
                 </div>
             </div>
         </div>
@@ -282,115 +317,164 @@
         </div>
     </section>
     
-    <!-- Services Section -->
-    <section class="section" id="services">
+    <!-- Services Section - Alternating Feature Rows -->
+    <section class="section section-gray suv-services" id="services">
         <div class="container">
             <div class="section-header">
                 <span class="section-subtitle">Palvelut</span>
-                <h2 class="section-title">Kattavat rakennuspalvelut yrityksille ja yksityisille</h2>
+                <h2 class="section-title">Ammattitaitoa koko rakennusprosessiin</h2>
+                <p class="lead-text">Toimitamme laadukkaita rakennuspalveluita yrityksille ja yksityisille asiakkaille. Meiltä saat kaiken uudisrakentamisesta saneeraukseen.</p>
             </div>
             
-            <div class="services-showcase">
-                <div class="service-showcase-card" data-reveal="fade-up">
-                    <div class="service-showcase-image">
-                        <img src="assets/images/service-newbuild.svg" alt="Uudisrakentaminen" loading="lazy">
-                    </div>
-                    <div class="service-showcase-content">
+            <!-- Service Filter -->
+            <div class="suv-service-filter">
+                <div class="suv-service-search suv-form-group">
+                    <input 
+                        type="text" 
+                        id="serviceSearch" 
+                        class="suv-form-input" 
+                        placeholder="Etsi palvelua..."
+                        aria-label="Etsi palvelua"
+                    >
+                </div>
+            </div>
+            
+            <div class="suv-services-container">
+                <div class="suv-service-feature suv-service-card" data-reveal>
+                    <div class="suv-service-feature-content">
                         <h3>Uudisrakentaminen</h3>
-                        <p>Omakotitalot, rivitalot ja pientalot. Suunnittelusta toteutukseen – luotettavasti ja laadukkaasti.</p>
+                        <p>Toteutamme omakotitalot, rivitalot ja pientalot avaimet käteen -periaatteella. Suunnittelusta toteutukseen – luotettavasti ja laadukkaasti.</p>
+                        <ul class="suv-service-feature-list">
+                            <li>Omakotitalot ja pientalot</li>
+                            <li>Rivitalot ja paritalot</li>
+                            <li>Avaimet käteen -palvelu</li>
+                            <li>Suunnittelu ja toteutus</li>
+                        </ul>
+                        <a href="#contact" class="suv-btn suv-btn-secondary">
+                            Pyydä tarjous
+                            <span class="arrow-icon">→</span>
+                        </a>
+                    </div>
+                    <div class="suv-service-feature-visual">
+                        <img src="assets/images/service-newbuild.jpg" alt="Uudisrakentaminen" loading="lazy">
                     </div>
                 </div>
                 
-                <div class="service-showcase-card" data-reveal="fade-up">
-                    <div class="service-showcase-image">
-                        <img src="assets/images/service-renovation.svg" alt="Saneeraus ja remontointi" loading="lazy">
-                    </div>
-                    <div class="service-showcase-content">
+                <div class="suv-service-feature suv-service-card" data-reveal>
+                    <div class="suv-service-feature-content">
                         <h3>Saneeraus ja remontointi</h3>
-                        <p>Peruskorjaukset, putkiremontit ja rakennusten saneeraus. Ammattitaitoa vaativiin kohteisiin.</p>
+                        <p>Ammattitaitoa vaativiin peruskorjaus- ja saneeraushankkeisiin. Putkiremontit, rakennusten saneeraus ja modernisointihankkeet.</p>
+                        <ul class="suv-service-feature-list">
+                            <li>Peruskorjaukset ja saneeraus</li>
+                            <li>Putkiremontit</li>
+                            <li>Kosteusvauriokorjaukset</li>
+                            <li>Rakennusten modernisinti</li>
+                        </ul>
+                        <a href="#contact" class="suv-btn suv-btn-secondary">
+                            Pyydä tarjous
+                            <span class="arrow-icon">→</span>
+                        </a>
+                    </div>
+                    <div class="suv-service-feature-visual">
+                        <img src="assets/images/service-renovation.jpg" alt="Saneeraus ja remontointi" loading="lazy">
                     </div>
                 </div>
                 
-                <div class="service-showcase-card" data-reveal="fade-up">
-                    <div class="service-showcase-image">
+                <div class="suv-service-feature suv-service-card" data-reveal>
+                    <div class="suv-service-feature-content">
+                        <h3>Julkisivu- ja kattotyöt</h3>
+                        <p>Julkisivuremontti, kattojen uusiminen ja korjaukset. Pitkäikäisiä ratkaisuja, jotka suojaavat rakennusta vuosiksi eteenpäin.</p>
+                        <ul class="suv-service-feature-list">
+                            <li>Julkisivuremontti</li>
+                            <li>Kattojen uusiminen</li>
+                            <li>Kattokorjaukset</li>
+                            <li>Vedeneristystyöt</li>
+                        </ul>
+                        <a href="#contact" class="suv-btn suv-btn-secondary">
+                            Pyydä tarjous
+                            <span class="arrow-icon">→</span>
+                        </a>
+                    </div>
+                    <div class="suv-service-feature-visual">
                         <img src="assets/images/service-facade.svg" alt="Julkisivu- ja kattotyöt" loading="lazy">
                     </div>
-                    <div class="service-showcase-content">
-                        <h3>Julkisivu- ja kattotyöt</h3>
-                        <p>Julkisivuremontti, kattojen uusiminen ja korjaukset. Pitkäikäisiä ratkaisuja.</p>
-                    </div>
                 </div>
                 
-                <div class="service-showcase-card" data-reveal="fade-up">
-                    <div class="service-showcase-image">
-                        <img src="assets/images/service-interior.svg" alt="Huoneistoremontit" loading="lazy">
-                    </div>
-                    <div class="service-showcase-content">
+                <div class="suv-service-feature suv-service-card" data-reveal>
+                    <div class="suv-service-feature-content">
                         <h3>Huoneistoremontit</h3>
-                        <p>Kylpyhuone-, keittiö- ja sisätilaremontti. Ammattitaitoa yksityiskohtiin.</p>
+                        <p>Kylpyhuone-, keittiö- ja sisätilaremontit yksityisille ja yrityksille. Ammattitaitoa yksityiskohtiin ja lopputulos, joka ilahduttaa.</p>
+                        <ul class="suv-service-feature-list">
+                            <li>Kylpyhuoneremontit</li>
+                            <li>Keittiöremontit</li>
+                            <li>Sisätilojen remontointi</li>
+                            <li>Lattia- ja seinäpinnoitteet</li>
+                        </ul>
+                        <a href="#contact" class="suv-btn suv-btn-secondary">
+                            Pyydä tarjous
+                            <span class="arrow-icon">→</span>
+                        </a>
+                    </div>
+                    <div class="suv-service-feature-visual">
+                        <img src="assets/images/service-interior.jpg" alt="Huoneistoremontit" loading="lazy">
                     </div>
                 </div>
                 
-                <div class="service-showcase-card" data-reveal="fade-up">
-                    <div class="service-showcase-image">
-                        <img src="assets/images/service-business.svg" alt="Rakennuspalvelut yrityksille" loading="lazy">
-                    </div>
-                    <div class="service-showcase-content">
+                <div class="suv-service-feature suv-service-card" data-reveal>
+                    <div class="suv-service-feature-content">
                         <h3>Rakennuspalvelut yrityksille</h3>
-                        <p>Liiketilojen rakentaminen ja remontointi. Yhteistyötä yritysten kanssa.</p>
+                        <p>Liiketilojen rakentaminen, remontointi ja ylläpito. Yhteistyötä yritysten kanssa – luotettavasti ja ammattitaitoisesti.</p>
+                        <ul class="suv-service-feature-list">
+                            <li>Liiketilojen rakentaminen</li>
+                            <li>Toimistojen remontointi</li>
+                            <li>Teollisuusrakentaminen</li>
+                            <li>Ylläpitopalvelut</li>
+                        </ul>
+                        <a href="#contact" class="suv-btn suv-btn-secondary">
+                            Pyydä tarjous
+                            <span class="arrow-icon">→</span>
+                        </a>
                     </div>
-                </div>
-                
-                <div class="service-showcase-card" data-reveal="fade-up">
-                    <div class="service-showcase-image">
-                        <img src="assets/images/service-planning.svg" alt="Projektinjohto ja työnjohto" loading="lazy">
-                    </div>
-                    <div class="service-showcase-content">
-                        <h3>Projektinjohto ja työnjohto</h3>
-                        <p>Ammattitaitoista projektin- ja työnjohtoa. Aikataulu ja budjetti hallinnassa.</p>
+                    <div class="suv-service-feature-visual">
+                        <img src="assets/images/service-business.jpg" alt="Rakennuspalvelut yrityksille" loading="lazy">
                     </div>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Key Numbers Section -->
-    <section class="section" id="numbers">
+    <!-- Key Numbers Section - Avainluvut 2024 -->
+    <section class="section suv-stats-section" id="numbers">
         <div class="container">
-            <div class="section-header">
+            <div class="suv-stats-intro">
                 <span class="section-subtitle">Avainluvut 2024</span>
-                <h2 class="section-title">Vahva kasvu ja terve talous</h2>
+                <h2>Vahva kasvu ja terve talous</h2>
+                <p>Liikevaihdon kasvu +73% ja liikevoiton kasvu +315% osoittavat luotettavuuden ja asiakastyytyväisyyden. Omavaraisuusaste 52% takaa vakaan kumppanuuden.</p>
             </div>
             
-            <div class="financial-overview">
-                <div class="financial-metrics">
-                    <div class="financial-metric">
-                        <span class="financial-metric-value">1 922 987 €</span>
-                        <span class="financial-metric-label">Liikevaihto 2024</span>
-                        <span class="financial-metric-growth">+72,8 %</span>
-                    </div>
-                    <div class="financial-metric">
-                        <span class="financial-metric-value">767 329 €</span>
-                        <span class="financial-metric-label">Liikevoitto 2024</span>
-                        <span class="financial-metric-growth">+315 %</span>
-                    </div>
-                    <div class="financial-metric">
-                        <span class="financial-metric-value">39,9 %</span>
-                        <span class="financial-metric-label">Liikevoitto-%</span>
-                    </div>
-                    <div class="financial-metric">
-                        <span class="financial-metric-value">52 %</span>
-                        <span class="financial-metric-label">Omavaraisuusaste</span>
-                        <span class="financial-metric-growth">+58 %</span>
-                    </div>
+            <div class="suv-stats-grid">
+                <div class="suv-card suv-card-stat" data-reveal>
+                    <span class="suv-stat-value" data-countup="1,9 M€">0</span>
+                    <span class="suv-stat-label">Liikevaihto 2024</span>
+                    <p class="suv-stat-growth">+72,8% kasvu</p>
                 </div>
                 
-                <div class="financial-explanation">
-                    <p><strong>Voimakas kasvu kertoo luottamuksesta.</strong> Liikevaihdon kasvu +72,8 % ja liikevoiton kasvu +315 % vuonna 2024 osoittavat, että kysyntä on vahvaa ja toimintamme on tehokasta. Asiakkaat palaavat ja suosittelevat meitä eteenpäin.</p>
-                    
-                    <p><strong>52 % omavaraisuusaste</strong> (+58 % kasvu) tarkoittaa vakaata taloutta ilman ylivelkaantumista. Tämä antaa asiakkaille varmuuden pitkäjänteisestä kumppanuudesta ja kyvystämme investoida laadukkaisiin projekteihin.</p>
-                    
-                    <p><strong>39,9 % liikevoittoprosentti</strong> kertoo tehokkaasta toiminnasta ja hyvästä kustannushallinnasta. Teemme oikeita asioita oikein ja pidämme lupaukset.</p>
+                <div class="suv-card suv-card-stat" data-reveal>
+                    <span class="suv-stat-value" data-countup="767 329 €">0</span>
+                    <span class="suv-stat-label">Liikevoitto 2024</span>
+                    <p class="suv-stat-growth">+315% kasvu</p>
+                </div>
+                
+                <div class="suv-card suv-card-stat" data-reveal>
+                    <span class="suv-stat-value" data-countup="39,9%">0</span>
+                    <span class="suv-stat-label">Liikevoitto-%</span>
+                    <p class="suv-stat-note">Tehokas toiminta</p>
+                </div>
+                
+                <div class="suv-card suv-card-stat" data-reveal>
+                    <span class="suv-stat-value" data-countup="52%">0</span>
+                    <span class="suv-stat-label">Omavaraisuusaste</span>
+                    <p class="suv-stat-growth">+58% kasvu</p>
                 </div>
             </div>
         </div>
@@ -415,175 +499,117 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="section" id="contact">
+    <!-- Proposal Banner Section -->
+    <section class="section suv-proposal-banner" id="contact">
         <div class="container">
-            <div class="contact-hero">
-                <h2>Ota yhteyttä</h2>
-                <p>Kerro meille tarpeestasi, niin laaditaan yhdessä paras ratkaisu. Vastataan nopeasti, sovitaan aikataulu ja pidetään kiinni.</p>
-            </div>
-            
-            <div class="contact-methods">
-                <div class="contact-method-card">
-                    <div class="contact-method-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"></path>
-                        </svg>
-                    </div>
-                    <h3>Puhelin</h3>
-                    <p>Nopein tapa tavoittaa</p>
-                    <a href="tel:0403706498" class="contact-primary">040 370 6498</a>
-                    <button class="btn-copy-inline" data-copy="0403706498" title="Kopioi leikepöydälle">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                        Kopioi
-                    </button>
-                </div>
+            <div class="suv-proposal-content">
+                <h2>Aloitetaan yhteistyö</h2>
+                <p>Kerro meille tarpeestasi, niin laaditaan yhdessä paras ratkaisu. Vastataan nopeasti, sovitaan aikataulu ja pidetään kiinni lupauksista.</p>
                 
-                <div class="contact-method-card">
-                    <div class="contact-method-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                    </div>
-                    <h3>Sähköposti</h3>
-                    <p>Kerro tarpeestasi, liitä tiedot</p>
-                    <a href="mailto:info@rakennusliikesuvenkari.fi" class="contact-primary">info@rakennusliikesuvenkari.fi</a>
-                    <button class="btn-copy-inline" data-copy="info@rakennusliikesuvenkari.fi" title="Kopioi leikepöydälle">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                        Kopioi
-                    </button>
-                </div>
-                
-                <div class="contact-method-card">
-                    <div class="contact-method-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                            <circle cx="12" cy="10" r="3"></circle>
-                        </svg>
-                    </div>
-                    <h3>Käyntiosoite</h3>
-                    <p>Vuolteenmäentie 6 J, 04600 Mäntsälä</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Vuolteenmäentie+6+J,+Mäntsälä" target="_blank" rel="noopener">Avaa kartalla</a>
-                </div>
-            </div>
-            
-            <!-- What Happens Next -->
-            <div class="contact-next-steps">
-                <h3>Mitä tapahtuu seuraavaksi</h3>
-                <div class="next-steps-grid">
-                    <div class="next-step">
-                        <div class="next-step-number">1</div>
-                        <div class="next-step-content">
-                            <h4>Vahvistus</h4>
-                            <p>Saat vahvistusviestin yhteydenottopyynnöstäsi</p>
+                <form class="suv-proposal-form" id="suvenkariContactForm">
+                    <div class="suv-proposal-form-grid">
+                        <div class="suv-form-group">
+                            <label for="name" class="suv-form-label">Nimi *</label>
+                            <input type="text" id="name" name="name" class="suv-form-input" required>
+                        </div>
+                        
+                        <div class="suv-form-group">
+                            <label for="phone" class="suv-form-label">Puhelin *</label>
+                            <input type="tel" id="phone" name="phone" class="suv-form-input" required>
+                        </div>
+                        
+                        <div class="suv-form-group">
+                            <label for="email" class="suv-form-label">Sähköposti</label>
+                            <input type="email" id="email" name="email" class="suv-form-input">
                         </div>
                     </div>
-                    <div class="next-step">
-                        <div class="next-step-number">2</div>
-                        <div class="next-step-content">
-                            <h4>Yhteydenotto</h4>
-                            <p>Otamme yhteyttä samana tai seuraavana arkipäivänä</p>
-                        </div>
-                    </div>
-                    <div class="next-step">
-                        <div class="next-step-number">3</div>
-                        <div class="next-step-content">
-                            <h4>Tarjous ja aikataulutus</h4>
-                            <p>Laaditaan tarjous ja sovitaan toteutusaikataulu</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="contact-content">
-                <div class="contact-details">
-                    <h3>Yritystiedot</h3>
-                    <p><strong>Rakennusliike Suvenkari Oy</strong></p>
-                    <p>Y-tunnus: 2901490-8<br>
-                    Osakeyhtiö<br>
-                    Perustettu: 2018<br>
-                    Maa: Suomi</p>
                     
-                    <p style="margin-top: 1.5rem;">
-                        <strong>Postiosoite:</strong><br>
-                        Klaavuntie 11 C 78<br>
-                        00910 Helsinki
-                    </p>
+                    <div class="suv-form-group">
+                        <label for="message" class="suv-form-label">Viesti *</label>
+                        <textarea id="message" name="message" class="suv-form-textarea" rows="5" required placeholder="Kerro lyhyesti projektistasi: mitä haluat rakentaa tai remontoida, missä, milloin..."></textarea>
+                    </div>
                     
-                    <p style="margin-top: 1.5rem;">
-                        <strong>Käyntiosoite:</strong><br>
-                        Vuolteenmäentie 6 J<br>
-                        04600 Mäntsälä
-                    </p>
-                    
-                    <p style="margin-top: 1.5rem;">
-                        <strong>Puhelin:</strong> <a href="tel:0403706498">040 370 6498</a><br>
-                        <strong>Sähköposti:</strong> <a href="mailto:info@rakennusliikesuvenkari.fi">info@rakennusliikesuvenkari.fi</a><br>
-                        <strong>Verkkosivu:</strong> <a href="https://www.rakennusliikesuvenkari.fi">www.rakennusliikesuvenkari.fi</a>
-                    </p>
-                    
-                    <p style="margin-top: 2rem; color: var(--color-text-muted); font-size: var(--font-size-sm);">
-                        Rekisterit: Kaupparekisteri, Ennakkoperintärekisteri, Työnantajarekisteri, Arvonlisäverovelvollinen
-                    </p>
-                </div>
-                <form class="contact-form" id="contactForm" data-endpoint="">
-                    <h3 style="margin-bottom: 1.5rem;">Pyydä tarjous</h3>
-                    <div class="form-group">
-                        <label for="name">Nimi *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="company">Yritys</label>
-                        <input type="text" id="company" name="company">
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Puhelin *</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Sähköposti</label>
-                        <input type="email" id="email" name="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Viesti *</label>
-                        <textarea id="message" name="message" rows="5" required placeholder="Kerro lyhyesti projektistasi: mitä haluat rakentaa tai remontoida, missä, milloin..."></textarea>
-                    </div>
-                    <div class="form-group form-checkbox">
-                        <label>
-                            <input type="checkbox" name="callback">
-                            <span>Pyydän takaisinsoittoa</span>
+                    <div class="suv-form-group suv-form-consent">
+                        <label class="suv-form-consent-label">
+                            <input type="checkbox" name="consent" required class="suv-form-consent-checkbox">
+                            <span class="suv-form-consent-text">Hyväksyn, että yhteystietoihini otetaan yhteyttä tämän yhteydenottopyynnön johdosta. *</span>
                         </label>
                     </div>
-                    <div class="form-group form-checkbox">
-                        <label>
-                            <input type="checkbox" name="consent" required>
-                            <span>Hyväksyn, että yhteystietoihini otetaan yhteyttä tämän yhteydenottopyynnön johdosta. Tietoja ei käytetä muuhun tarkoitukseen. *</span>
-                        </label>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-lg">Lähetä viesti</button>
-                    <div class="form-status" id="formStatus"></div>
+                    
+                    <button type="submit" class="suv-btn suv-btn-primary suv-btn-lg" disabled>
+                        Lähetä viesti
+                        <span class="arrow-icon">→</span>
+                    </button>
                 </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="suv-footer">
         <div class="container">
-            <div class="footer-content">
-                <p>&copy; <span id="currentYear">2024</span> Rakennusliike Suvenkari Oy. Y-tunnus: 2901490-8</p>
+            <div class="suv-footer-grid">
+                <div class="suv-footer-brand">
+                    <h3>Rakennusliike Suvenkari Oy</h3>
+                    <p>Luotettava rakennusalan kumppani Helsingissä ja Mäntsälässä. Uudisrakentaminen, saneeraus ja rakennuspalvelut yrityksille ja yksityisille.</p>
+                    <p class="suv-footer-brand-info">
+                        <strong>Y-tunnus:</strong> 2901490-8<br>
+                        <strong>Perustettu:</strong> 2018
+                    </p>
+                </div>
+                
+                <div class="suv-footer-section">
+                    <h4>Yhteystiedot</h4>
+                    <ul class="suv-footer-links">
+                        <li>
+                            <a href="tel:0403706498">040 370 6498</a>
+                        </li>
+                        <li>
+                            <a href="mailto:info@rakennusliikesuvenkari.fi">info@rakennusliikesuvenkari.fi</a>
+                        </li>
+                        <li class="suv-footer-address">
+                            <strong>Postiosoite:</strong><br>
+                            Klaavuntie 11 C 78<br>
+                            00910 Helsinki
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="suv-footer-section">
+                    <h4>Käyntiosoite</h4>
+                    <ul class="suv-footer-links">
+                        <li class="suv-footer-address-text">
+                            Vuolteenmäentie 6 J<br>
+                            04600 Mäntsälä
+                        </li>
+                        <li class="suv-footer-map-link">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Vuolteenmäentie+6+J,+Mäntsälä" target="_blank" rel="noopener">
+                                Avaa kartalla →
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="suv-footer-section">
+                    <h4>Rekisterit</h4>
+                    <ul class="suv-footer-links">
+                        <li><span class="suv-footer-registry-item">Kaupparekisteri</span></li>
+                        <li><span class="suv-footer-registry-item">Ennakkoperintärekisteri</span></li>
+                        <li><span class="suv-footer-registry-item">Työnantajarekisteri</span></li>
+                        <li><span class="suv-footer-registry-item">ALV-rekisteri</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="suv-footer-bottom">
+                <p>&copy; <span id="currentYear">2024</span> Rakennusliike Suvenkari Oy. Kaikki oikeudet pidätetään.</p>
+                <p>Suunniteltu ja toteutettu Suomessa</p>
             </div>
         </div>
     </footer>
     
     <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop" aria-label="Takaisin ylös">
+    <button class="suv-back-to-top" aria-label="Takaisin ylös">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
@@ -620,9 +646,6 @@
     }
     </script>
 
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/observer.js"></script>
-    <script src="assets/js/forms.js"></script>
-    <script src="assets/js/ui-effects.js"></script>
+    <script src="assets/js/suvenkari.js"></script>
 </body>
 </html>
