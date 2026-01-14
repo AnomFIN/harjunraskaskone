@@ -206,6 +206,10 @@
     margin-bottom: var(--suv-space-8);
 }
 
+.suv-stats-intro .section-subtitle {
+    color: var(--suv-color-accent-primary);
+}
+
 .suv-stats-intro h2 {
     color: var(--suv-color-text-inverse);
     margin-bottom: var(--suv-space-5);
@@ -217,6 +221,20 @@
     max-width: 720px;
     margin: 0 auto;
 }
+
+/* Stat card growth/note indicators */
+.suv-stat-growth {
+    margin-top: var(--suv-space-3);
+    font-size: var(--suv-font-sm);
+    color: var(--suv-color-success);
+}
+
+.suv-stat-note {
+    margin-top: var(--suv-space-3);
+    font-size: var(--suv-font-sm);
+    color: var(--suv-color-text-muted);
+}
+
 
 /* ============= Trust Strip ============= */
 .suv-trust-strip {
@@ -325,6 +343,12 @@
     margin-bottom: var(--suv-space-6);
 }
 
+.suv-footer-brand-info {
+    margin-top: var(--suv-space-5);
+    font-size: var(--suv-font-sm);
+    color: rgba(253, 252, 251, 0.6);
+}
+
 .suv-footer-section h4 {
     font-size: var(--suv-font-lg);
     font-weight: var(--suv-weight-semibold);
@@ -345,6 +369,34 @@
 .suv-footer-links a {
     color: rgba(253, 252, 251, 0.7);
     text-decoration: none;
+    transition: color var(--suv-transition-fast);
+}
+
+.suv-footer-links a:hover {
+    color: var(--suv-color-accent-primary);
+}
+
+/* Footer address styles */
+.suv-footer-address {
+    margin-top: var(--suv-space-4);
+    color: rgba(253, 252, 251, 0.7);
+    font-size: var(--suv-font-sm);
+}
+
+.suv-footer-address-text {
+    color: rgba(253, 252, 251, 0.7);
+    font-size: var(--suv-font-sm);
+}
+
+.suv-footer-map-link {
+    margin-top: var(--suv-space-4);
+}
+
+.suv-footer-registry-item {
+    color: rgba(253, 252, 251, 0.7);
+    font-size: var(--suv-font-sm);
+}
+
     transition: color var(--suv-transition-fast);
 }
 
