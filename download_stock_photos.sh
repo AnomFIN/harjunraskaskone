@@ -3,7 +3,7 @@
 # This script downloads free stock photos from Lorem Picsum (placeholder service)
 # Replace these URLs with actual stock photos from Unsplash/Pexels/Pixabay
 
-cd "$(dirname "$0")/assets/images"
+cd "$(dirname "$0")/assets/images" || exit 1
 
 echo "Downloading stock photos for Suvenkari website..."
 
