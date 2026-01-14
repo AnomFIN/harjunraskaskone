@@ -308,13 +308,42 @@
         submitBtn.textContent = 'Lähetetään...';
         submitBtn.disabled = true;
 
-        // Simulate submission (no backend)
-        setTimeout(() => {
-            showToast('Viesti lähetetty onnistuneesti! Otamme yhteyttä pian.', 'success');
-            form.reset();
+        // Create FormData from form
+        const formData = new FormData(form);
+
+        // Submit to PHP backend
+        fetch('contact_submit.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showToast(data.message, 'success');
+                form.reset();
+                
+                // Re-disable submit button after reset
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    const inputs = form.querySelectorAll('input[required], textarea[required]');
+                    inputs.forEach(input => {
+                        if (!input.value.trim()) {
+                            submitBtn.disabled = true;
+                        }
+                    });
+                }, 100);
+            } else {
+                showToast(data.message || 'Viestin lähetys epäonnistui. Yritä uudelleen.', 'error');
+                submitBtn.disabled = false;
+            }
+            submitBtn.textContent = originalText;
+        })
+        .catch(error => {
+            console.error('Form submission error:', error);
+            showToast('Viestin lähetys epäonnistui. Tarkista verkkoyhteytesi ja yritä uudelleen.', 'error');
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
-        }, 1200);
+        });
     }
 
     // ============= Module 7: Toast Notifications =============
