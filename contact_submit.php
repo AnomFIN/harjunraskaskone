@@ -85,9 +85,27 @@ $headers[] = 'Reply-To: ' . (!empty($email) ? $email : 'noreply@rakennusliikesuv
 $headers[] = 'X-Mailer: PHP/' . phpversion();
 $headers[] = 'Content-Type: text/plain; charset=UTF-8';
 
-// Send email
-$mail_sent = @mail($to, $subject, $email_body, implode("\r\n", $headers));
+// Send email without suppressing errors; log failures for monitoring and debugging
+$mail_sent = mail($to, $subject, $email_body, implode("\r\n", $headers));
 
+if ($mail_sent === false) {
+    $logContext = [
+        'event'      => 'contact_form_mail_failure',
+        'to'         => $to,
+        'subject'    => $subject,
+        'client_ip'  => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : null,
+        'user_agent' => isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : null,
+        'timestamp'  => date('c'),
+    ];
+
+    $lastError = error_get_last();
+    if ($lastError && isset($lastError['message'])) {
+        $logContext['php_error'] = $lastError['message'];
+    }
+
+    // Logged to PHP error log; no arkaluonteinen (sensitive) sisältö kuten viestirunko
+    error_log('Mail sending failed: ' . json_encode($logContext));
+}
 if ($mail_sent) {
     http_response_code(200);
     echo json_encode([
