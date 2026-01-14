@@ -446,13 +446,27 @@
 /* Enhanced Navigation */
 .suv-nav-link {
     font-size: var(--suv-font-base);
-    font-weight: var(--suv-weight-medium);
-    color: var(--suv-color-text-secondary);
+    font-weight: var(--suv-weight-semibold);
+    color: var(--suv-color-text-primary);
     text-decoration: none;
     transition: all var(--suv-transition-fast);
     position: relative;
     padding: var(--suv-space-2) var(--suv-space-4);
     border-radius: var(--suv-radius-sm);
+}
+
+/* Desktop navigation emphasis */
+@media (min-width: 768px) {
+    .suv-nav-link {
+        color: #1a1d23;
+        font-weight: var(--suv-weight-semibold);
+        opacity: 1;
+    }
+    
+    .suv-nav-link:hover {
+        color: var(--suv-color-accent-primary);
+        background: rgba(200, 121, 65, 0.1);
+    }
 }
 
 .suv-nav-link::before {
