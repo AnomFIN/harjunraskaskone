@@ -127,8 +127,6 @@
             const target = element.getAttribute('data-countup');
             const isPercent = target.includes('%');
             const isPlus = target.includes('+');
-            const isCurrency = target.includes('€');
-            const isMillion = target.includes('M');
             const numMatch = target.match(/[\d.,]+/);
             
             if (!numMatch) return;
