@@ -5,14 +5,18 @@
 
 /* Hide heavy content on mobile */
 @media (max-width: 767px) {
+    /* Ensure readable text contrast on mobile */
     /* Improve text contrast on mobile without forcing all elements */
     body {
         color: var(--suv-color-text-primary);
     }
     
     h1, h2, h3, h4, h5, h6 {
-        color: #1a1d23;
-        font-weight: var(--suv-weight-bold);
+        color: var(--suv-color-text-primary);
+    }
+    
+    p {
+        color: var(--suv-color-text-secondary);
     }
     
     /* Preserve cookie popup text colors for proper contrast
@@ -29,13 +33,39 @@
     }
     
     .lead-text {
-        color: #1a1d23;
+        color: var(--suv-color-text-primary);
         font-weight: var(--suv-weight-medium);
     }
     
-    /* Force white background for better contrast */
-    .section, .section-gray {
-        background: #ffffff;
+    /* Compact process steps on mobile - keep content visible */
+    .process-step-detailed .process-step-content ul {
+        margin-bottom: var(--suv-space-6);
+    }
+    
+    .process-step-detailed .process-step-content ul li {
+        font-size: var(--suv-font-sm);
+        margin-bottom: var(--suv-space-2);
+    }
+    
+    /* Compact service cards on mobile - keep content visible */
+    .suv-service-feature-list {
+        margin-bottom: var(--suv-space-6);
+    }
+    
+    .suv-service-feature-list li {
+        font-size: var(--suv-font-sm);
+        margin-bottom: var(--suv-space-2);
+        color: var(--suv-color-text-primary);
+        font-weight: var(--suv-weight-medium);
+    }
+    
+    /* Ensure consistent section backgrounds using design tokens */
+    .section {
+        background: var(--suv-color-bg-primary);
+    }
+    
+    .section-gray {
+        background: var(--suv-color-bg-secondary);
     }
     
     /* Show first 3 bullet points in process steps, hide the rest */
@@ -58,15 +88,24 @@
     
     /* Ensure high contrast for stats and numbers */
     .suv-hero-stat-value,
+    .suv-stat-value {
+        color: var(--suv-color-accent-primary);
+    }
+    
     .suv-hero-stat-label,
-    .suv-stat-value,
     .suv-stat-label {
-        color: #1a1d23;
+        color: var(--suv-color-text-secondary);
+    }
+    
+    /* Navigation text - mobile */
+    .suv-nav-link {
+        color: var(--suv-color-text-primary);
+        font-weight: var(--suv-weight-semibold);
     }
     
     /* Navigation text - mobile menu */
     .suv-nav.active .suv-nav-link {
-        color: #1a1d23;
+        color: var(--suv-color-text-primary);
         font-weight: var(--suv-weight-semibold);
     }
     
@@ -76,14 +115,26 @@
     }
     
     .suv-btn-secondary {
-        color: #1a1d23;
+        color: var(--suv-color-text-primary);
     }
     
     /* Project card text */
-    .project-content h4,
-    .project-content p,
+    .project-content h4 {
+        color: var(--suv-color-text-primary);
+    }
+    
+    .project-content p {
+        color: var(--suv-color-text-secondary);
+    }
+    
     .project-type {
-        color: #1a1d23;
+        color: var(--suv-color-accent-primary);
+    }
+    
+    /* Compact sidebar on mobile */
+    .content-rich-sidebar .info-box {
+        margin-bottom: var(--suv-space-6);
+        color: var(--suv-color-text-primary);
     }
     
     /* Reduce spacing between content sections on mobile */
@@ -105,16 +156,22 @@
         margin-bottom: var(--suv-space-6);
     }
     
-    /* Compact trust strip */
+    /* Compact trust strip - show all items */
     .suv-trust-strip {
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--suv-space-4);
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: var(--suv-space-3);
         padding: var(--suv-space-4) 0;
         margin-bottom: var(--suv-space-6);
     }
     
-    .suv-trust-item:nth-child(n+3) {
-        display: none;
+    .suv-trust-item {
+        font-size: var(--suv-font-xs);
+    }
+    
+    .suv-trust-item svg {
+        width: 24px;
+        height: 24px;
     }
     
     /* Lazy load images */
@@ -127,10 +184,26 @@
         loading: eager;
     }
     
-    /* Hide decorative elements */
-    .process-step-image,
+    /* Show process step images on mobile in compact form */
+    .process-step-image {
+        display: block;
+        width: 100%;
+        max-width: 200px;
+        margin: var(--suv-space-4) auto 0;
+    }
+    
+    .process-step-image img {
+        opacity: 0.7;
+    }
+    
+    /* Show service visuals on mobile in compact form */
     .suv-service-feature-visual {
-        display: none;
+        display: block;
+        margin-top: var(--suv-space-6);
+    }
+    
+    .suv-service-feature-visual img {
+        border-radius: var(--suv-radius-md);
     }
     
     /* Compact header */
@@ -159,14 +232,23 @@
         margin-bottom: var(--suv-space-4);
     }
     
-    /* Compact stats - show all 3 in a responsive grid */
+    /* Compact stats - responsive layout */
     .suv-hero-stats {
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--suv-space-3);
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: var(--suv-space-4);
     }
     
-    .suv-hero-stat:nth-child(3) {
-        grid-column: 1 / -1;
+    .suv-hero-stat {
+        padding: var(--suv-space-3) 0;
+        text-align: center;
+    }
+    
+    .suv-hero-stat-value {
+        font-size: var(--suv-font-3xl);
+    }
+    
+    .suv-hero-stat-label {
+        font-size: var(--suv-font-xs);
     }
 }
 
