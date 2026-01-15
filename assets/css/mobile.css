@@ -6,6 +6,7 @@
 /* Hide heavy content on mobile */
 @media (max-width: 767px) {
     /* Ensure readable text contrast on mobile */
+    /* Improve text contrast on mobile without forcing all elements */
     body {
         color: var(--suv-color-text-primary);
     }
@@ -16,6 +17,17 @@
     
     p {
         color: var(--suv-color-text-secondary);
+        color: #1a1d23;
+        font-weight: var(--suv-weight-bold);
+    }
+    
+    /* Preserve cookie popup text colors for proper contrast
+       Cookie popup has dark background (rgba(26, 29, 35, 0.95))
+       and requires white/light text (var(--suv-color-text-inverse))
+       for readability, so inherit from parent instead of forcing dark */
+    .cookie-popup h4,
+    .cookie-popup p {
+        color: inherit;
     }
     
     .section-subtitle {
@@ -50,6 +62,31 @@
     .suv-service-feature-list li {
         font-size: var(--suv-font-sm);
         margin-bottom: var(--suv-space-2);
+        color: #1a1d23;
+        font-weight: var(--suv-weight-medium);
+    }
+    
+    /* Force white background for better contrast */
+    .section, .section-gray {
+        background: #ffffff;
+    }
+    
+    /* Show first 3 bullet points in process steps, hide the rest */
+    .process-step-detailed .process-step-content ul {
+        font-size: var(--suv-font-sm);
+    }
+    
+    .process-step-detailed .process-step-content ul li:nth-child(n+4) {
+        display: none;
+    }
+    
+    /* Simplify service cards - keep at least 2-3 key features visible */
+    .suv-service-feature-list {
+        font-size: var(--suv-font-sm);
+    }
+    
+    .suv-service-feature-list li:nth-child(n+4) {
+        display: none;
     }
     
     /* Ensure high contrast for stats and numbers */
@@ -70,12 +107,23 @@
     }
     
     /* Button text should be visible */
+        color: #1a1d23;
+    }
+    
+    /* Navigation text - mobile menu */
+    .suv-nav.active .suv-nav-link {
+        color: #1a1d23;
+        font-weight: var(--suv-weight-semibold);
+    }
+    
+    /* Button text should remain as designed */
     .suv-btn-primary {
         color: white;
     }
     
     .suv-btn-secondary {
         color: var(--suv-color-text-primary);
+        color: #1a1d23;
     }
     
     /* Project card text */
@@ -94,6 +142,20 @@
     /* Compact sidebar on mobile */
     .content-rich-sidebar .info-box {
         margin-bottom: var(--suv-space-6);
+        color: #1a1d23;
+    }
+    
+    /* Reduce spacing between content sections on mobile */
+    .content-rich-grid {
+        gap: var(--suv-space-6);
+    }
+    
+    /* Hide sidebar info boxes on mobile */
+    .content-rich-sidebar .info-box:nth-child(2) {
+        display: none;
+    /* Keep both info boxes visible on mobile */
+    .content-rich-sidebar .info-box {
+        margin-bottom: var(--suv-space-4);
     }
     
     /* Reduce hero content */
@@ -107,6 +169,10 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
         gap: var(--suv-space-3);
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--suv-space-4);
+        padding: var(--suv-space-4) 0;
+        margin-bottom: var(--suv-space-6);
     }
     
     .suv-trust-item {
@@ -155,9 +221,14 @@
         padding: var(--suv-space-3) 0;
     }
     
-    /* Reduce section spacing */
+    /* Reduce section spacing on mobile */
     .section {
-        padding: var(--suv-space-16) 0;
+        padding: var(--suv-space-8) 0;
+    }
+    
+    /* Even more compact hero section */
+    .suv-hero {
+        padding: var(--suv-space-6) 0;
     }
     
     /* Mobile-first navigation */
@@ -188,6 +259,14 @@
     
     .suv-hero-stat-label {
         font-size: var(--suv-font-xs);
+    /* Compact stats - show all 3 in a responsive grid */
+    .suv-hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--suv-space-3);
+    }
+    
+    .suv-hero-stat:nth-child(3) {
+        grid-column: 1 / -1;
     }
 }
 
