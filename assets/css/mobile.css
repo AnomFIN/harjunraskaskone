@@ -60,8 +60,12 @@
     }
     
     /* Ensure consistent section backgrounds using design tokens */
-    .section, .section-gray {
+    .section {
         background: var(--suv-color-bg-primary);
+    }
+    
+    .section-gray {
+        background: var(--suv-color-bg-secondary);
     }
     
     /* Show first 3 bullet points in process steps, hide the rest */
