@@ -127,7 +127,7 @@
             const target = element.getAttribute('data-countup');
             const isPercent = target.includes('%');
             const isPlus = target.includes('+');
-            const numMatch = target.match(/[\d.,]+/);
+            const numMatch = target.match(/[\d.,\s]+/);
             
             if (!numMatch) return;
             

@@ -15,7 +15,10 @@
         font-weight: var(--suv-weight-bold);
     }
     
-    /* Preserve cookie popup text colors */
+    /* Preserve cookie popup text colors for proper contrast
+       Cookie popup has dark background (rgba(26, 29, 35, 0.95))
+       and requires white/light text (var(--suv-color-text-inverse))
+       for readability, so inherit from parent instead of forcing dark */
     .cookie-popup h4,
     .cookie-popup p {
         color: inherit;
