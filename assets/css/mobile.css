@@ -141,7 +141,7 @@
     /* Compact sidebar on mobile */
     .content-rich-sidebar .info-box {
         margin-bottom: var(--suv-space-6);
-        color: #1a1d23;
+        color: var(--suv-color-text-primary);
     }
     
     /* Reduce spacing between content sections on mobile */
