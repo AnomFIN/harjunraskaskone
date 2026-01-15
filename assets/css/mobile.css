@@ -80,6 +80,11 @@
         color: #1a1d23 !important;
     }
     
+    /* Reduce spacing between content sections on mobile */
+    .content-rich-grid {
+        gap: var(--suv-space-6);
+    }
+    
     /* Hide sidebar info boxes on mobile */
     .content-rich-sidebar .info-box:nth-child(2) {
         display: none;
