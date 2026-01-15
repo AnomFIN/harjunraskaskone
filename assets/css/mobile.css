@@ -93,12 +93,13 @@
     
     /* Compact trust strip */
     .suv-trust-strip {
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: var(--suv-space-4);
     }
     
-    .suv-trust-item:nth-child(n+3) {
-        display: none;
+    .suv-trust-item {
+        font-size: 0.875rem;
     }
     
     /* Lazy load images */
