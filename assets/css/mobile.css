@@ -92,6 +92,8 @@
     .suv-trust-strip {
         grid-template-columns: repeat(2, 1fr);
         gap: var(--suv-space-4);
+        padding: var(--suv-space-4) 0;
+        margin-bottom: var(--suv-space-6);
     }
     
     .suv-trust-item:nth-child(n+3) {
