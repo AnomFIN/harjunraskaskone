@@ -105,22 +105,39 @@
                     entry.target.parentElement.classList.add('animated');
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        stats.forEach(stat => observer.observe(stat));
+        stats.forEach(stat => {
+            observer.observe(stat);
+            
+            // Trigger animation immediately for elements already in viewport
+            const rect = stat.getBoundingClientRect();
+            const isInViewport = rect.top >= 0 && rect.bottom <= window.innerHeight;
+            if (isInViewport && !stat.classList.contains('animated')) {
+                stat.classList.add('animated');
+                // Slight delay to ensure page has finished rendering
+                setTimeout(() => animateCounter(stat), 200);
+                if (stat.parentElement) {
+                    stat.parentElement.classList.add('animated');
+                }
+            }
+        });
 
         function animateCounter(element) {
             const target = element.getAttribute('data-countup');
             const isPercent = target.includes('%');
             const isPlus = target.includes('+');
-            const numMatch = target.match(/[\d.,]+/);
+            const numMatch = target.match(/[\d.,\s]+/);
             
             if (!numMatch) return;
             
-            const finalValue = parseFloat(numMatch[0].replace(',', '.'));
+            // Extract suffix (everything after the number)
+            const numEndIndex = target.indexOf(numMatch[0]) + numMatch[0].length;
+            const suffix = target.substring(numEndIndex).trim();
+            
+            const finalValue = parseFloat(numMatch[0].replace(/,/g, '').replace(/\s/g, ''));
             let current = 0;
-            const increment = finalValue / 60; // 60 frames for 1 second
-            const duration = 1000;
+            const duration = 1500;
             const startTime = Date.now();
 
             function updateCounter() {
@@ -131,19 +148,35 @@
                 const eased = 1 - Math.pow(1 - progress, 3);
                 current = finalValue * eased;
 
-                let displayValue = Math.round(current * 10) / 10;
+                let displayValue;
                 
-                if (target.includes(',')) {
-                    displayValue = displayValue.toString().replace('.', ',');
+                // Format based on value type
+                if (target.includes(' ')) {
+                    // Space-separated numbers like "767 329"
+                    displayValue = Math.round(current).toLocaleString('fi-FI').replace(/\s/g, ' ');
+                } else if (target.includes(',') && !isPercent) {
+                    // Decimal with comma like "1,9"
+                    displayValue = (Math.round(current * 10) / 10).toString().replace('.', ',');
+                } else if (isPercent) {
+                    // Percentage
+                    displayValue = Math.round(current * 10) / 10;
+                    if (target.includes(',')) {
+                        displayValue = displayValue.toString().replace('.', ',');
+                    }
+                } else {
+                    displayValue = Math.round(current);
                 }
                 
                 element.textContent = 
                     (isPlus ? '+' : '') + 
                     displayValue + 
-                    (isPercent ? '%' : '');
+                    (suffix ? ' ' + suffix : '');
 
                 if (progress < 1) {
                     requestAnimationFrame(updateCounter);
+                } else {
+                    // Set final value to exact target
+                    element.textContent = target;
                 }
             }
 

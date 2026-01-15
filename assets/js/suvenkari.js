@@ -548,7 +548,7 @@
         initFormValidation();
         initToasts();
         initRevealAnimations();
-        initCountUpAnimations();
+        // initCountUpAnimations(); // Disabled - using premium-ui.js initStatsCounter instead
         initMobileNav();
         initCopyButtons();
     }
