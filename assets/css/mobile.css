@@ -105,7 +105,7 @@
     /* Compact trust strip - show all items */
     .suv-trust-strip {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
         gap: var(--suv-space-3);
     }
     
@@ -114,8 +114,8 @@
     }
     
     .suv-trust-item svg {
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
     }
     
     /* Lazy load images */
@@ -171,9 +171,9 @@
         margin-bottom: var(--suv-space-4);
     }
     
-    /* Compact stats - show all items in single column on small screens */
+    /* Compact stats - responsive layout */
     .suv-hero-stats {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         gap: var(--suv-space-4);
     }
     
