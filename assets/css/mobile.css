@@ -86,6 +86,14 @@
         color: #1a1d23;
     }
     
+    /* Reduce spacing between content sections on mobile */
+    .content-rich-grid {
+        gap: var(--suv-space-6);
+    }
+    
+    /* Hide sidebar info boxes on mobile */
+    .content-rich-sidebar .info-box:nth-child(2) {
+        display: none;
     /* Keep both info boxes visible on mobile */
     .content-rich-sidebar .info-box {
         margin-bottom: var(--suv-space-4);
