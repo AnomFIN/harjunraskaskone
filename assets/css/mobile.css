@@ -37,11 +37,6 @@
         font-weight: var(--suv-weight-medium);
     }
     
-    /* Ensure proper backgrounds */
-    .section-gray {
-        background: var(--suv-color-bg-secondary);
-    }
-    
     /* Compact process steps on mobile - keep content visible */
     .process-step-detailed .process-step-content ul {
         margin-bottom: var(--suv-space-6);
