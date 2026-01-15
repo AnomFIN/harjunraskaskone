@@ -5,84 +5,95 @@
 
 /* Hide heavy content on mobile */
 @media (max-width: 767px) {
-    /* CRITICAL: Force dark text on all elements for readability */
-    * {
-        color: var(--suv-color-text-primary) !important;
+    /* Ensure readable text contrast on mobile */
+    body {
+        color: var(--suv-color-text-primary);
     }
     
     h1, h2, h3, h4, h5, h6 {
-        color: #1a1d23 !important;
-        font-weight: var(--suv-weight-bold) !important;
+        color: var(--suv-color-text-primary);
     }
     
-    p, span, div {
-        color: #3d4451 !important;
+    p {
+        color: var(--suv-color-text-secondary);
     }
     
     .section-subtitle {
-        color: var(--suv-color-accent-primary) !important;
+        color: var(--suv-color-accent-primary);
     }
     
     .lead-text {
-        color: #1a1d23 !important;
-        font-weight: var(--suv-weight-medium) !important;
+        color: var(--suv-color-text-primary);
+        font-weight: var(--suv-weight-medium);
     }
     
-    /* Force white background for better contrast */
-    .section, .section-gray {
-        background: #ffffff !important;
+    /* Ensure proper backgrounds */
+    .section-gray {
+        background: var(--suv-color-bg-secondary);
     }
     
-    /* Hide detailed process steps on mobile */
+    /* Compact process steps on mobile - keep content visible */
     .process-step-detailed .process-step-content ul {
-        display: none;
+        margin-bottom: var(--suv-space-6);
     }
     
-    /* Simplify service cards */
+    .process-step-detailed .process-step-content ul li {
+        font-size: var(--suv-font-sm);
+        margin-bottom: var(--suv-space-2);
+    }
+    
+    /* Compact service cards on mobile - keep content visible */
     .suv-service-feature-list {
-        display: none;
+        margin-bottom: var(--suv-space-6);
+    }
+    
+    .suv-service-feature-list li {
+        font-size: var(--suv-font-sm);
+        margin-bottom: var(--suv-space-2);
     }
     
     /* Ensure high contrast for stats and numbers */
     .suv-hero-stat-value,
+    .suv-stat-value {
+        color: var(--suv-color-accent-primary);
+    }
+    
     .suv-hero-stat-label,
-    .suv-stat-value,
     .suv-stat-label {
-        color: #1a1d23 !important;
+        color: var(--suv-color-text-secondary);
     }
     
-    /* Navigation text - desktop and mobile */
+    /* Navigation text - mobile */
     .suv-nav-link {
-        color: #1a1d23 !important;
-        font-weight: var(--suv-weight-semibold) !important;
-    }
-    
-    /* Desktop navigation should be visible */
-    @media (min-width: 768px) {
-        .suv-nav-link {
-            color: var(--suv-color-text-primary) !important;
-        }
+        color: var(--suv-color-text-primary);
+        font-weight: var(--suv-weight-semibold);
     }
     
     /* Button text should be visible */
-    .suv-btn {
-        color: white !important;
+    .suv-btn-primary {
+        color: white;
     }
     
     .suv-btn-secondary {
-        color: #1a1d23 !important;
+        color: var(--suv-color-text-primary);
     }
     
     /* Project card text */
-    .project-content h4,
-    .project-content p,
-    .project-type {
-        color: #1a1d23 !important;
+    .project-content h4 {
+        color: var(--suv-color-text-primary);
     }
     
-    /* Hide sidebar info boxes on mobile */
-    .content-rich-sidebar .info-box:nth-child(2) {
-        display: none;
+    .project-content p {
+        color: var(--suv-color-text-secondary);
+    }
+    
+    .project-type {
+        color: var(--suv-color-accent-primary);
+    }
+    
+    /* Compact sidebar on mobile */
+    .content-rich-sidebar .info-box {
+        margin-bottom: var(--suv-space-6);
     }
     
     /* Reduce hero content */
@@ -91,14 +102,20 @@
         margin-bottom: var(--suv-space-6);
     }
     
-    /* Compact trust strip */
+    /* Compact trust strip - show all items */
     .suv-trust-strip {
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: var(--suv-space-4);
+        gap: var(--suv-space-3);
     }
     
-    .suv-trust-item:nth-child(n+3) {
-        display: none;
+    .suv-trust-item {
+        font-size: var(--suv-font-xs);
+    }
+    
+    .suv-trust-item svg {
+        width: 20px;
+        height: 20px;
     }
     
     /* Lazy load images */
@@ -111,10 +128,26 @@
         loading: eager;
     }
     
-    /* Hide decorative elements */
-    .process-step-image,
+    /* Show process step images on mobile in compact form */
+    .process-step-image {
+        display: block;
+        width: 100%;
+        max-width: 200px;
+        margin: var(--suv-space-4) auto 0;
+    }
+    
+    .process-step-image img {
+        opacity: 0.7;
+    }
+    
+    /* Show service visuals on mobile in compact form */
     .suv-service-feature-visual {
-        display: none;
+        display: block;
+        margin-top: var(--suv-space-6);
+    }
+    
+    .suv-service-feature-visual img {
+        border-radius: var(--suv-radius-md);
     }
     
     /* Compact header */
@@ -138,14 +171,23 @@
         margin-bottom: var(--suv-space-4);
     }
     
-    /* Compact stats */
+    /* Compact stats - show all items in single column on small screens */
     .suv-hero-stats {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
         gap: var(--suv-space-4);
     }
     
-    .suv-hero-stat:nth-child(n+3) {
-        display: none;
+    .suv-hero-stat {
+        padding: var(--suv-space-3) 0;
+        text-align: center;
+    }
+    
+    .suv-hero-stat-value {
+        font-size: var(--suv-font-3xl);
+    }
+    
+    .suv-hero-stat-label {
+        font-size: var(--suv-font-xs);
     }
 }
 
