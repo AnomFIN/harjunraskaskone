@@ -59,7 +59,7 @@
         font-weight: var(--suv-weight-medium);
     }
     
-    /* Force white background for better contrast */
+    /* Ensure consistent section backgrounds using design tokens */
     .section, .section-gray {
         background: var(--suv-color-bg-primary);
     }
