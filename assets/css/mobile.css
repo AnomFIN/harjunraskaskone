@@ -119,9 +119,14 @@
         padding: var(--suv-space-3) 0;
     }
     
-    /* Reduce section spacing */
+    /* Reduce section spacing on mobile */
     .section {
-        padding: var(--suv-space-16) 0;
+        padding: var(--suv-space-8) 0;
+    }
+    
+    /* Even more compact hero section */
+    .suv-hero {
+        padding: var(--suv-space-6) 0;
     }
     
     /* Mobile-first navigation */
