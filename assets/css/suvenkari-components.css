@@ -106,7 +106,8 @@
 }
 
 /* Compact button style for header navigation */
-.suv-nav .suv-btn-primary {
+.suv-nav .suv-btn-primary,
+.suv-btn-compact {
     padding: var(--suv-space-3) var(--suv-space-6);
     font-size: var(--suv-font-sm);
     gap: var(--suv-space-2);
@@ -477,7 +478,7 @@
     
     .suv-nav-link:hover {
         color: var(--suv-color-accent-primary);
-        background: rgba(200, 121, 65, 0.1);
+        background: var(--suv-color-accent-light);
     }
 }
 
