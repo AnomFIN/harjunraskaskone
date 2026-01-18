@@ -159,6 +159,12 @@
     /* Compact trust strip - show all items */
     .suv-trust-strip {
         display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--suv-space-4);
+    }
+    
+    .suv-trust-item {
+        font-size: 0.875rem;
         grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
         gap: var(--suv-space-3);
         padding: var(--suv-space-4) 0;
