@@ -274,16 +274,6 @@
         height: 24px;
     }
     
-    /* Lazy load images */
-    img {
-        loading: lazy;
-    }
-    
-    /* First hero image loads eagerly */
-    .suv-hero-image {
-        loading: eager;
-    }
-    
     /* Show process step images on mobile in compact form */
     .process-step-image {
         display: block;
