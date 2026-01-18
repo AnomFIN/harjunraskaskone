@@ -514,7 +514,7 @@
 .content-rich-sidebar {
     display: flex;
     flex-direction: column;
-    gap: var(--suv-space-6);
+    gap: var(--suv-space-4);
 }
 
 .info-box {

@@ -5,84 +5,149 @@
 
 /* Hide heavy content on mobile */
 @media (max-width: 767px) {
-    /* CRITICAL: Force dark text on all elements for readability */
-    * {
-        color: var(--suv-color-text-primary) !important;
+    /* Ensure readable text contrast on mobile */
+    /* Improve text contrast on mobile without forcing all elements */
+    body {
+        color: var(--suv-color-text-primary);
     }
     
     h1, h2, h3, h4, h5, h6 {
-        color: #1a1d23 !important;
-        font-weight: var(--suv-weight-bold) !important;
+        color: var(--suv-color-text-primary);
     }
     
-    p, span, div {
-        color: #3d4451 !important;
+    p {
+        color: var(--suv-color-text-secondary);
+    }
+    
+    /* Preserve cookie popup text colors for proper contrast
+       Cookie popup has dark background (rgba(26, 29, 35, 0.95))
+       and requires white/light text (var(--suv-color-text-inverse))
+       for readability, so inherit from parent instead of forcing dark */
+    .cookie-popup h4,
+    .cookie-popup p {
+        color: inherit;
     }
     
     .section-subtitle {
-        color: var(--suv-color-accent-primary) !important;
+        color: var(--suv-color-accent-primary);
     }
     
     .lead-text {
-        color: #1a1d23 !important;
-        font-weight: var(--suv-weight-medium) !important;
+        color: var(--suv-color-text-primary);
+        font-weight: var(--suv-weight-medium);
     }
     
-    /* Force white background for better contrast */
-    .section, .section-gray {
-        background: #ffffff !important;
-    }
-    
-    /* Hide detailed process steps on mobile */
+    /* Compact process steps on mobile - keep content visible */
     .process-step-detailed .process-step-content ul {
+        margin-bottom: var(--suv-space-6);
+    }
+    
+    .process-step-detailed .process-step-content ul li {
+        font-size: var(--suv-font-sm);
+        margin-bottom: var(--suv-space-2);
+    }
+    
+    /* Compact service cards on mobile - keep content visible */
+    .suv-service-feature-list {
+        margin-bottom: var(--suv-space-6);
+    }
+    
+    .suv-service-feature-list li {
+        font-size: var(--suv-font-sm);
+        margin-bottom: var(--suv-space-2);
+        color: var(--suv-color-text-primary);
+        font-weight: var(--suv-weight-medium);
+    }
+    
+    /* Ensure consistent section backgrounds using design tokens */
+    .section {
+        background: var(--suv-color-bg-primary);
+    }
+    
+    .section-gray {
+        background: var(--suv-color-bg-secondary);
+    }
+    
+    /* Show first 3 bullet points in process steps, hide the rest */
+    .process-step-detailed .process-step-content ul {
+        font-size: var(--suv-font-sm);
+    }
+    
+    .process-step-detailed .process-step-content ul li:nth-child(n+4) {
         display: none;
     }
     
-    /* Simplify service cards */
+    /* Simplify service cards - keep at least 2-3 key features visible */
     .suv-service-feature-list {
+        font-size: var(--suv-font-sm);
+    }
+    
+    .suv-service-feature-list li:nth-child(n+4) {
         display: none;
     }
     
     /* Ensure high contrast for stats and numbers */
     .suv-hero-stat-value,
+    .suv-stat-value {
+        color: var(--suv-color-accent-primary);
+    }
+    
     .suv-hero-stat-label,
-    .suv-stat-value,
     .suv-stat-label {
-        color: #1a1d23 !important;
+        color: var(--suv-color-text-secondary);
     }
     
-    /* Navigation text - desktop and mobile */
+    /* Navigation text - mobile */
     .suv-nav-link {
-        color: #1a1d23 !important;
-        font-weight: var(--suv-weight-semibold) !important;
+        color: var(--suv-color-text-primary);
+        font-weight: var(--suv-weight-semibold);
     }
     
-    /* Desktop navigation should be visible */
-    @media (min-width: 768px) {
-        .suv-nav-link {
-            color: var(--suv-color-text-primary) !important;
-        }
+    /* Navigation text - mobile menu */
+    .suv-nav.active .suv-nav-link {
+        color: var(--suv-color-text-primary);
+        font-weight: var(--suv-weight-semibold);
     }
     
-    /* Button text should be visible */
-    .suv-btn {
-        color: white !important;
+    /* Button text should remain as designed */
+    .suv-btn-primary {
+        color: white;
     }
     
     .suv-btn-secondary {
-        color: #1a1d23 !important;
+        color: var(--suv-color-text-primary);
     }
     
     /* Project card text */
-    .project-content h4,
-    .project-content p,
+    .project-content h4 {
+        color: var(--suv-color-text-primary);
+    }
+    
+    .project-content p {
+        color: var(--suv-color-text-secondary);
+    }
+    
     .project-type {
-        color: #1a1d23 !important;
+        color: var(--suv-color-accent-primary);
+    }
+    
+    /* Compact sidebar on mobile */
+    .content-rich-sidebar .info-box {
+        margin-bottom: var(--suv-space-6);
+        color: var(--suv-color-text-primary);
+    }
+    
+    /* Reduce spacing between content sections on mobile */
+    .content-rich-grid {
+        gap: var(--suv-space-6);
     }
     
     /* Hide sidebar info boxes on mobile */
     .content-rich-sidebar .info-box:nth-child(2) {
         display: none;
+    /* Keep both info boxes visible on mobile */
+    .content-rich-sidebar .info-box {
+        margin-bottom: var(--suv-space-4);
     }
     
     /* Reduce hero content */
@@ -91,7 +156,7 @@
         margin-bottom: var(--suv-space-6);
     }
     
-    /* Compact trust strip */
+    /* Compact trust strip - show all items */
     .suv-trust-strip {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -100,6 +165,19 @@
     
     .suv-trust-item {
         font-size: 0.875rem;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: var(--suv-space-3);
+        padding: var(--suv-space-4) 0;
+        margin-bottom: var(--suv-space-6);
+    }
+    
+    .suv-trust-item {
+        font-size: var(--suv-font-xs);
+    }
+    
+    .suv-trust-item svg {
+        width: 24px;
+        height: 24px;
     }
     
     /* Lazy load images */
@@ -112,10 +190,26 @@
         loading: eager;
     }
     
-    /* Hide decorative elements */
-    .process-step-image,
+    /* Show process step images on mobile in compact form */
+    .process-step-image {
+        display: block;
+        width: 100%;
+        max-width: 200px;
+        margin: var(--suv-space-4) auto 0;
+    }
+    
+    .process-step-image img {
+        opacity: 0.7;
+    }
+    
+    /* Show service visuals on mobile in compact form */
     .suv-service-feature-visual {
-        display: none;
+        display: block;
+        margin-top: var(--suv-space-6);
+    }
+    
+    .suv-service-feature-visual img {
+        border-radius: var(--suv-radius-md);
     }
     
     /* Compact header */
@@ -123,9 +217,14 @@
         padding: var(--suv-space-3) 0;
     }
     
-    /* Reduce section spacing */
+    /* Reduce section spacing on mobile */
     .section {
-        padding: var(--suv-space-16) 0;
+        padding: var(--suv-space-8) 0;
+    }
+    
+    /* Even more compact hero section */
+    .suv-hero {
+        padding: var(--suv-space-6) 0;
     }
     
     /* Mobile-first navigation */
@@ -139,14 +238,23 @@
         margin-bottom: var(--suv-space-4);
     }
     
-    /* Compact stats */
+    /* Compact stats - responsive layout */
     .suv-hero-stats {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         gap: var(--suv-space-4);
     }
     
-    .suv-hero-stat:nth-child(n+3) {
-        display: none;
+    .suv-hero-stat {
+        padding: var(--suv-space-3) 0;
+        text-align: center;
+    }
+    
+    .suv-hero-stat-value {
+        font-size: var(--suv-font-3xl);
+    }
+    
+    .suv-hero-stat-label {
+        font-size: var(--suv-font-xs);
     }
 }
 
