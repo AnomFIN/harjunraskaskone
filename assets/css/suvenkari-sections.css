@@ -133,12 +133,14 @@
     font-size: var(--suv-font-3xl);
     margin-bottom: var(--suv-space-5);
     color: var(--suv-color-text-primary);
+    font-weight: var(--suv-weight-extrabold);
 }
 
 .suv-service-feature-content p {
     font-size: var(--suv-font-lg);
     line-height: var(--suv-leading-relaxed);
-    color: var(--suv-color-text-secondary);
+    color: var(--suv-color-text-primary);
+    font-weight: var(--suv-weight-medium);
     margin-bottom: var(--suv-space-6);
 }
 
@@ -288,6 +290,7 @@
     color: white;
     margin-bottom: var(--suv-space-6);
     text-shadow: 0 2px 4px rgba(26, 29, 35, 0.1);
+    font-weight: var(--suv-weight-extrabold);
 }
 
 .suv-proposal-content p {
@@ -295,6 +298,7 @@
     color: rgba(255, 255, 255, 0.95);
     margin-bottom: var(--suv-space-10);
     line-height: var(--suv-leading-relaxed);
+    font-weight: var(--suv-weight-medium);
 }
 
 .suv-proposal-form {
@@ -521,12 +525,15 @@
     background: var(--suv-color-bg-card);
     padding: var(--suv-space-8);
     border-radius: var(--suv-radius-lg);
-    border: 1px solid var(--suv-color-border-primary);
+    border: 2px solid var(--suv-color-border-primary);
+    box-shadow: var(--suv-shadow-md);
 }
 
 .info-box h3 {
     font-size: var(--suv-font-xl);
     margin-bottom: var(--suv-space-5);
+    color: var(--suv-color-text-primary);
+    font-weight: var(--suv-weight-bold);
 }
 
 .info-list {
@@ -535,14 +542,15 @@
 }
 
 .info-list dt {
-    font-weight: var(--suv-weight-semibold);
-    color: var(--suv-color-text-secondary);
+    font-weight: var(--suv-weight-bold);
+    color: var(--suv-color-text-primary);
     font-size: var(--suv-font-sm);
 }
 
 .info-list dd {
     margin-left: 0;
     color: var(--suv-color-text-primary);
+    font-weight: var(--suv-weight-medium);
 }
 
 .registry-list {
@@ -561,6 +569,22 @@
 
 .registry-icon {
     color: var(--suv-color-accent-primary);
+}
+
+/* Improve registry box visibility */
+.registry-box {
+    background: var(--suv-color-accent-light);
+    border: 2px solid var(--suv-color-accent-primary);
+}
+
+.registry-box h3 {
+    color: var(--suv-color-text-primary);
+    font-weight: var(--suv-weight-extrabold);
+}
+
+.registry-list li {
+    color: var(--suv-color-text-primary);
+    font-weight: var(--suv-weight-semibold);
 }
 
 /* ============= Process Section Styles ============= */
@@ -587,11 +611,14 @@
 .process-step-content h3 {
     font-size: var(--suv-font-2xl);
     margin-bottom: var(--suv-space-4);
+    color: var(--suv-color-text-primary);
+    font-weight: var(--suv-weight-extrabold);
 }
 
 .process-step-content p {
     font-size: var(--suv-font-lg);
-    color: var(--suv-color-text-secondary);
+    color: var(--suv-color-text-primary);
+    font-weight: var(--suv-weight-medium);
     margin-bottom: var(--suv-space-5);
 }
 
@@ -605,7 +632,8 @@
     padding-left: var(--suv-space-6);
     position: relative;
     margin-bottom: var(--suv-space-3);
-    color: var(--suv-color-text-secondary);
+    color: var(--suv-color-text-primary);
+    font-weight: var(--suv-weight-medium);
 }
 
 .process-step-content ul li::before {

@@ -694,9 +694,10 @@
 }
 
 .project-content p {
-    color: var(--suv-color-text-secondary);
+    color: var(--suv-color-text-primary);
     line-height: var(--suv-leading-relaxed);
     margin-bottom: var(--suv-space-4);
+    font-weight: var(--suv-weight-medium);
 }
 
 .project-specs {
@@ -854,7 +855,7 @@
 .suv-form-label {
     display: block;
     font-size: var(--suv-font-base);
-    font-weight: var(--suv-weight-medium);
+    font-weight: var(--suv-weight-semibold);
     color: var(--suv-color-text-primary);
     margin-bottom: var(--suv-space-2_5);
 }
@@ -870,6 +871,7 @@
     border: 2px solid var(--suv-color-border-primary);
     border-radius: var(--suv-radius-base);
     transition: all var(--suv-transition-fast);
+    font-weight: var(--suv-weight-medium);
 }
 
 .suv-form-input:focus,
