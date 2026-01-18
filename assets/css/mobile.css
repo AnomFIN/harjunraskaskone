@@ -32,7 +32,113 @@
         color: var(--suv-color-accent-primary);
     }
     
+    /* Ensure high contrast for section titles and headers */
+    .section-subtitle {
+        color: var(--suv-color-accent-primary);
+        font-weight: var(--suv-weight-bold);
+    }
+    
+    .section-title {
+        color: var(--suv-color-text-primary);
+        font-weight: var(--suv-weight-extrabold);
+    }
+    
+    /* Improve info-box visibility */
+    .info-box {
+        background: var(--suv-color-bg-card);
+        border: 2px solid var(--suv-color-border-primary);
+        box-shadow: var(--suv-shadow-md);
+    }
+    
+    .info-box h3 {
+        color: var(--suv-color-text-primary);
+        font-weight: var(--suv-weight-bold);
+        font-size: var(--suv-font-xl);
+    }
+    
+    .info-list dt {
+        color: var(--suv-color-text-primary);
+        font-weight: var(--suv-weight-bold);
+    }
+    
+    .info-list dd {
+        color: var(--suv-color-text-primary);
+        font-weight: var(--suv-weight-medium);
+    }
+    
+    /* Improve registry box visibility */
+    .registry-box {
+        background: var(--suv-color-accent-light);
+        border: 2px solid var(--suv-color-accent-primary);
+    }
+    
+    .registry-box h3 {
+        color: var(--suv-color-text-primary);
+        font-weight: var(--suv-weight-extrabold);
+    }
+    
+    .registry-list li {
+        color: var(--suv-color-text-primary);
+        font-weight: var(--suv-weight-semibold);
+    }
+    
+    /* Improve service section visibility */
+    .suv-service-feature h3 {
+        color: var(--suv-color-text-primary);
+        font-weight: var(--suv-weight-extrabold);
+    }
+    
+    .suv-service-feature p {
+        color: var(--suv-color-text-primary);
+        font-weight: var(--suv-weight-medium);
+    }
+    
+    /* Improve project section visibility */
+    .project-card h4 {
+        color: var(--suv-color-text-primary);
+        font-weight: var(--suv-weight-bold);
+    }
+    
+    /* Improve contact form visibility */
+    .suv-proposal-banner h2 {
+        color: var(--suv-color-text-primary);
+        font-weight: var(--suv-weight-extrabold);
+    }
+    
+    .suv-proposal-banner p {
+        color: var(--suv-color-text-primary);
+        font-weight: var(--suv-weight-medium);
+    }
+    
+    .suv-form-label {
+        color: var(--suv-color-text-primary);
+        font-weight: var(--suv-weight-semibold);
+    }
+    
+    .suv-form-input,
+    .suv-form-textarea {
+        color: var(--suv-color-text-primary);
+        border: 2px solid var(--suv-color-border-primary);
+        font-weight: var(--suv-weight-medium);
+    }
+    
     .lead-text {
+        color: var(--suv-color-text-primary);
+        font-weight: var(--suv-weight-medium);
+    }
+    
+    /* Improve process section visibility */
+    .process-step-detailed h3 {
+        color: var(--suv-color-text-primary);
+        font-weight: var(--suv-weight-extrabold);
+    }
+    
+    .process-step-detailed p {
+        color: var(--suv-color-text-primary);
+        font-weight: var(--suv-weight-medium);
+    }
+    
+    .process-step-detailed ul li {
         color: var(--suv-color-text-primary);
         font-weight: var(--suv-weight-medium);
     }
@@ -164,15 +270,11 @@
     }
     
     .suv-trust-item {
-        font-size: 0.875rem;
+        font-size: var(--suv-font-sm);
         grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
         gap: var(--suv-space-3);
         padding: var(--suv-space-4) 0;
         margin-bottom: var(--suv-space-6);
-    }
-    
-    .suv-trust-item {
-        font-size: var(--suv-font-xs);
     }
     
     .suv-trust-item svg {
