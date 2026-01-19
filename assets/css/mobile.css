@@ -106,7 +106,7 @@
     }
     
     .suv-proposal-banner p {
-        color: var(--suv-color-text-primary);
+        color: rgba(255, 255, 255, 0.95);
         font-weight: var(--suv-weight-medium);
     }
     
