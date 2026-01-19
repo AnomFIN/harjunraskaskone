@@ -117,7 +117,7 @@ a:hover {
 .section-subtitle {
     display: inline-block;
     font-size: var(--suv-font-sm);
-    font-weight: var(--suv-weight-semibold);
+    font-weight: var(--suv-weight-bold);
     letter-spacing: var(--suv-tracking-widest);
     text-transform: uppercase;
     color: var(--suv-color-accent-primary);
@@ -129,6 +129,7 @@ a:hover {
     font-weight: var(--suv-weight-extrabold);
     line-height: var(--suv-leading-snug);
     margin-bottom: var(--suv-space-6);
+    color: var(--suv-color-text-primary);
 }
 
 /* Utility Classes */
