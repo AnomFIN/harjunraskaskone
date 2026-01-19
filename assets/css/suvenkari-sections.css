@@ -565,6 +565,8 @@
     gap: var(--suv-space-3);
     padding: var(--suv-space-3) 0;
     font-size: var(--suv-font-base);
+    color: var(--suv-color-text-primary);
+    font-weight: var(--suv-weight-semibold);
 }
 
 .registry-icon {
@@ -580,11 +582,6 @@
 .registry-box h3 {
     color: var(--suv-color-text-primary);
     font-weight: var(--suv-weight-extrabold);
-}
-
-.registry-list li {
-    color: var(--suv-color-text-primary);
-    font-weight: var(--suv-weight-semibold);
 }
 
 /* ============= Process Section Styles ============= */

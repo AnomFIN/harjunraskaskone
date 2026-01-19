@@ -66,22 +66,6 @@
         font-weight: var(--suv-weight-medium);
     }
     
-    /* Improve registry box visibility */
-    .registry-box {
-        background: var(--suv-color-accent-light);
-        border: 2px solid var(--suv-color-accent-primary);
-    }
-    
-    .registry-box h3 {
-        color: var(--suv-color-text-primary);
-        font-weight: var(--suv-weight-extrabold);
-    }
-    
-    .registry-list li {
-        color: var(--suv-color-text-primary);
-        font-weight: var(--suv-weight-semibold);
-    }
-    
     /* Improve service section visibility */
     .suv-service-feature h3 {
         color: var(--suv-color-text-primary);
@@ -101,7 +85,7 @@
     
     /* Improve contact form visibility */
     .suv-proposal-banner h2 {
-        color: var(--suv-color-text-primary);
+        color: #ffffff;
         font-weight: var(--suv-weight-extrabold);
     }
     
