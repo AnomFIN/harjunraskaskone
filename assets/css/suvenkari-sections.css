@@ -132,14 +132,14 @@
 .suv-service-feature-content h3 {
     font-size: var(--suv-font-3xl);
     margin-bottom: var(--suv-space-5);
-    color: var(--suv-color-text-primary);
+    color: var(--suv-color-text-primary) !important;
     font-weight: var(--suv-weight-extrabold);
 }
 
 .suv-service-feature-content p {
     font-size: var(--suv-font-lg);
     line-height: var(--suv-leading-relaxed);
-    color: var(--suv-color-text-primary);
+    color: var(--suv-color-text-primary) !important;
     font-weight: var(--suv-weight-medium);
     margin-bottom: var(--suv-space-6);
 }
@@ -287,7 +287,7 @@
 
 .suv-proposal-content h2 {
     font-size: var(--suv-font-5xl);
-    color: white;
+    color: white !important;
     margin-bottom: var(--suv-space-6);
     text-shadow: 0 2px 4px rgba(26, 29, 35, 0.1);
     font-weight: var(--suv-weight-extrabold);
@@ -295,7 +295,7 @@
 
 .suv-proposal-content p {
     font-size: var(--suv-font-xl);
-    color: rgba(255, 255, 255, 0.95);
+    color: rgba(255, 255, 255, 0.95) !important;
     margin-bottom: var(--suv-space-10);
     line-height: var(--suv-leading-relaxed);
     font-weight: var(--suv-weight-medium);
@@ -608,13 +608,13 @@
 .process-step-content h3 {
     font-size: var(--suv-font-2xl);
     margin-bottom: var(--suv-space-4);
-    color: var(--suv-color-text-primary);
+    color: var(--suv-color-text-primary) !important;
     font-weight: var(--suv-weight-extrabold);
 }
 
 .process-step-content p {
     font-size: var(--suv-font-lg);
-    color: var(--suv-color-text-primary);
+    color: var(--suv-color-text-primary) !important;
     font-weight: var(--suv-weight-medium);
     margin-bottom: var(--suv-space-5);
 }
@@ -629,7 +629,7 @@
     padding-left: var(--suv-space-6);
     position: relative;
     margin-bottom: var(--suv-space-3);
-    color: var(--suv-color-text-primary);
+    color: var(--suv-color-text-primary) !important;
     font-weight: var(--suv-weight-medium);
 }
 

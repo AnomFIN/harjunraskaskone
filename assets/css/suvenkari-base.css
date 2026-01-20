@@ -66,7 +66,7 @@ p {
 .lead-text {
     font-size: var(--suv-font-lg);
     line-height: var(--suv-leading-relaxed);
-    color: var(--suv-color-text-secondary);
+    color: var(--suv-color-text-secondary) !important;
     font-weight: var(--suv-weight-normal);
 }
 
@@ -93,6 +93,23 @@ a:hover {
 
 .section-gray {
     background-color: var(--suv-color-bg-secondary);
+    color: var(--suv-color-text-primary);
+}
+
+/* Ensure all text elements in gray sections have dark text */
+.section-gray h1,
+.section-gray h2,
+.section-gray h3,
+.section-gray h4,
+.section-gray h5,
+.section-gray h6,
+.section-gray p,
+.section-gray li,
+.section-gray span,
+.section-gray .lead-text,
+.section-gray .section-title,
+.section-gray .section-subtitle {
+    color: var(--suv-color-text-primary);
 }
 
 .section-dark {
