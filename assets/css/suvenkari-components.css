@@ -680,13 +680,13 @@
 .project-content h4 {
     font-size: var(--suv-font-lg);
     font-weight: var(--suv-weight-bold);
-    color: var(--suv-color-text-primary);
+    color: var(--suv-color-text-primary) !important;
     margin-bottom: var(--suv-space-2);
 }
 
 .project-type {
     font-size: var(--suv-font-sm);
-    color: var(--suv-color-accent-primary);
+    color: var(--suv-color-accent-primary) !important;
     font-weight: var(--suv-weight-semibold);
     text-transform: uppercase;
     letter-spacing: var(--suv-tracking-wide);
@@ -694,7 +694,7 @@
 }
 
 .project-content p {
-    color: var(--suv-color-text-primary);
+    color: var(--suv-color-text-primary) !important;
     line-height: var(--suv-leading-relaxed);
     margin-bottom: var(--suv-space-4);
     font-weight: var(--suv-weight-medium);
