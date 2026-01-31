@@ -694,7 +694,7 @@
 }
 
 .project-content p {
-    color: var(--suv-color-text-primary) !important;
+    color: var(--suv-color-text-primary);
     line-height: var(--suv-leading-relaxed);
     margin-bottom: var(--suv-space-4);
     font-weight: var(--suv-weight-medium);
