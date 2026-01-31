@@ -66,10 +66,13 @@ p {
 .lead-text {
     font-size: var(--suv-font-lg);
     line-height: var(--suv-leading-relaxed);
-    color: var(--suv-color-text-secondary);
+    color: var(--suv-color-text-primary);
     font-weight: var(--suv-weight-normal);
 }
 
+.section-gray .lead-text {
+    color: var(--suv-color-text-secondary);
+}
 a {
     color: var(--suv-color-accent-primary);
     text-decoration: none;
@@ -93,6 +96,7 @@ a:hover {
 
 .section-gray {
     background-color: var(--suv-color-bg-secondary);
+    color: var(--suv-color-text-primary) !important;
 }
 
 .section-dark {
