@@ -67,11 +67,12 @@ p {
     font-size: var(--suv-font-lg);
     line-height: var(--suv-leading-relaxed);
     color: var(--suv-color-text-primary);
-    font-weight: var(--suv-weight-normal);
+    font-weight: var(--suv-weight-medium);
 }
 
 .section-gray .lead-text {
-    color: var(--suv-color-text-secondary);
+    color: var(--suv-color-text-primary);
+    font-weight: var(--suv-weight-medium);
 }
 a {
     color: var(--suv-color-accent-primary);
