@@ -51,6 +51,7 @@
     color: var(--suv-color-text-secondary);
     margin-bottom: var(--suv-space-10);
     max-width: 640px;
+    font-weight: var(--suv-weight-medium);
 }
 
 .suv-hero-cta {
@@ -230,13 +231,14 @@
     margin-top: var(--suv-space-3);
     font-size: var(--suv-font-sm);
     color: var(--suv-color-success);
+    font-weight: var(--suv-weight-semibold);
 }
 
 .suv-stat-note {
     margin-top: var(--suv-space-3);
     font-size: var(--suv-font-sm);
     color: var(--suv-color-text-secondary);
-    font-weight: var(--suv-weight-medium);
+    font-weight: var(--suv-weight-semibold);
 }
 
 
