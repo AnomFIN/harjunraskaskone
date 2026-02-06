@@ -41,8 +41,9 @@
 .cookie-text p {
     font-size: var(--suv-font-sm);
     line-height: var(--suv-leading-relaxed);
-    color: var(--suv-color-slate-200);
+    color: rgba(253, 252, 251, 0.9);
     margin-bottom: 0;
+    font-weight: var(--suv-weight-medium);
 }
 
 .cookie-actions {
@@ -106,7 +107,7 @@
     border: none;
     font-size: 24px;
     cursor: pointer;
-    color: var(--suv-color-text-muted);
+    color: var(--suv-color-text-secondary);
     width: 32px;
     height: 32px;
     display: flex;
@@ -139,6 +140,7 @@
     line-height: var(--suv-leading-relaxed);
     margin-bottom: var(--suv-space-6);
     text-align: left;
+    font-weight: var(--suv-weight-medium);
 }
 
 .newsletter-form {
@@ -171,8 +173,9 @@
     align-items: center;
     gap: var(--suv-space-2);
     font-size: var(--suv-font-sm);
-    color: var(--suv-color-text-muted);
+    color: var(--suv-color-text-secondary);
     cursor: pointer;
+    font-weight: var(--suv-weight-medium);
 }
 
 .newsletter-checkbox input[type="checkbox"] {
