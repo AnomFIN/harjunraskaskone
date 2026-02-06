@@ -95,7 +95,7 @@
     }
     
     .suv-form-label {
-        color: var(--suv-color-text-primary);
+        color: var(--suv-color-text-secondary);
         font-weight: var(--suv-weight-semibold);
     }
     
