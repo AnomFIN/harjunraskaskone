@@ -83,8 +83,8 @@
 
 .suv-hero-stat-label {
     font-size: var(--suv-font-sm);
-    color: var(--suv-color-text-muted);
-    font-weight: var(--suv-weight-medium);
+    color: var(--suv-color-text-secondary);
+    font-weight: var(--suv-weight-semibold);
 }
 
 .suv-hero-visual {
@@ -156,7 +156,8 @@
     gap: var(--suv-space-3);
     margin-bottom: var(--suv-space-3);
     font-size: var(--suv-font-base);
-    color: var(--suv-color-text-secondary);
+    color: var(--suv-color-text-primary);
+    font-weight: var(--suv-weight-medium);
 }
 
 .suv-service-feature-list li::before {
@@ -234,7 +235,8 @@
 .suv-stat-note {
     margin-top: var(--suv-space-3);
     font-size: var(--suv-font-sm);
-    color: var(--suv-color-text-muted);
+    color: var(--suv-color-text-secondary);
+    font-weight: var(--suv-weight-medium);
 }
 
 
@@ -254,8 +256,8 @@
     align-items: center;
     gap: var(--suv-space-3);
     font-size: var(--suv-font-base);
-    font-weight: var(--suv-weight-medium);
-    color: var(--suv-color-text-secondary);
+    font-weight: var(--suv-weight-semibold);
+    color: var(--suv-color-text-primary);
 }
 
 .suv-trust-item svg {
@@ -350,7 +352,8 @@
 .suv-footer-brand-info {
     margin-top: var(--suv-space-5);
     font-size: var(--suv-font-sm);
-    color: rgba(253, 252, 251, 0.6);
+    color: rgba(253, 252, 251, 0.85);
+    font-weight: var(--suv-weight-medium);
 }
 
 .suv-footer-section h4 {
@@ -371,9 +374,10 @@
 }
 
 .suv-footer-links a {
-    color: rgba(253, 252, 251, 0.7);
+    color: rgba(253, 252, 251, 0.9);
     text-decoration: none;
     transition: color var(--suv-transition-fast);
+    font-weight: var(--suv-weight-medium);
 }
 
 .suv-footer-links a:hover {
@@ -383,13 +387,15 @@
 /* Footer address styles */
 .suv-footer-address {
     margin-top: var(--suv-space-4);
-    color: rgba(253, 252, 251, 0.7);
+    color: rgba(253, 252, 251, 0.9);
     font-size: var(--suv-font-sm);
+    font-weight: var(--suv-weight-medium);
 }
 
 .suv-footer-address-text {
-    color: rgba(253, 252, 251, 0.7);
+    color: rgba(253, 252, 251, 0.9);
     font-size: var(--suv-font-sm);
+    font-weight: var(--suv-weight-medium);
 }
 
 .suv-footer-map-link {
@@ -397,8 +403,9 @@
 }
 
 .suv-footer-registry-item {
-    color: rgba(253, 252, 251, 0.7);
+    color: rgba(253, 252, 251, 0.9);
     font-size: var(--suv-font-sm);
+    font-weight: var(--suv-weight-medium);
 }
 
     transition: color var(--suv-transition-fast);
@@ -413,7 +420,8 @@
     justify-content: space-between;
     align-items: center;
     font-size: var(--suv-font-sm);
-    color: rgba(253, 252, 251, 0.6);
+    color: rgba(253, 252, 251, 0.85);
+    font-weight: var(--suv-weight-medium);
 }
 
 /* ============= Responsive ============= */
@@ -499,8 +507,9 @@
 .suv-no-results {
     text-align: center;
     padding: var(--suv-space-12);
-    color: var(--suv-color-text-muted);
+    color: var(--suv-color-text-secondary);
     font-size: var(--suv-font-lg);
+    font-weight: var(--suv-weight-medium);
 }
 
 /* ============= About Section Styles ============= */

@@ -164,7 +164,7 @@
 .suv-stat-label {
     font-size: var(--suv-font-base);
     color: var(--suv-color-text-secondary);
-    font-weight: var(--suv-weight-medium);
+    font-weight: var(--suv-weight-semibold);
 }
 
 /* ============= Header Navigation ============= */
@@ -293,8 +293,8 @@
 
 .loader-text {
     font-size: var(--suv-font-lg);
-    font-weight: var(--suv-weight-medium);
-    color: var(--suv-color-text-secondary);
+    font-weight: var(--suv-weight-semibold);
+    color: var(--suv-color-text-primary);
     margin-bottom: var(--suv-space-2);
 }
 
@@ -532,11 +532,12 @@
     position: absolute;
     top: var(--suv-space-4);
     left: var(--suv-space-4);
-    color: var(--suv-color-text-muted);
+    color: var(--suv-color-text-secondary);
     pointer-events: none;
     transition: all var(--suv-transition-fast);
     background: var(--suv-color-bg-card);
     padding: 0 var(--suv-space-1);
+    font-weight: var(--suv-weight-medium);
 }
 
 .suv-form-input:focus + .suv-form-label,
@@ -708,11 +709,11 @@
 
 .project-specs span {
     background: var(--suv-color-bg-secondary);
-    color: var(--suv-color-text-secondary);
+    color: var(--suv-color-text-primary);
     padding: var(--suv-space-1) var(--suv-space-3);
     border-radius: var(--suv-radius-full);
     font-size: var(--suv-font-xs);
-    font-weight: var(--suv-weight-medium);
+    font-weight: var(--suv-weight-semibold);
 }
 
 @media (max-width: 768px) {
