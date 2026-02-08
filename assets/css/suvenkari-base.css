@@ -28,7 +28,7 @@ body {
     line-height: var(--suv-leading-normal);
     color: var(--suv-color-text-primary);
     background-color: var(--suv-color-bg-primary);
-    font-weight: var(--suv-weight-normal);
+    font-weight: var(--suv-weight-medium);
 }
 
 /* Typography */

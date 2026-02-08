@@ -141,7 +141,7 @@
     font-size: var(--suv-font-lg);
     line-height: var(--suv-leading-relaxed);
     color: var(--suv-color-text-primary) !important;
-    font-weight: var(--suv-weight-medium);
+    font-weight: var(--suv-weight-semibold);
     margin-bottom: var(--suv-space-6);
 }
 
@@ -158,7 +158,7 @@
     margin-bottom: var(--suv-space-3);
     font-size: var(--suv-font-base);
     color: var(--suv-color-text-primary);
-    font-weight: var(--suv-weight-medium);
+    font-weight: var(--suv-weight-semibold);
 }
 
 .suv-service-feature-list li::before {
