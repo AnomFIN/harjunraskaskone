@@ -74,7 +74,7 @@
     
     .suv-service-feature p {
         color: var(--suv-color-text-primary);
-        font-weight: var(--suv-weight-medium);
+        font-weight: var(--suv-weight-semibold);
     }
     
     /* Improve project section visibility */
@@ -146,7 +146,7 @@
         font-size: var(--suv-font-sm);
         margin-bottom: var(--suv-space-2);
         color: var(--suv-color-text-primary);
-        font-weight: var(--suv-weight-medium);
+        font-weight: var(--suv-weight-semibold);
     }
     
     /* Ensure consistent section backgrounds using design tokens */
