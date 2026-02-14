@@ -410,13 +410,6 @@
     font-weight: var(--suv-weight-medium);
 }
 
-    transition: color var(--suv-transition-fast);
-}
-
-.suv-footer-links a:hover {
-    color: var(--suv-color-accent-primary);
-}
-
 .suv-footer-bottom {
     display: flex;
     justify-content: space-between;
