@@ -9,6 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- PayPal SDK - Replace with your client ID in production -->
+    <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=EUR&locale=fi_FI"></script>
+    
     <style>
         /* ========================================
            Design Tokens (from main site)
@@ -1292,6 +1295,72 @@
         }
         
         /* ========================================
+           PayPal Integration
+           ======================================== */
+        .payment-section {
+            margin-top: var(--space-xl);
+            padding-top: var(--space-xl);
+            border-top: 2px solid var(--color-steel-200);
+        }
+        
+        .payment-section h3 {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+            text-align: center;
+        }
+        
+        #paypal-button-container {
+            margin: var(--space-lg) 0;
+            min-height: 50px;
+        }
+        
+        .payment-divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: var(--space-xl) 0;
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+        }
+        
+        .payment-divider::before,
+        .payment-divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--color-steel-300);
+        }
+        
+        .payment-divider span {
+            padding: 0 var(--space-md);
+        }
+        
+        .loading-spinner {
+            text-align: center;
+            padding: var(--space-xl);
+            color: var(--color-text-muted);
+        }
+        
+        .loading-spinner svg {
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .payment-error {
+            background: var(--color-error-bg);
+            color: var(--color-error);
+            padding: var(--space-lg);
+            border-radius: var(--border-radius-md);
+            margin: var(--space-lg) 0;
+            text-align: center;
+        }
+        
+        /* ========================================
            Responsive
            ======================================== */
         @media (max-width: 1024px) {
@@ -2051,13 +2120,155 @@
                             <textarea class="form-input" name="notes" rows="3"></textarea>
                         </div>
                         
-                        <button type="submit" class="submit-order-btn">Lähetä tilaus</button>
+                        <div class="payment-section">
+                            <h3>Maksa tilauksesi</h3>
+                            <div id="paypal-button-container"></div>
+                            <div class="payment-divider">
+                                <span>tai</span>
+                            </div>
+                            <button type="submit" class="submit-order-btn">Tilaa laskulla</button>
+                        </div>
                     </form>
                 `;
                 
                 modal.classList.add('active');
                 
+                // Initialize PayPal buttons
+                initPayPalButtons();
+                
                 document.getElementById('checkoutForm').addEventListener('submit', handleCheckoutSubmit);
+            }
+            
+            function initPayPalButtons() {
+                // Validate form data
+                function validateForm() {
+                    const form = document.getElementById('checkoutForm');
+                    let isValid = true;
+                    const errors = [];
+                    
+                    form.querySelectorAll('[required]').forEach(input => {
+                        if (!input.value.trim()) {
+                            isValid = false;
+                            errors.push(`${input.previousElementSibling.textContent} on pakollinen`);
+                        }
+                    });
+                    
+                    return { isValid, errors };
+                }
+                
+                // Get form data
+                function getFormData() {
+                    const form = document.getElementById('checkoutForm');
+                    const formData = new FormData(form);
+                    return Object.fromEntries(formData);
+                }
+                
+                if (typeof paypal === 'undefined') {
+                    document.getElementById('paypal-button-container').innerHTML = 
+                        '<div class="payment-error">PayPal-maksu ei ole käytettävissä. Ole hyvä ja käytä laskutusvaihtoehtoa.</div>';
+                    return;
+                }
+                
+                paypal.Buttons({
+                    style: {
+                        layout: 'vertical',
+                        color: 'blue',
+                        shape: 'rect',
+                        label: 'paypal'
+                    },
+                    
+                    // Validate before payment
+                    onClick: function(data, actions) {
+                        const validation = validateForm();
+                        
+                        if (!validation.isValid) {
+                            alert('Täytä ensin kaikki pakolliset kentät:\n\n' + validation.errors.join('\n'));
+                            return actions.reject();
+                        }
+                        
+                        return actions.resolve();
+                    },
+                    
+                    // Create order
+                    createOrder: function(data, actions) {
+                        const total = getCartTotal();
+                        
+                        return actions.order.create({
+                            purchase_units: [{
+                                description: 'Harjun Raskaskone verkkokauppa tilaus',
+                                amount: {
+                                    currency_code: 'EUR',
+                                    value: total.toFixed(2),
+                                    breakdown: {
+                                        item_total: {
+                                            currency_code: 'EUR',
+                                            value: total.toFixed(2)
+                                        }
+                                    }
+                                },
+                                items: cart.map(item => ({
+                                    name: item.name,
+                                    unit_amount: {
+                                        currency_code: 'EUR',
+                                        value: item.price.toFixed(2)
+                                    },
+                                    quantity: item.quantity.toString()
+                                }))
+                            }],
+                            application_context: {
+                                shipping_preference: 'NO_SHIPPING'
+                            }
+                        });
+                    },
+                    
+                    // Payment approved
+                    onApprove: function(data, actions) {
+                        return actions.order.capture().then(function(orderData) {
+                            const customerData = getFormData();
+                            const orderNumber = 'HRK-' + Date.now().toString().slice(-8) + '-' + 
+                                               Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+                            
+                            // In production, send order data to backend
+                            console.log('PayPal payment completed:', {
+                                orderNumber,
+                                paypalOrderId: orderData.id,
+                                paypalPayerId: orderData.payer.payer_id,
+                                customer: customerData,
+                                items: cart,
+                                total: getCartTotal()
+                            });
+                            
+                            // Show success
+                            showOrderSuccess(orderNumber, true, orderData.id);
+                            
+                            // Clear cart
+                            cart = [];
+                            saveCart();
+                            updateCartCount();
+                            renderCart();
+                        });
+                    },
+                    
+                    // Payment error
+                    onError: function(err) {
+                        console.error('PayPal error:', err);
+                        const container = document.getElementById('paypal-button-container');
+                        container.innerHTML = `
+                            <div class="payment-error">
+                                Maksun käsittelyssä tapahtui virhe. Ole hyvä ja yritä uudelleen tai valitse laskutus.
+                            </div>
+                        `;
+                        setTimeout(() => {
+                            container.innerHTML = '';
+                            initPayPalButtons();
+                        }, 3000);
+                    },
+                    
+                    // Payment cancelled
+                    onCancel: function(data) {
+                        console.log('PayPal payment cancelled');
+                    }
+                }).render('#paypal-button-container');
             }
             
             function handleCheckoutSubmit(e) {
@@ -2131,7 +2342,7 @@
                 renderCart();
             }
             
-            function showOrderSuccess(orderNumber) {
+            function showOrderSuccess(orderNumber, isPaid = false, paypalOrderId = null) {
                 const body = document.getElementById('checkoutBody');
                 
                 body.innerHTML = `
@@ -2141,13 +2352,24 @@
                                 <path d="M20 6L9 17l-5-5"/>
                             </svg>
                         </div>
-                        <h3>Tilaus vastaanotettu!</h3>
-                        <p>Kiitos tilauspyynnöstäsi. Tämä lomake ei vielä lähetä tilausta automaattisesti järjestelmäämme.</p>
+                        <h3>${isPaid ? 'Maksu suoritettu!' : 'Tilaus vastaanotettu!'}</h3>
+                        <p>${isPaid ? 
+                            'Kiitos tilauksestasi! Maksusi on vastaanotettu ja tilauksesi on käsittelyssä.' : 
+                            'Kiitos tilauspyynnöstäsi. Lähetämme sinulle laskun tilauksen vahvistamisen jälkeen.'
+                        }</p>
                         <div class="order-number">
                             Tilausnumero: ${escapeHtml(orderNumber)}
                         </div>
-                        <p style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
-                            Tallenna tilausnumerosi ja ota yhteyttä myyntiimme toimitus- ja maksutietojen sopimiseksi.
+                        ${paypalOrderId ? `
+                            <div style="margin-top: var(--space-md); padding: var(--space-md); background: var(--color-bg-tertiary); border-radius: var(--border-radius-md); font-size: var(--font-size-sm); color: var(--color-text-muted);">
+                                PayPal-maksutunnus: ${escapeHtml(paypalOrderId)}
+                            </div>
+                        ` : ''}
+                        <p style="color: var(--color-text-muted); font-size: var(--font-size-sm); margin-top: var(--space-lg);">
+                            ${isPaid ? 
+                                'Saat tilausvahvistuksen ja toimitustiedot sähköpostitse.' :
+                                'Tallenna tilausnumerosi. Saat tilausvahvistuksen ja laskun sähköpostitse.'
+                            }
                         </p>
                         <button class="checkout-btn" type="button" id="checkoutSuccessClose">
                             Sulje
