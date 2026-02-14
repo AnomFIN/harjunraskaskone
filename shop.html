@@ -9,8 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- PayPal SDK - Replace with your client ID in production -->
-    <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=EUR&locale=fi_FI"></script>
+    <!-- PayPal SDK - IMPORTANT: Replace YOUR_PAYPAL_CLIENT_ID with your actual PayPal Client ID -->
+    <!-- Get your Client ID from: https://developer.paypal.com/dashboard/applications/live -->
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=EUR&locale=fi_FI"></script>
     
     <style>
         /* ========================================
@@ -2163,7 +2164,7 @@
                     return Object.fromEntries(formData);
                 }
                 
-                if (typeof paypal === 'undefined') {
+                if (typeof paypal === 'undefined' || !window.location.href.includes('YOUR_PAYPAL_CLIENT_ID') === false) {
                     document.getElementById('paypal-button-container').innerHTML = 
                         '<div class="payment-error">PayPal-maksu ei ole käytettävissä. Ole hyvä ja käytä laskutusvaihtoehtoa.</div>';
                     return;
@@ -2182,7 +2183,25 @@
                         const validation = validateForm();
                         
                         if (!validation.isValid) {
-                            alert('Täytä ensin kaikki pakolliset kentät:\n\n' + validation.errors.join('\n'));
+                            // Show errors inline on the form
+                            const form = document.getElementById('checkoutForm');
+                            form.querySelectorAll('[required]').forEach(input => {
+                                if (!input.value.trim()) {
+                                    input.classList.add('error');
+                                    const errorDiv = form.querySelector(`[data-field="${input.name}"]`);
+                                    if (errorDiv) {
+                                        errorDiv.textContent = 'Tämä kenttä on pakollinen';
+                                        errorDiv.classList.remove('hidden');
+                                    }
+                                }
+                            });
+                            
+                            // Scroll to first error
+                            const firstError = form.querySelector('.error');
+                            if (firstError) {
+                                firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }
+                            
                             return actions.reject();
                         }
                         
@@ -2225,18 +2244,30 @@
                     onApprove: function(data, actions) {
                         return actions.order.capture().then(function(orderData) {
                             const customerData = getFormData();
-                            const orderNumber = 'HRK-' + Date.now().toString().slice(-8) + '-' + 
-                                               Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+                            // Generate order number with better uniqueness (timestamp + random + last 4 of PayPal order)
+                            const timestamp = Date.now();
+                            const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+                            const paypalSuffix = orderData.id.slice(-4);
+                            const orderNumber = `HRK-${timestamp}-${random}-${paypalSuffix}`;
                             
-                            // In production, send order data to backend
-                            console.log('PayPal payment completed:', {
-                                orderNumber,
-                                paypalOrderId: orderData.id,
-                                paypalPayerId: orderData.payer.payer_id,
-                                customer: customerData,
-                                items: cart,
-                                total: getCartTotal()
-                            });
+                            // In production, send order data to backend API
+                            // TODO: Implement backend endpoint to store order
+                            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                                console.log('PayPal payment completed:', {
+                                    orderNumber,
+                                    paypalOrderId: orderData.id,
+                                    customer: customerData,
+                                    items: cart,
+                                    total: getCartTotal()
+                                });
+                            }
+                            
+                            // In production: 
+                            // fetch('/api/orders', {
+                            //   method: 'POST',
+                            //   headers: { 'Content-Type': 'application/json' },
+                            //   body: JSON.stringify({ orderNumber, paypalOrderId: orderData.id, customer: customerData, items: cart, total: getCartTotal() })
+                            // });
                             
                             // Show success
                             showOrderSuccess(orderNumber, true, orderData.id);

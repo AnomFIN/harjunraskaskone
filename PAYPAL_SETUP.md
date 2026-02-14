@@ -31,21 +31,20 @@ The shop is integrated with PayPal's JavaScript SDK, allowing customers to pay d
 Open `shop.html` and find this line (around line 13):
 
 ```html
-<!-- PayPal SDK - Replace with your client ID in production -->
-<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=EUR&locale=fi_FI"></script>
+<!-- PayPal SDK - IMPORTANT: Replace YOUR_PAYPAL_CLIENT_ID with your actual PayPal Client ID -->
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=EUR&locale=fi_FI"></script>
 ```
 
-Replace `sb` with your actual PayPal Client ID:
+Replace `YOUR_PAYPAL_CLIENT_ID` with your actual PayPal Client ID:
 
 ```html
-<script src="https://www.paypal.com/sdk/js?client-id=YOUR_LIVE_CLIENT_ID&currency=EUR&locale=fi_FI"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AeB1234567890XYZ&currency=EUR&locale=fi_FI"></script>
 ```
 
 **Important**: 
-- `sb` is a sandbox test client ID and will NOT work in production
+- `YOUR_PAYPAL_CLIENT_ID` is a placeholder that must be replaced
+- The shop will show an error if the placeholder is not replaced
 - Keep your Client ID safe - it's okay to use it in frontend code as PayPal designed it for that purpose
-- Your Client ID is NOT a secret (it's meant to be public)
-- However, NEVER share your Secret Key (only used for server-side API calls)
 
 ### 3. Test in Sandbox (Development)
 
