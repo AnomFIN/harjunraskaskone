@@ -2301,7 +2301,9 @@
                     
                     // Payment cancelled
                     onCancel: function(data) {
-                        console.log('PayPal payment cancelled');
+                        if (window.location && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+                            console.log('PayPal payment cancelled');
+                        }
                     }
                 }).render('#paypal-button-container');
             }
