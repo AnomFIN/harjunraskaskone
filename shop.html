@@ -2248,11 +2248,11 @@
                     onApprove: function(data, actions) {
                         return actions.order.capture().then(function(orderData) {
                             const customerData = getFormData();
-                            // Generate order number with better uniqueness (timestamp + random + last 4 of PayPal order)
-                            const timestamp = Date.now();
-                            const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-                            const paypalSuffix = orderData.id.slice(-4);
-                            const orderNumber = `HRK-${timestamp}-${random}-${paypalSuffix}`;
+                            // Generoi tilausnumero yhtenäisellä formaatilla (sama kuin laskutilauksissa): HRK-${last8}-${random3}
+                            const timestampStr = Date.now().toString();
+                            const last8 = timestampStr.slice(-8);
+                            const random3 = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+                            const orderNumber = `HRK-${last8}-${random3}`;
                             
                             // In production, send order data to backend API
                             // TODO: Implement backend endpoint to store order
