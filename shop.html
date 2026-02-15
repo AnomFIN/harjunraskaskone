@@ -2168,7 +2168,16 @@
                     return Object.fromEntries(formData);
                 }
                 
-                if (typeof paypal === 'undefined' || !window.location.href.includes('YOUR_PAYPAL_CLIENT_ID') === false) {
+                // Check if PayPal SDK loaded and placeholder was replaced
+                const paypalScripts = document.querySelectorAll('script[src*="paypal.com/sdk"]');
+                let placeholderNotReplaced = false;
+                paypalScripts.forEach(script => {
+                    if (script.src.includes('YOUR_PAYPAL_CLIENT_ID')) {
+                        placeholderNotReplaced = true;
+                    }
+                });
+                
+                if (typeof paypal === 'undefined' || placeholderNotReplaced) {
                     document.getElementById('paypal-button-container').innerHTML = 
                         '<div class="payment-error">PayPal-maksu ei ole käytettävissä. Ole hyvä ja käytä laskutusvaihtoehtoa.</div>';
                     return;
@@ -2286,7 +2295,9 @@
                     
                     // Payment error
                     onError: function(err) {
-                        console.error('PayPal error:', err);
+                        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                            console.error('PayPal error:', err);
+                        }
                         const container = document.getElementById('paypal-button-container');
                         container.innerHTML = `
                             <div class="payment-error">
