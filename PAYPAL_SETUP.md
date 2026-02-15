@@ -43,7 +43,7 @@ Replace `YOUR_PAYPAL_CLIENT_ID` with your actual PayPal Client ID:
 
 **Important**: 
 - `YOUR_PAYPAL_CLIENT_ID` is a placeholder that must be replaced before deploying
-- The shop checks the PayPal SDK script URL on load; if it still contains `YOUR_PAYPAL_CLIENT_ID` or the SDK fails to load, the PayPal buttons are hidden and the invoice fallback UI is shown with an error message
+- The shop checks the PayPal SDK script URL on page load; if it contains `YOUR_PAYPAL_CLIENT_ID` or the SDK fails to load, the PayPal buttons are hidden and the invoice fallback UI is shown with an error message
 - Keep your Client ID safe - it's okay to use it in frontend code as PayPal designed it for that purpose
 
 ### 3. Test in Sandbox (Development)
